@@ -1,0 +1,80 @@
+
+ Subscribe machine to base repo with employee subscription
+
+# Add the Pulp GPG key to the system
+
+    # This should not be needed
+    # sudo rpm --import https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-2
+
+# Add Pulp repo containing pulp packages to test. To do this create a pulp-beta.repo file similar to the following in /etc/yum.repos.d/
+
+    [pulp-beta]
+    name=pulp-beta
+    baseurl=https://repos.fedorapeople.org/repos/pulp/pulp/beta/2.6/6Server/x86_64/
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-2
+
+# Add the latest EPEL repo for that OS
+
+    ## RHEL/CentOS 6 64-Bit ##
+    # wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    # rpm -ivh epel-release-6-8.noarch.rpm
+
+    ## RHEL/CentOS 7 64-Bit ##
+    # wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    # rpm -ivh epel-release-7-5.noarch.rpm
+
+
+# Install all necessary packages
+
+    sudo yum install mongodb-server qpid-cpp-server qpid-cpp-server-linearstore
+    sudo yum groupinstall pulp-server-qpid pulp-admin pulp-consumer-qpid
+
+# Start mongo and Qpid
+
+    sudo service mongod start
+    sudo service qpidd start
+
+# Run pulp-manage-db
+
+    sudo -u apache pulp-manage-db
+
+# Start screen and open one screen to watch the logs, and the other to start the following services by. With each one, verify that the service starts correctly.
+
+    sudo service httpd start
+    sudo service pulp_celerybeat start
+    sudo service pulp_workers start
+    sudo service pulp_resource_manager start
+
+# Configure pulp-admin
+
+    pulp-admin login -u admin -p admin
+
+# Start Gofer
+    sudo service goferd start
+
+# Test RPM repo functionality by doing a create -> sync+publish -> upload -> publish -> delete with the zoo repo
+# wget https://repos.fedorapeople.org/repos/pulp/pulp/stable/2.4/fedora-20/x86_64/python-kombu-3.0.15-12.pulp.fc20.noarch.rpm
+
+    pulp-admin -u admin -p admin rpm repo create --repo-id zoo --relative-url zoo --feed http://repos.fedorapeople.org/repos/pulp/pulp/demo_repos/zoo/
+    pulp-admin -u admin -p admin rpm repo sync run --repo-id zoo
+    pulp-admin -u admin -p admin rpm repo uploads rpm --file ./python-kombu-3.0.15-12.pulp.fc20.noarch.rpm --repo-id zoo
+    pulp-admin -u admin -p admin rpm repo publish run --repo-id zoo
+    pulp-admin -u admin -p admin rpm repo delete --repo-id zoo
+
+# Test Puppet functionality by doing a create -> upload -> sync
+# wget https://forgeapi.puppetlabs.com/v3/files/deric-accounts-1.0.2.tar.gz
+
+    pulp-admin -u admin -p admin puppet repo create --repo-id zoo-puppet
+    pulp-admin -u admin -p admin puppet repo uploads upload --file ./deric-accounts-1.0.2.tar.gz --repo-id zoo-puppet
+    pulp-admin -u admin -p admin puppet repo publish run --repo-id zoo-puppet
+    pulp-admin -u admin -p admin puppet repo delete --repo-id zoo-puppet
+
+# Test consumer bind by doing a register -> bind -> update -> unbind -> unregister
+
+    sudo pulp-consumer -u admin -p admin register --consumer-id c1
+    pulp-consumer rpm bind --repo-id=zoo
+    pulp-consumer update --display-name="c1"
+    pulp-consumer rpm unbind --repo-id=zoo
+    sudo pulp-consumer -u admin -p admin unregister

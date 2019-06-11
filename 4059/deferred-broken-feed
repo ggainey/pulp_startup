@@ -1,0 +1,18 @@
+#!/bin/bash
+pin
+pulp-admin rpm repo create --repo-id broken_zoo_on_demand --relative-url broken_zoo_on_demand --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id broken_zoo_on_demand
+curl -L -O -k -v https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/wolf-9.4-2.noarch.rpm
+sudo vi /etc/hosts <<HERE
+G
+o
+127.0.0.1 repos.fedorapeople.org
+
+ZZ
+HERE
+sudo systemctl restart network.service
+sleep 5
+pulp-admin rpm repo uploads rpm --file wolf-9.4-2.noarch.rpm --repo-id broken_zoo_on_demand
+pulp-admin rpm repo publish run --repo-id broken_zoo_on_demand
+curl -L -k -v -o wolf.rpm https://localhost/pulp/repos/broken_zoo_on_demand/Packages/w/wolf-9.4-2.noarch.rpm
+file wolf.rpm

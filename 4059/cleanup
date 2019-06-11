@@ -1,0 +1,7 @@
+pulp-admin rpm repo delete --repo-id zoo
+pulp-admin rpm repo delete --repo-id zoo_on_demand
+pulp-admin rpm repo delete --repo-id broken_zoo_on_demand
+pulp-admin rpm repo delete --repo-id zoo_straight
+pulp-admin orphan remove --all
+sudo find /var/spool/squid -type f | sudo xargs rm -f
+sudo systemctl restart squid
