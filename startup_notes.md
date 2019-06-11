@@ -47,11 +47,11 @@
 
 ## test-env-setup on vagrant box
 
-   ## cd /home/vagrant/devel/pulp_rpm
-   ## sudo pip install -r test_requirements.txt
-   ## sudo dnf install openssl-devel
-   ## sudo pip install rhsm
-   ## ./run_tests.py
+    ## cd /home/vagrant/devel/pulp_rpm
+    ## sudo pip install -r test_requirements.txt
+    ## sudo dnf install openssl-devel
+    ## sudo pip install rhsm
+    ## ./run_tests.py
 
 ## pycharm setup
 
@@ -102,6 +102,7 @@
 * webservices/views is the server-side receiving-end of REST
 * pulp_rpm/admin is CLIENT-SIDE - run -vvv to see set of REST calls being made
 * Once endpt identified, add to incoming method:
+
     import pydevd_pycharm
     pydevd_pycharm.settrace('IP-ADR', port=CHOSEN-PORT, stdoutToServer=True, stderrToServer=True)
     ## prestart
