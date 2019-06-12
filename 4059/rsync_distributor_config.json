@@ -1,0 +1,13 @@
+{
+    "distributor_id": "rpm_rsync_distributor",
+    "distributor_type_id": "rpm_rsync_distributor",
+    "distributor_config": {
+        "remote": {
+            "ssh_user": "ggainey",
+            "ssh_identity_file": "/home/vagrant/SSH/rsync.key",
+            "host": "ggainey-beast.usersys.redhat.com",
+            "root": "/home/ggainey/RSYNC"
+        },
+        "predistributor_id": "yum_distributor"
+    }
+}
