@@ -18,7 +18,6 @@ sudo dnf install -y wget
 sudo pip install pydevd-pycharm
 # set download_interval to Very Fast
 sudo ex /etc/pulp/server.conf <<HERE2
-ex ./bashrc <<HERE2
 :%s/# download_interval: 30/download_interval: 1/
 :wq
 HERE2
