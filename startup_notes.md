@@ -51,7 +51,7 @@
     ## sudo pip install -r test_requirements.txt
     ## sudo dnf install openssl-devel
     ## sudo pip install rhsm
-    ## ./run_tests.py
+    ## ./run-tests.py
 
 ## pycharm setup
 
@@ -106,3 +106,36 @@
     import pydevd_pycharm
     pydevd_pycharm.settrace('IP-ADR', port=CHOSEN-PORT, stdoutToServer=True, stderrToServer=True)
     ## prestart
+
+# pulp-smash
+
+https://pulp-2-tests.readthedocs.io/en/latest/installation.html
+
+    [vagrant@pulp2 ~]$ python3 -m venv ~/.venvs/pulp-2-tests
+    [vagrant@pulp2 ~]$ source ~/.venvs/pulp-2-tests/bin/activate
+    (pulp-2-tests) [vagrant@pulp2 ~]$ pip install --upgrade pip
+    ...
+    Successfully installed pip-19.1.1
+    (pulp-2-tests) [vagrant@pulp2 ~]$ pip install git+https://github.com/PulpQE/Pulp-2-Tests.git#egg=pulp-2-tests
+    Collecting pulp-2-tests from git+https://github.com/PulpQE/Pulp-2-Tests.git#egg=pulp-2-tests
+    ...
+      Running setup.py install for pyrsistent ... done
+      Running setup.py install for pulp-2-tests ... done
+    Successfully installed attrs-19.1.0 certifi-2019.6.16 chardet-3.0.4 click-7.0 idna-2.8 jsonschema-3.0.1 packaging-19.0 plumbum-1.6.7 pulp-2-tests-2018.11.1 pulp-smash-1!0.4.0 pyparsing-2.4.0 pyrsistent-0.15.2 python-dateutil-2.8.0 pyxdg-0.26 requests-2.22.0 six-1.12.0 urllib3-1.25.3
+    (pulp-2-tests) [vagrant@pulp2 ~]$ pulp-smash settings create  # declare information about Pulp
+    Which version of Pulp is under test?: 2.20
+    What is the Pulp administrative user's username? [admin]:
+    What is the Pulp administrative user's password? [admin]:
+    Is SELinux supported on the Pulp hosts? [Y/n]: n
+    What is the Pulp host's hostname?: localhost
+    What service backs Pulp's AMQP broker? (qpidd, rabbitmq) [qpidd]:
+    What scheme should be used when communicating with Pulp's API? (https, http) [https]:
+    Verify HTTPS? [Y/n]: n
+    By default, Pulp Smash will communicate with Pulp's API on the port number implied by the scheme. For example, if Pulp's API is available over HTTPS, then Pulp Smash will communicate on port 443. If Pulp's API is available on a non-standard port, like 8000, then Pulp Smash needs to know about that.
+    Pulp API port number [0]: 443
+    What web server service backs Pulp's API? (httpd, nginx) [httpd]:
+    Is Pulp Smash installed on the same host as Pulp? [y/N]: y
+    Pulp Smash will access the Pulp host using a local shell.
+    Settings written to /home/vagrant/.config/pulp_smash/settings.json.
+    (pulp-2-tests) [vagrant@pulp2 ~]$ python3 -m unittest discover pulp_2_tests.tests
+

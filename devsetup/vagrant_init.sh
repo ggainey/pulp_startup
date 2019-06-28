@@ -1,14 +1,14 @@
 #!/bin/bash
 # Setting up a freshly-created vagrant machine
 # setup my bash env
-cat >> ./.bashrc <<HERE
+cat >> $HOME/.bashrc <<HERE
 set -o vi
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 alias h='history 25'
 alias pin='pulp-admin login -u admin -p admin'
 HERE
-. ./.bashrc
+. $HOME/.bashrc
 # pause pulp
 pstop
 # install needed modules
