@@ -1,9 +1,0 @@
-#!/bin/bash
-pin
-pulp-admin rpm repo create --repo-id zoo_on_demand --relative-url zoo_on_demand --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/ --download-policy on_demand
-pulp-admin rpm repo sync run --repo-id zoo_on_demand
-curl -L -k -o wolf.rpm https://localhost/pulp/repos/zoo_on_demand/Packages/w/wolf-9.4-2.noarch.rpm
-file wolf.rpm
-pulp-admin rpm repo update --repo-id zoo_on_demand --feed http://epel.mirrors.ovh.net/repos/pulp/pulp/fixtures/rpm-with-modules/
-curl -L -k -o fox.rpm  https://localhost/pulp/repos/zoo_on_demand/Packages/f/fox-1.1-2.noarch.rpm
-file fox.rpm

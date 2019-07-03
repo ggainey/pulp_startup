@@ -1,0 +1,128 @@
+#!/bin/bash
+# top-lvl url fir test repos
+base_remote_url='https://repos.fedorapeople.org/repos/pulp/pulp/fixtures'
+# repos to use w/this set of tests
+zoo_1='rpm-with-modules'
+zoo_2='rpm-test-modularity'
+zoo_alt='rpm-alt-layout'
+not_zoo1='drpm-signed'
+not_zoo2='drpm-unsigned'
+
+bear='bear-4.1-1.noarch.rpm'
+cat='cat-1.0-1.noarch.rpm'
+cheetah='cheetah-1.25.3-5.noarch.rpm'
+wolf='wolf-9.4-2.noarch.rpm'
+testalpha1='test-alpha-1.1-2.noarch.rpm'
+testalpha2='test-alpha-1.1-3.noarch.rpm'
+
+function cleanup() {
+    pulp-admin rpm repo delete --repo-id on-demand-1
+    pulp-admin rpm repo delete --repo-id on-demand-2
+    pulp-admin orphan remove --all
+    sudo find /var/spool/squid -type f | sudo xargs rm -f
+    sudo systemctl restart squid
+    rm *.rpm
+}
+
+function create() {
+    remote=$1
+    repo=$2
+    echo "Creating $repo from remote $base_remote_url/$remote"
+    pulp-admin -u admin -p admin rpm repo create --repo-id $repo --relative-url $repo --feed $base_remote_url/$remote --download-policy on_demand
+    pulp-admin -u admin -p admin rpm repo sync run --repo-id $repo
+    pulp-admin -u admin -p admin rpm repo publish run --repo-id $repo
+    mongo pulp_database --eval "db.lazy_content_catalog.find({url: /$remote/}).count()" --quiet
+}
+
+function change() {
+    remote=$1
+    repo=$2
+    echo "Changing $repo to remote $base_remote_url/$remote"
+    pulp-admin -u admin -p admin rpm repo update --repo-id $repo --feed $base_remote_url/$remote
+    pulp-admin -u admin -p admin rpm repo sync run --repo-id $repo
+    pulp-admin -u admin -p admin rpm repo publish run --repo-id $repo
+    mongo pulp_database --eval "db.lazy_content_catalog.find({url: /$remote/}).count()" --quiet
+}
+
+function fetch() {
+    repo=$1
+    alfa=$2
+    rpm=$3
+    echo "Requesting https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm"
+    curl -L -k -o $rpm https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm
+    file $rpm
+}
+
+# Tests:
+# 1) one repo, same-nevra/same-path: on-demand-1/zoo_1/sync/wolf, chg to zoo_2/sync/bear, db zoo_2, cleanup
+function test_one() {
+    create $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 'w' $wolf 
+    change $zoo_2 'on-demand-1' 
+    fetch 'on-demand-1' 'b' $bear 
+    cleanup
+}
+
+# 2) two repo, same-nevra/same-path: on-demand-1/zoo_1/sync/wolf, on-demand-2/zoo_1/sync/bear, chg 1 to zoo_2/sync/cat, curl/2/cheetah, db zoo_2, cleanup
+function test_two() {
+    create $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 'w' $wolf 
+    create $zoo_1 'on-demand-2' 
+    fetch 'on-demand-1' 'b' $bear 
+    change $zoo_2 'on-demand-1' 
+    fetch 'on-demand-1' 'c' $cat 
+    fetch 'on-demand-2' 'c' $cheetah
+    cleanup
+}
+
+# 3) one repo, same-nevra/diff-path: on-demand-1/zoo_1/sync/wolf, chg to zoo_alt/sync/bear, db zoo_alt, switch on-demand-1/zoo_1/sync/cat, cleanup
+function test_three() {
+    create $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 'w' $wolf 
+    change $zoo_alt 'on-demand-1' 
+    fetch 'on-demand-1' 'b' $bear 
+    change $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 'c' $cat 
+    cleanup
+}
+
+# 4) one repo, diff-nevra: on-demand-1/zoo_1/sync/wolf, chg on-demand-1/not_zoo1/sync/test-alpha, curl cheetah PASS, chg to zoo_1/sync/bear, test-alpha-2, cleanup
+function test_four() {
+    create $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 'w' $wolf 
+    change $not_zoo1 'on-demand-1' 
+    fetch 'on-demand-1' 't' $testalpha1 
+    fetch 'on-demand-1' 'w' $wolf 
+    fetch 'on-demand-1' 'c' $cheetah 
+    change $zoo_1 'on-demand-1' 
+    fetch 'on-demand-1' 't' $testalpha1 
+    fetch 'on-demand-1' 't' $testalpha2 
+    fetch 'on-demand-1' 'b' $bear 
+    fetch 'on-demand-1' 'c' $cheetah 
+    fetch 'on-demand-1' 'w' $wolf 
+    cleanup
+}
+
+# 5) one repo, same-nevra/same-path/drpms: on-demand-1/not-zoo1/sync/testalpha1, chg to not-zoo2/sync/testalpha2, cleanup
+function test_five() {
+    create $not_zoo1 'on-demand-1' 
+    fetch 'on-demand-1' 't' $testalpha1 
+    change $not_zoo2 'on-demand-1' 
+    fetch 'on-demand-1' 't' $testalpha2 
+    cleanup
+}
+
+if [ ! "$#" == 0 ] 
+  then
+    fn=$1
+    shift
+    eval $fn $@
+  else
+    echo 'run-all'
+    test_one
+    test_two
+    test_three
+    test_four
+    test_five
+fi
+
