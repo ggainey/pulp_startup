@@ -137,5 +137,17 @@ https://pulp-2-tests.readthedocs.io/en/latest/installation.html
     Is Pulp Smash installed on the same host as Pulp? [y/N]: y
     Pulp Smash will access the Pulp host using a local shell.
     Settings written to /home/vagrant/.config/pulp_smash/settings.json.
-    (pulp-2-tests) [vagrant@pulp2 ~]$ python3 -m unittest discover pulp_2_tests.tests
+    # Run ALL THE THINGS!!
+    (pulp-2-tests) [vagrant@pulp2 ~]$ time python3 -m unittest discover pulp_2_tests.tests
+    # Test pulp2 rpm
+    (pulp-2-tests) [vagrant@pulp2 ~]$ time python3 -m unittest discover pulp_2_tests.tests.rpm.api_v2
+    ...
+    Ran 372 tests in 3892.744s
+    FAILED (failures=4, errors=2, skipped=6)
+    real	64m53.457s
+    user	2m23.396s
+    sys	0m23.057s
+
+    # Run *A* test
+    (pulp-2-tests) [vagrant@pulp2 ~]$ time python -m unittest pulp_2_tests.tests.rpm.api_v2.test_upload_publish
 
