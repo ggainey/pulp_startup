@@ -24,6 +24,16 @@ function cleanup() {
     rm *.rpm
 }
 
+function expect() {
+    repo=$1
+    remote=$2
+    expected_count=$3
+    lces=`mongo pulp_database --eval "db.lazy_content_catalog.find({url: /$remote/}).count()" --quiet`
+    num_rpms=$(pulp-admin -u admin -p admin rpm repo list --details --repo-id $repo | grep 'Rpm:')
+    echo ">>>>>> repository $repo has $num_rpms" 
+    echo ">>>>>> For remote $remote, expected/found LCEs : [$expected_count / $lces]"
+}
+
 function create() {
     remote=$1
     repo=$2
@@ -49,13 +59,14 @@ function fetch() {
     alfa=$2
     rpm=$3
     echo "Requesting https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm"
-    curl -L -k -o $rpm https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm
+    curl -s -L -k -o $rpm https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm
     file $rpm
 }
 
 # Tests:
 # 1) one repo, same-nevra/same-path: on-demand-1/zoo_1/sync/wolf, chg to zoo_2/sync/bear, db zoo_2, cleanup
 function test_one() {
+    echo ">>>>>> test_one"
     create $zoo_1 'on-demand-1' 
     fetch 'on-demand-1' 'w' $wolf 
     change $zoo_2 'on-demand-1' 
@@ -65,11 +76,16 @@ function test_one() {
 
 # 2) two repo, same-nevra/same-path: on-demand-1/zoo_1/sync/wolf, on-demand-2/zoo_1/sync/bear, chg 1 to zoo_2/sync/cat, curl/2/cheetah, db zoo_2, cleanup
 function test_two() {
+    echo ">>>>>> test_two"
     create $zoo_1 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
     fetch 'on-demand-1' 'w' $wolf 
     create $zoo_1 'on-demand-2' 
+    expect 'on-demand-2' $zoo_1 70
     fetch 'on-demand-1' 'b' $bear 
     change $zoo_2 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
+    expect 'on-demand-2' $zoo_1 35
     fetch 'on-demand-1' 'c' $cat 
     fetch 'on-demand-2' 'c' $cheetah
     cleanup
@@ -77,24 +93,32 @@ function test_two() {
 
 # 3) one repo, same-nevra/diff-path: on-demand-1/zoo_1/sync/wolf, chg to zoo_alt/sync/bear, db zoo_alt, switch on-demand-1/zoo_1/sync/cat, cleanup
 function test_three() {
+    echo ">>>>>> test_three"
     create $zoo_1 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
     fetch 'on-demand-1' 'w' $wolf 
     change $zoo_alt 'on-demand-1' 
+    expect 'on-demand-1' $zoo_alt 35
     fetch 'on-demand-1' 'b' $bear 
     change $zoo_1 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
     fetch 'on-demand-1' 'c' $cat 
     cleanup
 }
 
 # 4) one repo, diff-nevra: on-demand-1/zoo_1/sync/wolf, chg on-demand-1/not_zoo1/sync/test-alpha, curl cheetah PASS, chg to zoo_1/sync/bear, test-alpha-2, cleanup
 function test_four() {
+    echo ">>>>>> test_four"
     create $zoo_1 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
     fetch 'on-demand-1' 'w' $wolf 
     change $not_zoo1 'on-demand-1' 
+    expect 'on-demand-1' $not_zoo1 9
     fetch 'on-demand-1' 't' $testalpha1 
     fetch 'on-demand-1' 'w' $wolf 
     fetch 'on-demand-1' 'c' $cheetah 
     change $zoo_1 'on-demand-1' 
+    expect 'on-demand-1' $zoo_1 35
     fetch 'on-demand-1' 't' $testalpha1 
     fetch 'on-demand-1' 't' $testalpha2 
     fetch 'on-demand-1' 'b' $bear 
@@ -105,9 +129,12 @@ function test_four() {
 
 # 5) one repo, same-nevra/same-path/drpms: on-demand-1/not-zoo1/sync/testalpha1, chg to not-zoo2/sync/testalpha2, cleanup
 function test_five() {
+    echo ">>>>>> test_five"
     create $not_zoo1 'on-demand-1' 
+    expect 'on-demand-1' $not_zoo1 9
     fetch 'on-demand-1' 't' $testalpha1 
     change $not_zoo2 'on-demand-1' 
+    expect 'on-demand-1' $not_zoo2 9
     fetch 'on-demand-1' 't' $testalpha2 
     cleanup
 }
