@@ -1,0 +1,50 @@
+W = a Worker
+RR = a ReservedResource
+T =incoming Task-request
+
+Current:
+# One id associated to one ReservedResource handled by one Worker
+# Worker for that resource may already be busy - queue new request onto it
+# else create new Worker and queue
+apply_async_with_reservation(resource-id)
+    worker = worker-name associated with ReservedResource for resource-id
+    if 1:
+      W = worker
+    if 0:
+      W = create Worker
+      if no-workers-avail, sleep() and retry)
+
+    RR = create ReservedResource(W, resource-id)
+    RR.task = T
+    return W
+
+
+
+Desired:
+# Multiple ReservedResources can be associated with one Worker
+# We have to wait until there is AT MOST one Worker dealing with ReservedResource(s)
+#    associated with the ids on the incoming list
+# When there is one Worker, create ReservedResources for each id in the incoming list, and
+#    hand all of them to that one Worker
+# When there are no Workers handling any of the incoming resources, create one and hand
+#    it that list of ReservedResources
+# If there are no Workers available in the second case, wait and try again
+
+apply_async_with_reservations(list-of-ids])
+    [workers] = worker-names for all Workers associated with any resource in list
+    if len(workers) > 1: # more than one worker is handling resource(s) in incoming req
+      sleep() and retry
+    elseif len(workers) == 1: # There exists only one worker dealing w/any of our rsrcs; add to its queue
+      W = workers[0]
+    elseif len(workers) == 0: # Nobody is dealing w/any of our resources - time for new worker
+      W = create_worker()
+      if fails due to "too many workers", sleep and retry
+
+    At this point we have a Worker, a Task, and a list of resources.
+
+    ATOMIC-TRANSACTION-REQUIRED:
+      foreach rid in list-of-resources:
+         RR = find-or-create ReservedResource(W, rid)
+         RR.task = T
+
+
