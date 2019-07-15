@@ -151,3 +151,13 @@ https://pulp-2-tests.readthedocs.io/en/latest/installation.html
     # Run *A* test
     (pulp-2-tests) [vagrant@pulp2 ~]$ time python -m unittest pulp_2_tests.tests.rpm.api_v2.test_upload_publish
 
+# cleaning up a busted vagrant
+
+    <dkliban> maybe just do 'vagrant reload' ?
+    <ggainey> too late :)
+    <ggainey> but yeah, that prob would've worked as well
+    <dkliban> reload will reconfigured the shared filesystem
+    <dkliban> it will restart the box and in the process mount the filesystem
+    <ggainey> ah, good to know - will save some time the next time I f'up my machine
+    <dkliban> and then you still have to manually run 'sudo python pulp-dev.py -I'
+    <dkliban> i think the filesystem disapears and then the OS just thinks everything got uninstalled

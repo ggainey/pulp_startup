@@ -30,7 +30,7 @@ Desired:
 #    it that list of ReservedResources
 # If there are no Workers available in the second case, wait and try again
 
-apply_async_with_reservations(list-of-ids])
+apply_async_with_reservations(list-of-ids])  # NOTE THE PLURAL - this is a new API
     [workers] = worker-names for all Workers associated with any resource in list
     if len(workers) > 1: # more than one worker is handling resource(s) in incoming req
       sleep() and retry
@@ -48,3 +48,17 @@ apply_async_with_reservations(list-of-ids])
          RR.task = T
 
 
+THOUGHTS:
+could use same API:
+  change _queue_reserved_task method to take type and id, investigate incoming resource-id,
+    if-list (or string containing magic char (eg, | ?)) then do multi-resource processing else
+    do existing?
+  PRO: only _queue_reserved_task API changes
+  CON: method could get opaquely-complicated
+
+  add _queue_reserved_multi_task method, same investigation happens in apply_async_with_reservation
+  PRO: clearer separaton of concersn
+  CON: possibly not as DRY as it could be?
+
+  in both cases:
+  CON: resource-id passed to apply_async_with_reservation becomes 'magic', ew
