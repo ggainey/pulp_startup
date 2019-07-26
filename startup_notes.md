@@ -113,6 +113,7 @@ https://pulp-2-tests.readthedocs.io/en/latest/installation.html
 
     [vagrant@pulp2 ~]$ python3 -m venv ~/.venvs/pulp-2-tests
     [vagrant@pulp2 ~]$ source ~/.venvs/pulp-2-tests/bin/activate
+    (pulp-2-tests) [vagrant@pulp2 ~]$ pip install ipython
     (pulp-2-tests) [vagrant@pulp2 ~]$ pip install --upgrade pip
     ...
     Successfully installed pip-19.1.1

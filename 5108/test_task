@@ -63,28 +63,28 @@ say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', arg
 
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'bar', args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo', 'bar'], args=[1, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings'])
 
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo'], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo','bar','blech'], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
 
 
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo'], args=[3, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['bar'], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo','bar','blech'], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[3, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
 
 
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo'], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['bar'], args=[10, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo','bar','blech'], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
 
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo'], args=[4, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['bar'], args=[2, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['blech','bar'], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['zoo','bar'], args=[10, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['blech'], args=[2, 'Greetings'])
-say_hello.apply_async_with_reservation_list(tags.RESOURCE_REPOSITORY_TYPE, ['bar','blech'], args=[2, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[4, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[2, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings'])
 
 
 
