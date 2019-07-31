@@ -1,3 +1,7 @@
+#!/bin/python
+
+"""
+Assumes the following exists:
 server/managers/repo/unit_association.py:
 
 class TestTask(object):
@@ -5,86 +9,48 @@ class TestTask(object):
     def say_hello(greeting):
         return 'I should say [%s]' % greeting
 say_hello = task(TestTask.say_hello, base=Task)
-
-
->>> from pulp.server.db.connection import initialize
->>> initialize()
->>> from pulp.server.managers.repo.unit_association import say_hello
->>> say_hello.apply_async(args=['Greetings'])
-<AsyncResult: 2a61b81d-b2dd-43a6-a9c8-fc67d6337506>
->>>
-
-
-[vagrant@pulp2 pulp]$  pulp-admin tasks details --task-id 2a61b81d-b2dd-43a6-a9c8-fc67d6337506
-+----------------------------------------------------------------------+
-                              Task Details
-+----------------------------------------------------------------------+
-
-Operations:
-Resources:
-State:            Successful
-Start Time:       2019-07-11T19:25:23Z
-Finish Time:      2019-07-11T19:25:23Z
-Result:           I should say [Greetings]
-Task Id:          2a61b81d-b2dd-43a6-a9c8-fc67d6337506
-Worker Name:      reserved_resource_worker-0@pulp2.dev
-Progress Report:
-
->>> from pulp.common import constants, dateutils, tags
->>> say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=['Greetings'])
-<AsyncResult: 934f8608-1ab1-4cd7-9c55-aa6ae4732982>
->>>
-
-[vagrant@pulp2 pulp]$  pulp-admin tasks details --task-id 2a61b81d-b2dd-43a6-a9c8-fc67d6337506
-+----------------------------------------------------------------------+
-                              Task Details
-+----------------------------------------------------------------------+
-
-Operations:
-Resources:
-State:            Successful
-Start Time:       2019-07-11T19:25:23Z
-Finish Time:      2019-07-11T19:25:23Z
-Result:           I should say [Greetings]
-Task Id:          2a61b81d-b2dd-43a6-a9c8-fc67d6337506
-Worker Name:      reserved_resource_worker-0@pulp2.dev
-Progress Report:
-
->>>
-
-
-
+"""
 from pulp.common import constants, dateutils, tags
 from pulp.server.db.connection import initialize
+from time import sleep
+
 initialize()
 from pulp.server.managers.repo.unit_association import say_hello
 
-say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])  # immed
+sleep(5)
 
-say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'bar', args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings'])
+say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) #immed
+say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'bar', args=[5, 'Greetings']) #immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings']) # 5 sec delay
+sleep(5)
 
-say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) #immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings']) #immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings']) # 5 sec delay
+sleep(5)
 
+say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # immed
+sleep(5)
 
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[3, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[3, 'Greetings']) #immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings']) #immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # 3 sec delay
+sleep(5)
 
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # 5 sec delay
+sleep(10)
 
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings'])
-
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[4, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[2, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings'])
-say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings'])
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[4, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[2, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings']) # 4 sec delay
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings']) # immed
+say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[2, 'Greetings']) # 2 sec delay
 
 
 
