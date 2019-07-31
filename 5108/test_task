@@ -23,27 +23,27 @@ sleep(5)
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) #immed
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'bar', args=[5, 'Greetings']) #immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings']) # 5 sec delay
-sleep(5)
+sleep(10)
 
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) #immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings']) #immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[1, 'Greetings']) # 5 sec delay
-sleep(5)
+sleep(10)
 
 say_hello.apply_async_with_reservation(tags.RESOURCE_REPOSITORY_TYPE, 'zoo', args=[5, 'Greetings']) # immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings']) # immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # immed
-sleep(5)
+sleep(10)
 
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[3, 'Greetings']) #immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[5, 'Greetings']) #immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # 3 sec delay
-sleep(5)
+sleep(10)
 
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[5, 'Greetings']) # immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[10, 'Greetings']) # immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo'), (tags.RESOURCE_REPOSITORY_TYPE, 'bar'), (tags.RESOURCE_REPOSITORY_TYPE, 'blech')], args=[5, 'Greetings']) # 5 sec delay
-sleep(10)
+sleep(15)
 
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'zoo')], args=[4, 'Greetings']) # immed
 say_hello.apply_async_with_reservation_list([(tags.RESOURCE_REPOSITORY_TYPE, 'bar')], args=[2, 'Greetings']) # immed
