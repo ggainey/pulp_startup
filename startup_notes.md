@@ -162,3 +162,42 @@ https://pulp-2-tests.readthedocs.io/en/latest/installation.html
     <ggainey> ah, good to know - will save some time the next time I f'up my machine
     <dkliban> and then you still have to manually run 'sudo python pulp-dev.py -I'
     <dkliban> i think the filesystem disapears and then the OS just thinks everything got uninstalled
+
+# My box fell over, and now my vagrant bos is all f'd up!!!!
+
+Per dkliban:
+    <dkliban> the shared file system (/home/vagrant/devel) go unmounted
+    <dkliban> got
+    <ggainey> ahhhhh, ok
+    <dkliban> and all the stuff that was installed from there as symlinks and egg files disappeared
+
+## How do you know it's busted?
+
+    (2-master) ~/github/devel/devel $ vagrant up
+    Bringing machine 'pulp2_dev' up with 'libvirt' provider...
+    ...
+    ==> pulp2_dev: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+    ==> pulp2_dev: flag to force provisioning. Provisioners marked to run always will still run.
+    ==> pulp2_dev: Running provisioner: shell...
+        pulp2_dev: Running: inline script
+        pulp2_dev: Failed to restart pulp_celerybeat.service: Unit pulp_celerybeat.service not found.
+        pulp2_dev: Failed to restart pulp_workers.service: Unit pulp_workers.service not found.
+        pulp2_dev: Failed to restart pulp_resource_manager.service: Unit pulp_resource_manager.service not found.
+    The SSH command responded with a non-zero exit status. Vagrant
+    assumes that this means the command failed. The output for this command
+    should be in the log above. Please read the output to determine what
+    went wrong.
+
+## How do you fixit?
+
+    (2-master) ~/github/devel/devel $ vagrant ssh -- -L 8000:localhost:443
+    Welcome to the Pulp dev environment!
+    ...
+    [vagrant@pulp2 ~]$ cd devel/pulp
+    [vagrant@pulp2 pulp]$ sudo ./pulp-dev.py -I
+    ...
+    [vagrant@pulp2 pulp]$ cd ../pulp_rpm
+    [vagrant@pulp2 pulp_rpm]$ sudo ./pulp-dev.py -I
+    ...
+    [vagrant@pulp2 pulp_rpm]$ prestart
+    [vagrant@pulp2 pulp_rpm]$ pstatus
