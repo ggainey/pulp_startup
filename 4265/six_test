@@ -2,20 +2,43 @@
 # create on-demand-one, normal-layout remote
 pulp-admin -u admin -p admin rpm repo create --repo-id on-demand-1 --relative-url on-demand-1 --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules --download-policy on_demand
 pulp-admin -u admin -p admin rpm repo sync run --repo-id on-demand-1
-#
 # create on-demand-2, alt-layout remote
 pulp-admin -u admin -p admin rpm repo create --repo-id on-demand-2 --relative-url on-demand-2 --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-alt-layout --download-policy on_demand
 pulp-admin -u admin -p admin rpm repo sync run --repo-id on-demand-2
-#
+# get bear - should use alt-layout since on-demand-2 sync'd last
 curl -s -L -k -o bear-1 https://localhost/pulp/repos/on-demand-1/Packages/b/bear-4.1-1.noarch.rpm
 file bear-1
+# update on-demand-1 to use ggainey-beast for content
+pulp-admin rpm repo update --repo-id on-demand-1 --feed http://ggainey-beast.usersys.redhat.com/test/ 
 #
-pulp-admin rpm repo update --repo-id on-demand-1 --feed http://ggainey-beast.usersys.redhat.com/test/
-#
+# get cat - should *still* use alt-layout, on-demand-1 not sync'd yet
 curl -s -L -k -o cat-1 https://localhost/pulp/repos/on-demand-1/Packages/c/cat-1.0-1.noarch.rpm
 file cat-1
-#
+# sync on-demand-1
 pulp-admin rpm repo sync run --repo-id on-demand-1
+# get cheetah - should now use ggainey-beast 
 curl -s -L -k -o cheetah-1 https://localhost/pulp/repos/on-demand-1/Packages/c/cheetah-1.25.3-5.noarch.rpm
 file cheetah-1
+# get cow - on-demand-2 still uses alt-layout repo
+curl -s -L -k -o cow-2 https://localhost/pulp/repos/on-demand-2/Packages/c/cow-2.2-3.noarch.rpm
+file cow-2
+# create on-demand-3, use rpm-test-modularity fixture
+pulp-admin -u admin -p admin rpm repo create --repo-id on-demand-3 --relative-url on-demand-3 --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-test-modularity --download-policy on_demand
+pulp-admin -u admin -p admin rpm repo sync run --repo-id on-demand-3
+# get mouse from on-demand-2 - now retrieving from rpm-test-modularity 
+curl -s -L -k -o mouse-2 https://localhost/pulp/repos/on-demand-2/Packages/m/mouse-0.1.12-1.noarch.rpm
+file mouse-2
+#
+# Output from pjournal:
+# Aug 06 19:26:42 pulp2.dev pulp_streamer[3889]: pulp.streamer.server:INFO: Trying URL: https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-alt-layout/packages/keep-going/bear-4.1-1.noarch.rpm
+# Aug 06 19:26:46 pulp2.dev pulp_streamer[3889]: pulp.streamer.server:INFO: Trying URL: https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-alt-layout/packages/keep-going/cat-1.0-1.noarch.rpm
+# Aug 06 19:26:59 pulp2.dev pulp_streamer[3889]: pulp.streamer.server:INFO: Trying URL: http://ggainey-beast.usersys.redhat.com/test/Packages/c/cheetah-1.25.3-5.noarch.rpm
+# Aug 06 19:26:59 pulp2.dev pulp_streamer[3889]: pulp.streamer.server:INFO: Trying URL: https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-alt-layout/packages/keep-going/cow-2.2-3.noarch.rpm
+# Aug 06 19:27:15 pulp2.dev pulp_streamer[3889]: pulp.streamer.server:INFO: Trying URL: https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-test-modularity/mouse-0.1.12-1.noarch.rpm
+# 
+
+
+
+
+
 
