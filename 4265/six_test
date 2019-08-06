@@ -1,0 +1,21 @@
+#!/bin/bash
+# create on-demand-one, normal-layout remote
+pulp-admin -u admin -p admin rpm repo create --repo-id on-demand-1 --relative-url on-demand-1 --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules --download-policy on_demand
+pulp-admin -u admin -p admin rpm repo sync run --repo-id on-demand-1
+#
+# create on-demand-2, alt-layout remote
+pulp-admin -u admin -p admin rpm repo create --repo-id on-demand-2 --relative-url on-demand-2 --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-alt-layout --download-policy on_demand
+pulp-admin -u admin -p admin rpm repo sync run --repo-id on-demand-2
+#
+curl -s -L -k -o bear-1 https://localhost/pulp/repos/on-demand-1/Packages/b/bear-4.1-1.noarch.rpm
+file bear-1
+#
+pulp-admin rpm repo update --repo-id on-demand-1 --feed http://ggainey-beast.usersys.redhat.com/test/
+#
+curl -s -L -k -o cat-1 https://localhost/pulp/repos/on-demand-1/Packages/c/cat-1.0-1.noarch.rpm
+file cat-1
+#
+pulp-admin rpm repo sync run --repo-id on-demand-1
+curl -s -L -k -o cheetah-1 https://localhost/pulp/repos/on-demand-1/Packages/c/cheetah-1.25.3-5.noarch.rpm
+file cheetah-1
+

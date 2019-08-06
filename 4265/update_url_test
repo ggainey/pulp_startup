@@ -11,6 +11,8 @@ not_zoo2='drpm-unsigned'
 bear='bear-4.1-1.noarch.rpm'
 cat='cat-1.0-1.noarch.rpm'
 cheetah='cheetah-1.25.3-5.noarch.rpm'
+dog="dog-4.23-1.noarch.rpm"
+dolphin="dolphin-3.10.232-1.noarch.rpm"
 wolf='wolf-9.4-2.noarch.rpm'
 testalpha1='test-alpha-1.1-2.noarch.rpm'
 testalpha2='test-alpha-1.1-3.noarch.rpm'
@@ -68,7 +70,8 @@ function fetch() {
     rpm=$3
     echo ">>>>>> Requesting https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm"
     curl -s -L -k -o $rpm https://localhost/pulp/repos/$repo/Packages/$alfa/$rpm
-    file $rpm
+    file_output=$(file $rpm)
+    echo ">>>>>> $file_output" 
 }
 
 # Tests:
@@ -135,14 +138,14 @@ function test_three() {
     rpm_expect 'on-demand-1' 35
     remote_expect $zoo_1 35
     fetch 'on-demand-1' 'w' $wolf 
-    change $zoo_alt 'on-demand-1' 
-    remote_expect $zoo_1 0
-    remote_expect $zoo_alt 35
-    fetch 'on-demand-1' 'b' $bear 
     change $zoo_2 'on-demand-1' 
     remote_expect $zoo_1 0
-    remote_expect $zoo_alt 0
     remote_expect $zoo_2 35
+    fetch 'on-demand-1' 'b' $bear 
+    change $zoo_alt 'on-demand-1' 
+    remote_expect $zoo_1 0
+    remote_expect $zoo_2 0
+    remote_expect $zoo_alt 35
     fetch 'on-demand-1' 'b' $bear 
     fetch 'on-demand-1' 'c' $cat 
     fetch 'on-demand-1' 'w' $wolf 
@@ -186,7 +189,43 @@ function test_five() {
     remote_expect $not_zoo1 4 # signed/unsigned checksums differ
     remote_expect $not_zoo2 9
     fetch 'on-demand-1' 't' $testalpha2 
-    #cleanup
+    cleanup
+}
+
+# 6) two repo, same-nevra/diff-path: on-demand-1/zoo_1/sync/wolf, on-demand-2/zoo_alt/sync/bear, db zoo_1, db zoo_alt, cleanup
+function test_six() {
+    echo ">>>>>> test_six"
+    create $zoo_1 'on-demand-1' 
+    create $zoo_alt 'on-demand-2' 
+    rpm_expect 'on-demand-1' 35
+    rpm_expect 'on-demand-2' 35
+    remote_expect $zoo_1 35
+    remote_expect $zoo_alt 35
+    fetch 'on-demand-1' 'w' $wolf 
+    fetch 'on-demand-2' 'c' $cheetah 
+    fetch 'on-demand-1' 'c' $cheetah 
+    fetch 'on-demand-2' 'w' $wolf 
+    change $zoo_2 'on-demand-1' 
+    rpm_expect 'on-demand-1' 35
+    rpm_expect 'on-demand-2' 35
+    remote_expect $zoo_1 0
+    remote_expect $zoo_2 35
+    remote_expect $zoo_alt 35
+    fetch 'on-demand-1' 'b' $bear 
+    fetch 'on-demand-2' 'c' $cat
+    fetch 'on-demand-1' 'c' $cat
+    fetch 'on-demand-2' 'b' $bear
+    change $zoo_1 'on-demand-2' 
+    rpm_expect 'on-demand-1' 35
+    rpm_expect 'on-demand-2' 35
+    remote_expect $zoo_1 35
+    remote_expect $zoo_alt 0
+    remote_expect $zoo_2 35
+    fetch 'on-demand-1' 'd' $dog
+    fetch 'on-demand-2' 'd' $dolphin
+    fetch 'on-demand-1' 'd' $dolphin
+    fetch 'on-demand-2' 'd' $dog
+    cleanup
 }
 
 if [ ! "$#" == 0 ] 
@@ -198,8 +237,10 @@ if [ ! "$#" == 0 ]
     echo 'run-all'
     test_one
     test_two
+    test_two_a
     test_three
     test_four
     test_five
+    test_six
 fi
 
