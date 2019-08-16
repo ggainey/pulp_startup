@@ -1,0 +1,53 @@
+[Fri Aug 16 12:12:43.809757 2019] [ssl:info] [pid 5694:tid 140016940480256] [client 192.168.122.117:38688] AH01964: Connection to child 130 established (server pulp2.dev:443)
+[Fri Aug 16 12:12:43.810055 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_kernel.c(2375): [client 192.168.122.117:38688] AH02645: Server name not provided via TLS extension (using default/first virtual host)
+[Fri Aug 16 12:12:43.814332 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_kernel.c(2236): [client 192.168.122.117:38688] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+[Fri Aug 16 12:12:43.814998 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_kernel.c(383): [client 192.168.122.117:38688] AH02034: Initial (No.1) HTTPS request received for child 130 (server pulp2.dev:443)
+[Fri Aug 16 12:12:43.815115 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:12:43.815133 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:12:43.815290 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_kernel.c(746): [client 192.168.122.117:38688] AH02255: Changed client verification type will force renegotiation
+[Fri Aug 16 12:12:43.815308 2019] [ssl:info] [pid 5694:tid 140016940480256] [client 192.168.122.117:38688] AH02221: Requesting connection re-negotiation
+[Fri Aug 16 12:12:43.815331 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_kernel.c(975): [client 192.168.122.117:38688] AH02260: Performing full renegotiation: complete handshake protocol (client does support secure renegotiation)
+[Fri Aug 16 12:12:43.815406 2019] [ssl:info] [pid 5694:tid 140016940480256] [client 192.168.122.117:38688] AH02226: Awaiting re-negotiation handshake
+[Fri Aug 16 12:12:44.742069 2019] [proxy:debug] [pid 6059:tid 140017854114048] proxy_util.c(1929): AH00924: worker http://127.0.0.1:3128 shared already initialized
+[Fri Aug 16 12:12:44.742201 2019] [proxy:debug] [pid 6059:tid 140017854114048] proxy_util.c(1986): AH00926: worker http://127.0.0.1:3128 local already initialized
+[Fri Aug 16 12:13:03.821517 2019] [reqtimeout:info] [pid 5694:tid 140016940480256] [client 192.168.122.117:38688] AH01382: Request body read timeout
+[Fri Aug 16 12:13:03.821722 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:03.821753 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:03.822340 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:03.822394 2019] [authz_core:debug] [pid 5694:tid 140016940480256] mod_authz_core.c(820): [client 192.168.122.117:38688] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:04.088482 2019] [ssl:debug] [pid 5694:tid 140016940480256] ssl_engine_io.c(1106): [client 192.168.122.117:38688] AH02001: Connection closed to child 130 with standard shutdown (server pulp2.dev:443)
+[Fri Aug 16 12:13:04.102568 2019] [ssl:info] [pid 5692:tid 140017238628096] [client 192.168.122.117:38690] AH01964: Connection to child 0 established (server pulp2.dev:443)
+[Fri Aug 16 12:13:04.102874 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_kernel.c(2375): [client 192.168.122.117:38690] AH02645: Server name not provided via TLS extension (using default/first virtual host)
+[Fri Aug 16 12:13:04.106786 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_kernel.c(2236): [client 192.168.122.117:38690] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+[Fri Aug 16 12:13:04.107238 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_kernel.c(383): [client 192.168.122.117:38690] AH02034: Initial (No.1) HTTPS request received for child 0 (server pulp2.dev:443)
+[Fri Aug 16 12:13:04.107348 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:04.107370 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:04.107594 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_kernel.c(746): [client 192.168.122.117:38690] AH02255: Changed client verification type will force renegotiation
+[Fri Aug 16 12:13:04.107614 2019] [ssl:info] [pid 5692:tid 140017238628096] [client 192.168.122.117:38690] AH02221: Requesting connection re-negotiation
+[Fri Aug 16 12:13:04.107639 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_kernel.c(975): [client 192.168.122.117:38690] AH02260: Performing full renegotiation: complete handshake protocol (client does support secure renegotiation)
+[Fri Aug 16 12:13:04.107733 2019] [ssl:info] [pid 5692:tid 140017238628096] [client 192.168.122.117:38690] AH02226: Awaiting re-negotiation handshake
+[Fri Aug 16 12:13:24.121210 2019] [reqtimeout:info] [pid 5692:tid 140017238628096] [client 192.168.122.117:38690] AH01382: Request body read timeout
+[Fri Aug 16 12:13:24.121360 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:24.121386 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:24.122171 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:24.122227 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:24.373557 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:24.373610 2019] [authz_core:debug] [pid 5692:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38690] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:24.374159 2019] [ssl:debug] [pid 5692:tid 140017238628096] ssl_engine_io.c(1106): [client 192.168.122.117:38690] AH02001: Connection closed to child 0 with standard shutdown (server pulp2.dev:443)
+[Fri Aug 16 12:13:24.388629 2019] [ssl:info] [pid 5693:tid 140017238628096] [client 192.168.122.117:38692] AH01964: Connection to child 64 established (server pulp2.dev:443)
+[Fri Aug 16 12:13:24.389034 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_kernel.c(2375): [client 192.168.122.117:38692] AH02645: Server name not provided via TLS extension (using default/first virtual host)
+[Fri Aug 16 12:13:24.394888 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_kernel.c(2236): [client 192.168.122.117:38692] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+[Fri Aug 16 12:13:24.395571 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_kernel.c(383): [client 192.168.122.117:38692] AH02034: Initial (No.1) HTTPS request received for child 64 (server pulp2.dev:443)
+[Fri Aug 16 12:13:24.395796 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:24.395829 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:24.396070 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_kernel.c(746): [client 192.168.122.117:38692] AH02255: Changed client verification type will force renegotiation
+[Fri Aug 16 12:13:24.396095 2019] [ssl:info] [pid 5693:tid 140017238628096] [client 192.168.122.117:38692] AH02221: Requesting connection re-negotiation
+[Fri Aug 16 12:13:24.396127 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_kernel.c(975): [client 192.168.122.117:38692] AH02260: Performing full renegotiation: complete handshake protocol (client does support secure renegotiation)
+[Fri Aug 16 12:13:24.396260 2019] [ssl:info] [pid 5693:tid 140017238628096] [client 192.168.122.117:38692] AH02226: Awaiting re-negotiation handshake
+[Fri Aug 16 12:13:44.396854 2019] [reqtimeout:info] [pid 5693:tid 140017238628096] [client 192.168.122.117:38692] AH01382: Request body read timeout
+[Fri Aug 16 12:13:44.397045 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:44.397087 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:44.397855 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 12:13:44.397911 2019] [authz_core:debug] [pid 5693:tid 140017238628096] mod_authz_core.c(820): [client 192.168.122.117:38692] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 12:13:44.411641 2019] [ssl:debug] [pid 5693:tid 140017238628096] ssl_engine_io.c(1106): [client 192.168.122.117:38692] AH02001: Connection closed to child 64 with standard shutdown (server pulp2.dev:443)
+

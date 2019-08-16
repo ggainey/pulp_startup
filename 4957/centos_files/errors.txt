@@ -1,0 +1,29 @@
+[Fri Aug 16 18:49:32.841519 2019] [ssl:info] [pid 23113] [client 192.168.122.117:35950] AH01964: Connection to child 0 established (server pulp2.dev:443)
+[Fri Aug 16 18:49:32.853542 2019] [ssl:debug] [pid 23113] ssl_engine_kernel.c(1824): [client 192.168.122.117:35950] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+[Fri Aug 16 18:49:32.854492 2019] [ssl:debug] [pid 23113] ssl_engine_kernel.c(225): [client 192.168.122.117:35950] AH02034: Initial (No.1) HTTPS request received for child 0 (server pulp2.dev:443)
+[Fri Aug 16 18:49:32.854843 2019] [authz_core:debug] [pid 23113] mod_authz_core.c(809): [client 192.168.122.117:35950] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 18:49:32.854900 2019] [authz_core:debug] [pid 23113] mod_authz_core.c(809): [client 192.168.122.117:35950] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 18:49:32.855487 2019] [ssl:debug] [pid 23113] ssl_engine_kernel.c(583): [client 192.168.122.117:35950] AH02255: Changed client verification type will force renegotiation
+[Fri Aug 16 18:49:32.855540 2019] [ssl:info] [pid 23113] [client 192.168.122.117:35950] AH02221: Requesting connection re-negotiation
+[Fri Aug 16 18:49:32.855590 2019] [ssl:debug] [pid 23113] ssl_engine_kernel.c(783): [client 192.168.122.117:35950] AH02260: Performing full renegotiation: complete handshake protocol (client does support secure renegotiation)
+[Fri Aug 16 18:49:32.855759 2019] [ssl:info] [pid 23113] [client 192.168.122.117:35950] AH02226: Awaiting re-negotiation handshake
+[Fri Aug 16 18:49:33.797524 2019] [proxy:debug] [pid 23293] proxy_util.c(1838): AH00924: worker http://127.0.0.1:3128 shared already initialized
+[Fri Aug 16 18:49:33.797665 2019] [proxy:debug] [pid 23293] proxy_util.c(1880): AH00926: worker http://127.0.0.1:3128 local already initialized
+[Fri Aug 16 18:49:52.862743 2019] [reqtimeout:info] [pid 23113] [client 192.168.122.117:35950] AH01382: Request body read timeout
+[Fri Aug 16 18:49:52.862867 2019] [ssl:error] [pid 23113] [client 192.168.122.117:35950] AH02261: Re-negotiation handshake failed
+[Fri Aug 16 18:49:52.863054 2019] [ssl:debug] [pid 23113] ssl_engine_io.c(1202): (70014)End of file found: [client 192.168.122.117:35950] AH02007: SSL handshake interrupted by system [Hint: Stop button pressed in browser?!]
+[Fri Aug 16 18:49:52.863084 2019] [ssl:info] [pid 23113] [client 192.168.122.117:35950] AH01998: Connection closed to child 0 with abortive shutdown (server pulp2.dev:443)
+[Fri Aug 16 18:49:52.882779 2019] [ssl:info] [pid 23114] [client 192.168.122.117:35952] AH01964: Connection to child 1 established (server pulp2.dev:443)
+[Fri Aug 16 18:49:52.890602 2019] [ssl:debug] [pid 23114] ssl_engine_kernel.c(1824): [client 192.168.122.117:35952] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+[Fri Aug 16 18:49:52.891169 2019] [ssl:debug] [pid 23114] ssl_engine_kernel.c(225): [client 192.168.122.117:35952] AH02034: Initial (No.1) HTTPS request received for child 1 (server pulp2.dev:443)
+[Fri Aug 16 18:49:52.891427 2019] [authz_core:debug] [pid 23114] mod_authz_core.c(809): [client 192.168.122.117:35952] AH01626: authorization result of Require all granted: granted
+[Fri Aug 16 18:49:52.891451 2019] [authz_core:debug] [pid 23114] mod_authz_core.c(809): [client 192.168.122.117:35952] AH01626: authorization result of <RequireAny>: granted
+[Fri Aug 16 18:49:52.891757 2019] [ssl:debug] [pid 23114] ssl_engine_kernel.c(583): [client 192.168.122.117:35952] AH02255: Changed client verification type will force renegotiation
+[Fri Aug 16 18:49:52.891790 2019] [ssl:info] [pid 23114] [client 192.168.122.117:35952] AH02221: Requesting connection re-negotiation
+[Fri Aug 16 18:49:52.891824 2019] [ssl:debug] [pid 23114] ssl_engine_kernel.c(783): [client 192.168.122.117:35952] AH02260: Performing full renegotiation: complete handshake protocol (client does support secure renegotiation)
+[Fri Aug 16 18:49:52.891922 2019] [ssl:info] [pid 23114] [client 192.168.122.117:35952] AH02226: Awaiting re-negotiation handshake
+[Fri Aug 16 18:50:12.903595 2019] [reqtimeout:info] [pid 23114] [client 192.168.122.117:35952] AH01382: Request body read timeout
+[Fri Aug 16 18:50:12.903697 2019] [ssl:error] [pid 23114] [client 192.168.122.117:35952] AH02261: Re-negotiation handshake failed
+[Fri Aug 16 18:50:12.903856 2019] [ssl:debug] [pid 23114] ssl_engine_io.c(1202): (70014)End of file found: [client 192.168.122.117:35952] AH02007: SSL handshake interrupted by system [Hint: Stop button pressed in browser?!]
+[Fri Aug 16 18:50:12.903880 2019] [ssl:info] [pid 23114] [client 192.168.122.117:35952] AH01998: Connection closed to child 1 with abortive shutdown (server pulp2.dev:443)
+
