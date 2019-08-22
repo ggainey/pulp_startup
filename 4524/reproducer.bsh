@@ -1,0 +1,36 @@
+# BEFORE RUNNING - make sure /etc/pulp/server.conf: download_interval is 1
+# Then...
+pulp-admin rpm repo create --repo-id ks --feed "http://cdn.stage.redhat.com/content/dist/rhel/server/6/6.10/x86_64/kickstart/" --download-policy on_demand --serve-http True
+pulp-admin rpm repo sync run --repo-id ks
+# everything broken-links (nothing accessed yet)
+echo "Broken repomd links?" 
+sudo find /var/lib/pulp -type l -name repomd.xml -exec test ! -e {} \; -print
+# Nab a repomd
+curl -L -O http://localhost/pulp/repos/content/dist/rhel/server/6/6.10/x86_64/kickstart/HighAvailability/repodata/repomd.xml
+# Make sure it's sane
+file repomd.xml
+# Look at squid-cache-entries
+echo "Repomd files in squid-cache:"
+sudo find /var/spool/squid -type f | xargs sudo grep -a 'X-Cdnauth-Received-Url' | grep repomd
+# wait till deferred-download is finished
+num_deferred_downloads=$(mongo pulp_database --quiet --eval 'db.deferred_download.count()')
+printf "Current deferred-downloads units : %d\n" $num_deferred_downloads
+echo "Sleeping until all deferred-downloads processed..."
+until [ $num_deferred_downloads -eq 0 ]; do
+  printf "%s" "."
+  sleep 5  
+  num_deferred_downloads=$(mongo pulp_database --quiet --eval 'db.deferred_download.count()')
+done
+echo "Deferred-downloads cleared, wait a bit for process to finish."
+sleep 10
+# NO broken-links for repomd!
+echo "Broken repomd links?"
+sudo find /var/lib/pulp -type l -name repomd.xml -exec test ! -e {} \; -print
+# repomd links now real!
+echo "Real repomd links?"
+sudo find /var/lib/pulp -type l -name repomd.xml -exec test -e {} \; -print
+# interesting mongo queries
+#pmongo pulp_database --eval 'db.lazy_content_catalog.find( {path: /repomd.xml/} )'
+#pmongo pulp_database --eval 'db.units_yum_repo_metadata_file.find()'
+#pmongo pulp_database --eval 'db.repo_distributors.find()'
+

@@ -1,0 +1,4 @@
+pulp-admin rpm repo delete --repo-id ks
+pulp-admin orphan remove --all
+sudo find /var/spool/squid -type f | sudo xargs rm -f
+sudo systemctl restart squid

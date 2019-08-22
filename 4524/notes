@@ -1,0 +1,24 @@
+[vagrant@pulp2 4524]$ pulp-admin rpm repo create --repo-id ks --feed "http://cdn.stage.redhat.com/content/dist/rhel/server/6/6.10/x86_64/kickstart/" --download-policy on_demand --serve-http True
+[vagrant@pulp2 4524]$ pulp-admin rpm repo sync run --repo-id ks
+[vagrant@pulp2 4524]$ curl -L -o repomd.xml.LoadBalancer -v http://localhost/pulp/repos/content/dist/rhel/server/6/6.10/x86_64/kickstart/LoadBalancer/repodata/repomd.xml
+
+PMONGO:
+> db.deferred_download.find({});
+{ "_id" : ObjectId("5d5d83768496b4291c5fa9a3"), "unit_id" : "fea6ea18-5362-44ee-babf-cac39b58edbc", "unit_type_id" : "distribution", "_ns" : "deferred_download" }
+> db.units_distribution.find();
+{ "_id" : "fea6ea18-5362-44ee-babf-cac39b58edbc", "pulp_user_metadata" : {  }, "_last_updated" : 1566409401, "_storage_path" : "/var/lib/pulp/content/units/distribution/2f/d28bba0a3491db2f87801af971d4110acade9351bfde01e18400d0d295c658", "downloaded" : false, "distribution_id" : "ks-Red Hat Enterprise Linux-Server-6.8-x86_64", "family" : "Red Hat Enterprise Linux", "variant" : "Server", "version" : "6.8", "arch" : "x86_64", "files" : [ { "relativepath" : "ResilientStorage/repodata/repomd.xml", "checksumtype" : "sha256", "checksum" : "1abb40dfceca317200c1e23f17dfcd7b2a8b25bdd5cd9998c6db904b12ab389f" }, { "relativepath" : "HighAvailability/repodata/repomd.xml", "checksumtype" : "sha256", "checksum" : "e40e87976db0ea96ebbf83408b48837f645ff27d997a4ba0c47b91d9346de653" }, { "relativepath" : "images/product.img", "checksumtype" : "sha256", "checksum" : "b9507cbbb6acf71eb1a3cddd71744de20afad918b88c670112b87adcfa9f851e" }, { "relativepath" : "LoadBalancer/repodata/repomd.xml", "checksumtype" : "sha256", "checksum" : "ebb5a6a4b07f5802a3653e310ab0893c0ca9a416bf4f678a013c539cfb66bf59" }, { "relativepath" : "images/boot.iso", "checksumtype" : "sha256", "checksum" : "6fbd39f16cabc400fe1077d9abbdd2f0d440773f73d524be05b834ab87cbbc40" }, { "relativepath" : "images/pxeboot/vmlinuz", "checksumtype" : "sha256", "checksum" : "e77009f24384bf077a85e8d31f34ae6895c81acaed8befccdc499d5b01de0295" }, { "relativepath" : "images/install.img", "checksumtype" : "sha256", "checksum" : "048011022506f0eeff458c87a9b5d2024a78866da968bf450b0c60a026cfea8e" }, { "relativepath" : "ScalableFileSystem/repodata/repomd.xml", "checksumtype" : "sha256", "checksum" : "a88f6bf14079cc65ce8be34a64d30dd1ea3cd7dac4feea69c688e0333fabd045" }, { "relativepath" : "images/pxeboot/initrd.img", "checksumtype" : "sha256", "checksum" : "c92f3cdd30305244b52f8e9bf63656faf522cad024b46cc14012441ef1a613cf" }, { "relativepath" : "Server/repodata/repomd.xml", "checksumtype" : "sha256", "checksum" : "f6f6175923005506851da2b7d5cf007f7e2aff3fce7bbd74c5f43c21075ae1c8" } ], "timestamp" : 1460645231, "packagedir" : "Packages", "version_sort_index" : "01-6.01-8", "_ns" : "units_distribution", "_content_type_id" : "distribution" }
+
+SQUID:
+[vagrant@pulp2 4524]$ sudo find /var/spool/squid -type f
+/var/spool/squid/00/00/00000000
+X-Cdnauth-Received-Url: /content/dist/rhel/server/6/6.10/x86_64/kickstart/LoadBalancer/repodata/repomd.xml
+
+THESIS:
+- the 'content-unit' is a Distribution, which has many files
+- repository.py:create_download_requests() builds all the requests for the content-unit
+  - c_d_r() 'assumes' a given filename will only appear once, in one directory, via constructs
+    such as os.path.basename(catalog_entry.path) and mkdir(unit_working_dir)
+  - c_d_r arranges for each basename() to be downloaded once
+
+APPROACH:
+- figure out how to appropriately build from distribution.files[N].relativepath
