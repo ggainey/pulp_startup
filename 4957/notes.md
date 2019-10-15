@@ -1,5 +1,5 @@
 ##  SETUP PULP-DEB:
-    sudo dnf install \
+    sudo yum install \
       pulp-deb-plugins \
       python-debian \
       python-pulp-deb-common \

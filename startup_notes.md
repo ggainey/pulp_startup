@@ -201,3 +201,12 @@ Per dkliban:
     ...
     [vagrant@pulp2 pulp_rpm]$ prestart
     [vagrant@pulp2 pulp_rpm]$ pstatus
+
+## Mongo is still pissed - now what?
+
+    [vagrant@pulp2 ~]$ sudo systemctl stop mongod
+    [vagrant@pulp2 ~]$ sudo rm /var/lib/mongodb/mongod.lock
+    [vagrant@pulp2 ~]$ sudo rm /var/run/mongodb/mongod.pid
+    [vagrant@pulp2 ~]$ sudo systemctl start mongod
+    [vagrant@pulp2 ~]$ sudo systemctl status mongod
+    [vagrant@pulp2 ~]$ prestart
