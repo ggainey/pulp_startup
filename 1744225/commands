@@ -1,0 +1,12 @@
+  289  openssl genrsa -out ca.key 2048
+  290  openssl req -new -x509 -key ca.key -out ca.crt
+  293  openssl genrsa -out mongodb.key
+  305  openssl req -new -out mongodb.csr -config csr.conf
+  335  openssl ca -config ca.conf -out mongodb.crt -extfile ../MDB/mongodb.extensions.cnf -in ../MDB/mongodb.csr
+  369  openssl req -new -out pulp.csr -config csr.conf
+  373  openssl ca -config ca.conf -out pulp.crt -in ../PULP/pulp.csr
+  416  openssl req -new -out pulp_auth.csr -config auth_csr.conf
+  425  openssl ca -config ca.conf -out pulpauth.crt -extfile ../PULP/auth_csr.extensions.conf -in ../PULP/pulp_auth.csr
+  427  openssl x509 -in pulpauth.crt -noout -text
+  441  openssl x509 -in pulp.pem -inform PEM -subject -nameopt RFC2253
+

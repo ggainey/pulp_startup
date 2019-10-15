@@ -1,0 +1,68 @@
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 2 (0x2)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, ST=NC, L=RDU, O=Pulp Dev, OU=PULP DEV
+        Validity
+            Not Before: Oct  8 18:30:32 2019 GMT
+            Not After : Oct  7 18:30:32 2020 GMT
+        Subject: C=US, ST=NC, O=Pulp Service, CN=pulp2_dev_service
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:cf:7a:80:7a:ca:0f:20:2d:f0:a7:dd:b8:ca:fc:
+                    eb:e9:bd:1c:eb:0a:26:ef:6d:ea:ef:88:e5:0e:90:
+                    52:8d:14:18:f1:ae:59:83:b4:c3:25:02:2f:cb:91:
+                    4b:da:a3:e3:2e:5d:bd:9a:f4:94:02:4a:66:e9:aa:
+                    b3:43:40:89:35:da:c4:f1:79:1d:83:8a:9c:79:79:
+                    aa:ea:c8:23:a0:0d:aa:1f:63:9e:91:1a:c6:e5:b0:
+                    dc:05:54:b8:cb:3a:0a:29:05:a5:42:3e:9a:9b:20:
+                    8e:20:89:38:fd:9d:c4:fd:05:e2:2f:b3:6a:8d:ac:
+                    76:75:31:dc:95:ef:79:52:bc:17:e9:ae:ea:9b:d7:
+                    b8:71:df:ac:8a:55:7e:9c:e2:ca:00:cf:73:96:64:
+                    79:36:b8:36:03:64:6a:f3:20:be:69:4c:df:3b:be:
+                    4b:5c:dc:7c:62:74:fb:88:b1:34:bc:67:72:0c:65:
+                    75:f3:31:59:fa:79:bb:ac:58:f1:6d:b2:66:6d:e3:
+                    cf:60:01:02:8a:41:b2:cd:2e:f4:bf:6c:cc:1e:31:
+                    e9:15:f3:d6:7e:e4:eb:c4:79:2a:fd:99:e5:dc:4a:
+                    09:02:77:43:a1:1c:9b:d5:e3:a7:da:2f:62:e2:3f:
+                    28:60:55:cd:6a:41:b6:8b:2b:d9:01:9b:b9:59:1a:
+                    3b:0f
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+         c7:1f:0b:91:3f:86:cf:13:e7:dc:f1:a7:eb:da:e3:e9:33:1a:
+         b8:89:0b:e7:1c:0f:01:5b:af:76:37:56:a2:43:c3:86:dc:ea:
+         2f:4b:9e:de:05:16:77:d1:3a:9a:55:af:ec:e0:d8:ab:ae:15:
+         ae:74:44:1d:43:80:13:7d:57:fe:79:0b:0b:3b:91:67:1a:3f:
+         cd:79:ba:2b:33:7e:42:8f:14:60:20:ac:38:8b:91:3e:c1:04:
+         08:23:0b:0e:bf:55:45:20:d2:5e:d5:1a:29:43:80:9d:ca:e2:
+         c1:c6:16:2c:21:08:26:9a:f8:b2:99:b0:4c:a4:ad:f8:0d:16:
+         0c:e0:32:b1:18:32:11:ae:b9:96:61:05:67:ff:48:9b:a9:94:
+         9d:43:38:00:2e:ba:3b:64:66:16:96:f4:1e:0b:0e:da:85:f5:
+         1a:62:30:4b:e0:0b:11:d3:6f:bf:5b:e1:65:bb:48:a4:f0:39:
+         7a:cf:8f:e7:db:9b:b0:9a:57:55:9c:90:46:2b:f6:00:c1:7a:
+         6d:cf:44:79:2e:00:f7:4c:a1:67:06:c3:30:5d:df:62:2e:d1:
+         25:64:e5:af:b3:b9:dd:1b:27:29:46:08:6c:0c:f5:4b:70:98:
+         56:ec:c1:54:b7:16:2a:5f:fc:3b:c4:4b:62:c8:8d:57:ca:98:
+         b3:3f:4e:39
+-----BEGIN CERTIFICATE-----
+MIIDDzCCAfcCAQIwDQYJKoZIhvcNAQELBQAwTjELMAkGA1UEBhMCVVMxCzAJBgNV
+BAgMAk5DMQwwCgYDVQQHDANSRFUxETAPBgNVBAoMCFB1bHAgRGV2MREwDwYDVQQL
+DAhQVUxQIERFVjAeFw0xOTEwMDgxODMwMzJaFw0yMDEwMDcxODMwMzJaME0xCzAJ
+BgNVBAYTAlVTMQswCQYDVQQIDAJOQzEVMBMGA1UECgwMUHVscCBTZXJ2aWNlMRow
+GAYDVQQDDBFwdWxwMl9kZXZfc2VydmljZTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAM96gHrKDyAt8KfduMr86+m9HOsKJu9t6u+I5Q6QUo0UGPGuWYO0
+wyUCL8uRS9qj4y5dvZr0lAJKZumqs0NAiTXaxPF5HYOKnHl5qurII6ANqh9jnpEa
+xuWw3AVUuMs6CikFpUI+mpsgjiCJOP2dxP0F4i+zao2sdnUx3JXveVK8F+mu6pvX
+uHHfrIpVfpziygDPc5ZkeTa4NgNkavMgvmlM3zu+S1zcfGJ0+4ixNLxncgxldfMx
+Wfp5u6xY8W2yZm3jz2ABAopBss0u9L9szB4x6RXz1n7k68R5Kv2Z5dxKCQJ3Q6Ec
+m9Xjp9ovYuI/KGBVzWpBtosr2QGbuVkaOw8CAwEAATANBgkqhkiG9w0BAQsFAAOC
+AQEAxx8LkT+GzxPn3PGn69rj6TMauIkL5xwPAVuvdjdWokPDhtzqL0ue3gUWd9E6
+mlWv7ODYq64VrnREHUOAE31X/nkLCzuRZxo/zXm6KzN+Qo8UYCCsOIuRPsEECCML
+Dr9VRSDSXtUaKUOAncriwcYWLCEIJpr4spmwTKSt+A0WDOAysRgyEa65lmEFZ/9I
+m6mUnUM4AC66O2RmFpb0HgsO2oX1GmIwS+ALEdNvv1vhZbtIpPA5es+P59ubsJpX
+VZyQRiv2AMF6bc9EeS4A90yhZwbDMF3fYi7RJWTlr7O53RsnKUYIbAz1S3CYVuzB
+VLcWKl/8O8RLYsiNV8qYsz9OOQ==
+-----END CERTIFICATE-----

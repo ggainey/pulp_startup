@@ -1,0 +1,8 @@
+basicConstraints=CA:FALSE
+subjectAltName=@my_subject_alt_names
+subjectKeyIdentifier = hash
+
+[ my_subject_alt_names ]
+DNS.1 = pulp2
+DNS.2 = pulp2_dev
+DNS.3 = localhost
