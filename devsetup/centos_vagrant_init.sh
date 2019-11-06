@@ -12,7 +12,8 @@ HERE
 # pause pulp
 pstop
 # install needed modules
-sudo yum install -y wget openssl-dev python2-pip
+sudo yum install -y wget openssl-devel python2-pip
+sudo pip install rhsm 
 # set download_interval to Very Fast
 #sudo ex /etc/pulp/server.conf <<HERE2
 #:%s/# download_interval: 30/download_interval: 1/
@@ -20,6 +21,8 @@ sudo yum install -y wget openssl-dev python2-pip
 #HERE2
 cd
 cd devel/pulp
+sudo pip install -r test_requirements.txt
+cd ../devel/pulp_rpm
 sudo pip install -r test_requirements.txt
 
 # start up pulp again
