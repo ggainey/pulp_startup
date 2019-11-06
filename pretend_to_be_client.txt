@@ -1,0 +1,23 @@
+# create  a consumer
+curl -H "Accept: application/json" -X POST -d '{"id": "con1"}' -k -u admin:admin 'https://localhost/pulp/api/v2/consumers/'
+
+# bind it to a repo
+curl -H "Accept: application/json" -X POST -d "{\"notify_agent\": false, \"repo_id\": \"yar1\", \"distributor_id\": \"yum_distributor\"}" -k -u admin:admin "https://localhost/pulp/api/v2/consumers/con1/bindings/"
+
+# create a profile
+curl -H "Accept: application/json" -X POST -d '{ "content_type": "rpm", "profile": [{"arch": "noarch", "epoch": 0, "name": "zebra", "release": "2", "vendor": "Fedora Project", "version": "0.1"}, {"arch": "noarch", "epoch": 0, "name": "wolf", "release": "2", "vendor": "Fedora Project", "version": "7.3"}] }' -k -u admin:admin "https://localhost/pulp/api/v2/consumers/con1/profiles/"
+
+# trigger applicability for a consumer
+curl -H "Accept: application/json" -X POST -d '{"consumer_criteria": {"filters": {"id": {"$eq": "con1"}}}}' -k -u admin:admin 'https://localhost/pulp/api/v2/consumers/actions/content/regenerate_applicability/'
+
+# get calculated applicbility for a consumer (filtered here to give only rpms but can be errata as well as modulemd)
+curl -H "Accept: application/json" -X POST -d '{"content_types": ["rpm"],"criteria": {"filters": {"id": {"$eq": "con1"}}}}' -k -u admin:admin 'https://localhost/pulp/api/v2/consumers/content/applicability/'
+
+
+### Other
+
+# get pulp password on a customer system
+pulpAdminPassword=$(grep ^default_password /etc/pulp/server.conf | cut -d' ' -f2)
+
+# trigger a repo applicability for a set of repos
+curl -H "Accept: application/json" -X POST -d  '{"repo_criteria": { "filters": {"id": {"$in": ["test-repo", "test-errata"]}} }, "parallel": true}' -k -u admin:$pulpAdminPassword https://$(hostname -f)/pulp/api/v2/repositories/actions/content/regenerate_applicability/'
