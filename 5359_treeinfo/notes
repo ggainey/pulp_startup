@@ -1,0 +1,77 @@
+== Investigation ==
+
+Done a bunch of testing over the last few days on scenarios here. tl;dr: treeinfo files apparently aren't handled correctly in the presence of updating the feed of an on-demand repository. RPMs are fine.
+
+Start with a repo pulling on-demand from a Centos7 mirror, switch feeds, and then ask for an RPM - RPM is pulled from new-location as expected:
+
+CREATE, SYNC, REQUEST, CHECK (fileplanet)
+
+    # pulp-admin rpm repo create --repo-id centos-7-x86_64 --feed http://mirror.fileplanet.com/centos/7/os/x86_64/ --download-policy on_demand
+    # pulp-admin rpm repo sync run --repo-id centos-7-x86_64
+    # wget --no-check-certificate https://pulp2.dev/pulp/repos/centos/7/os/x86_64/Packages/e/ElectricFence-2.2.2-39.el7.x86_64.rpm
+    # journalctl | grep Electric
+    2.16:
+    Nov 05 15:56:16 pulp2.dev pulp_streamer[28292]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/Packages/ElectricFence-2.2.2-39.el7.x86_64.rpm
+    Nov 05 15:56:16 pulp2.dev pulp_streamer[28292]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/Packages/ElectricFence-2.2.2-39.el7.x86_64.rpm.
+    2.19:
+    Nov 05 17:02:03 pulp2.dev pulp_streamer[28588]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/Packages/ElectricFence-2.2.2-39.el7.x86_64.rpm
+    Nov 05 17:02:03 pulp2.dev pulp_streamer[28588]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/Packages/ElectricFence-2.2.2-39.el7.x86_64.rpm.
+
+UPDATE, SYNC, REQUEST, CHECK (duke)
+
+    # pulp-admin rpm repo update --repo-id centos-7-x86_64 --feed http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/
+    # pulp-admin rpm repo sync run --repo-id centos-7-x86_64
+    # wget --no-check-certificate https://pulp2.dev/pulp/repos/centos/7/os/x86_64/Packages/e/elfutils-0.176-2.el7.x86_64.rpm
+    # journalctl | grep elfutils
+    2.16:
+    Nov 05 16:05:11 pulp2.dev pulp_streamer[28292]: pulp.streamer.server:INFO: Trying URL: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/Packages/elfutils-0.176-2.el7.x86_64.rpm
+    Nov 05 16:05:11 pulp2.dev pulp_streamer[28292]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/Packages/elfutils-0.176-2.el7.x86_64.rpm.
+    2.18:
+    2.19:
+    Nov 05 17:07:02 pulp2.dev pulp_streamer[28588]: pulp.streamer.server:INFO: Trying URL: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/Packages/elfutils-0.176-2.el7.x86_64.rpm
+    Nov 05 17:07:02 pulp2.dev pulp_streamer[28588]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/Packages/elfutils-0.176-2.el7.x86_64.rpm.
+
+
+Ask for a treeinfo-related file, note that it continues to pull from old-repo:
+
+    # wget --no-check-certificate https://pulp2.dev/pulp/repos/centos/7/os/x86_64/images/pxeboot/initrd.img
+    # journalctl | grep  initrd
+    2.16:
+    Nov 05 16:06:01 pulp2.dev pulp_streamer[28292]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/initrd.img
+    Nov 05 16:06:04 pulp2.dev pulp_streamer[28292]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/initrd.img.
+    2.18:
+    2.19:
+    Nov 05 16:18:00 pulp2.dev dracut[8812]: lrwxrwxrwx   1 root     root           26 Nov  5 16:17 usr/lib/systemd/system/initrd.target.wants/dracut-pre-udev.service -> ../dracut-pre-udev.service
+    Nov 05 17:07:46 pulp2.dev pulp_streamer[28588]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/initrd.img
+Nov 05 17:07:50 pulp2.dev pulp_streamer[28588]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/initrd.img.
+
+Use --force-full to resync, ask for a diff treeinfo file, note where it comes from:
+
+    # pulp-admin rpm repo sync run --repo-id centos-7-x86_64 --force-full
+    # wget --no-check-certificate https://pulp2.dev/pulp/repos/centos/7/os/x86_64/images/pxeboot/vmlinuz
+    # journalctl | grep vmlinuz
+    2.16: BAD (6.4)
+    Nov 05 16:10:36 pulp2.dev pulp_streamer[28292]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/vmlinuz
+    Nov 05 16:10:37 pulp2.dev pulp_streamer[28292]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/vmlinuz.
+    2.18: BAD (6.5)
+    Nov 05 20:40:43 pulp2.dev pulp_streamer[20942]: pulp.streamer.server:INFO: Trying URL: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/vmlinuz
+    Nov 05 20:40:44 pulp2.dev pulp_streamer[20942]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.fileplanet.com/centos/7/os/x86_64/images/pxeboot/vmlinuz.
+    2.19: FIXED (6.6)
+    Nov 05 17:12:52 pulp2.dev pulp_streamer[28588]: pulp.streamer.server:INFO: Trying URL: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/images/pxeboot/vmlinuz
+    Nov 05 17:12:54 pulp2.dev pulp_streamer[28588]: nectar.downloaders.threaded:INFO: Download succeeded: http://mirror.linux.duke.edu/pub/centos/7/os/x86_64/images/pxeboot/vmlinuz.
+
+
+168 treeinfo.py             _logger.info(_('upstream distribution unchanged and force_full not set; skipping'))
+* explains why force-full (should) fix
+* *may* explain why plain resync, does not - investigation continues
+* commit b30b5e2914c5d40f760fac2e77e2d40407902aaf, issue 4267, released in 2.19, fixes --force-full
+
+* 2.16, streamer/setup.py - if-redhat not handling centos correctly
+
+
+cleanup:
+pulp-admin rpm repo delete --repo-id centos-7-x86_64
+pulp-admin orphan remove --all
+sudo find /var/spool/squid/ -type f | sudo xargs rm -f
+sudo systemctl restart squid
+
