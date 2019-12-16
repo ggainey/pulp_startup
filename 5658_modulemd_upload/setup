@@ -1,0 +1,9 @@
+pulp-admin  rpm repo create --repo-id zoo2
+curl -k -u admin:admin -X POST https://localhost/pulp/api/v2/content/uploads/
+curl -k -u admin:admin -X PUT --data-binary @mod1.yaml https://localhost/pulp/api/v2/content/uploads/7a55199f-59aa-49e0-b808-26bee49b0c01/0/
+curl -v -k -u admin:admin -X POST -H 'Content-Type: application/json' -d '{"upload_id":"7a55199f-59aa-49e0-b808-26bee49b0c01", "unit_type_id": "modulemd_defaults", "unit_key": {}}' https://localhost/pulp/api/v2/repositories/zoo/actions/import_upload/
+
+ 45  curl -k -u admin:admin -X POST https://localhost/pulp/api/v2/content/uploads/
+   46  curl -k -u admin:admin -X PUT --data-binary @mod2.yaml https://localhost/pulp/api/v2/content/uploads/6fb42311-4cf9-46ad-a89e-dbef34a0e473/0/
+   47  curl -v -k -u admin:admin -X POST -H 'Content-Type: application/json' -d '{"upload_id":"6fb42311-4cf9-46ad-a89e-dbef34a0e473", "unit_type_id":"modulemd_defaults", "unit_key": {}}' https://localhost/pulp/api/v2/repositories/zoo2/actions/import_upload/
+

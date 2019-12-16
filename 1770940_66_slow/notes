@@ -1,0 +1,97 @@
+NET: Bug in how katello invokes distributor-publish in 6.6 - katello team taking ownership of the issue
+
+cprofile:
+https://docs.pulpproject.org/dev-guide/debugging.html?#task-performance-analysis
+
+Testing on pulp2, branches 2.18-release and 2.19-release, using /content/dist/rhel/server/7/7Server/x86_64/os/ as test-repo:
+
+dhcp-3-204 (6.5)
+===============
+
+** time pulp-admin rpm repo sync run --repo-id rhel7-server-x86_65: (does sync-and-publish)
+real    45m51.746s
+user    0m31.029s
+sys 0m3.019s
+
+** pulp-admin rpm repo create --repo-id destination --relative-url destination --download-policy on_demand
+** time pulp-admin rpm repo copy all --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+RUNS FOR 3 MIN, THEN FAILS DUE TO OOMKILLER (8Gb box)
+Nov 21 18:50:15 pulp2.dev pulp[29790]: celery.worker.strategy:INFO: Received task: pulp.server.async.tasks._release_resource[856d3990-376c-48cf-b95d-5ed365eb5a8b]
+...
+Nov 21 18:53:23 pulp2.dev pulp[30153]: pulp.server.async.tasks:INFO: [856d3990] Task failed : [392ebc72-c632-4c97-86b4-295aba05f4db] : Worker terminated abnormally while processing task 392ebc72-c632-4c97-86b4-295aba05f4db.  Check the logs for details
+
+** time pulp-admin rpm repo copy rpm --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Copied:
+  rpm: 27305
+real    1m52.336s
+user    0m2.023s
+sys 0m0.663s
+
+** time pulp-admin rpm repo copy category --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Copied:
+  applications
+  base-system
+  databases
+  desktops
+  development
+  servers
+  system-management
+  virtualization
+  web-services
+real    0m7.221s
+user    0m0.498s
+sys 0m0.513s
+
+** time pulp-admin rpm repo copy environment --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Copied:
+  file-print-server-environment
+  graphical-server-environment
+  infrastructure-server-environment
+  minimal
+  virtualization-host-environment
+  web-server-environment
+
+
+real    0m6.714s
+user    0m0.537s
+sys 0m0.432s
+
+** time pulp-admin rpm repo copy distribution --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Nothing found that matches the given criteria and repository configuration
+real    0m7.158s
+user    0m0.555s
+sys 0m0.475s
+
+** time pulp-admin rpm repo copy errata --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Copied:
+  erratum: 4064
+real    0m21.450s
+user    0m0.701s
+sys 0m0.459s
+
+** time pulp-admin rpm repo copy metafile --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+Copied:
+  productid
+real    0m6.835s
+user    0m0.551s
+sys 0m0.450s
+
+** time pulp-admin rpm repo publish run --repo-id destination
+
+
+dhcp-2-197 (6.6):
+================
+** time pulp-admin rpm repo sync run --repo-id rhel7-server-x86_65: (does sync-and-publish)
+
+** pulp-admin rpm repo create --repo-id destination --relative-url destination --download-policy on_demand
+
+** time pulp-admin rpm repo copy all --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+
+** time pulp-admin rpm repo copy rpm --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+** time pulp-admin rpm repo copy category --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+** time pulp-admin rpm repo copy environment --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+** time pulp-admin rpm repo copy distribution --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+** time pulp-admin rpm repo copy errata --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+** time pulp-admin rpm repo copy metafile --from-repo-id rhel7-server-x86_65 --to-repo-id destination
+
+** time pulp-admin rpm repo publish run --repo-id destination

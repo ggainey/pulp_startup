@@ -1,0 +1,9 @@
+---
+document: modulemd-defaults
+version: 1
+data:
+  module: varnish
+  stream: 7
+  profiles:
+    7: [common]
+...

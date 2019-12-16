@@ -1,0 +1,3 @@
+pin
+pulp-admin rpm repo delete --repo-id zoo2
+pulp-admin orphan remove --all

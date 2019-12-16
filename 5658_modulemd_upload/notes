@@ -1,0 +1,9 @@
+upload:
+/var/lib/pulp/content/units/modulemd_defaults/XX/Y...Y
+
+Sync:
+same
+
+Copy: ?!?
+/var/lib/pulp/content/units/modulemd_defaults/XX/Y...Y/Z...Z
+
