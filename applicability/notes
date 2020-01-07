@@ -1,0 +1,58 @@
+URLS
+https://docs.google.com/document/d/10BK9OOQVPGGCqhZ8mnV480izIRqbdQB3xosm9HnI75Q/edit#
+https://docs.google.com/document/d/10BK9OOQVPGGCqhZ8mnV480izIRqbdQB3xosm9HnI75Q/edit# [DEPRECATED]
+https://hackmd.io/ydvHuzXNRA6T9eXx6cqy5A
+https://pulp.plan.io/issues/5933
+https://docs.pulpproject.org/en/3.0/nightly/contributing/dev-setup.html#get-the-source
+https://github.com/pulp/pulplift/#pulplift
+https://pulp-rpm.readthedocs.io/en/latest/workflows/scripting.html
+https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/
+
+DEV-BOX
+ 4983  ansible-galaxy install pulp.pulp_rpm_prerequisites -p ./roles/
+ 4993  cp example.user-config.yml local.user-config.yml
+ 4994  vi local.user-config.yml
+ 5003  pip3 install --user virtualenvwrapper
+ 5004  export WORKON_HOME=~/Envs
+ 5005  mkdir -p $WORKON_HOME
+ 5019  sudo alternatives --config python
+ 5020  mkvirtualenv pulp3
+ 5022  workon pulp3
+
+VAGRANT-BOX
+    10 df -h /home/vagrant/devel
+Filesystem                   Size  Used Avail Use% Mounted on
+:/home/ggainey/github/Pulp3  177G   45G  124G  27% /home/vagrant/devel
+
+   15  alias h="history 25"
+   18  set -o vi
+    7  sudo dnf install httpie -y
+   22  dnf install jq
+   47  export REPO_NAME=bar
+   # default auth is admin:password (see local.user-config.yml)
+   42  export BASE_ADDR="admin:password@localhost:24817"
+   65  export REPO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/ name=$REPO_NAME | jq -r '.pulp_href')
+   69  http $BASE_ADDR$REPO_HREF
+   72  http GET $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/
+
+   75  http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name='bar' url='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm/'  policy='on_demand'
+   77  export REMOTE_HREF=$(http $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ | jq -r '.results[] | select(.name == "bar") | .pulp_href')
+   79  http $BASE_ADDR$REMOTE_HREF
+
+   80  export TASK_URL=$(http POST $BASE_ADDR$REPO_HREF'sync/' remote=$REMOTE_HREF | jq -r '.task')
+   84  export REPOVERSION_HREF=$(http $BASE_ADDR$TASK_URL| jq -r '.created_resources | first')
+   86  http $BASE_ADDR$REPOVERSION_HREF
+
+   88  export TASK_URL=$(http POST $BASE_ADDR/pulp/api/v3/publications/rpm/rpm/ repository=$REPO_HREF | jq -r '.task')
+   89  http GET $BASE_ADDR$TASK_URL
+   90  export PUBLICATION_HREF=$(http $BASE_ADDR$TASK_URL| jq -r '.created_resources | first')
+   91  http $BASE_ADDR$PUBLICATION_HREF
+
+   92  export TASK_URL=$(http POST $BASE_ADDR/pulp/api/v3/distributions/rpm/rpm/ name='baz' base_path='foo' publication=$PUBLICATION_HREF | jq -r '.task')
+   95  http GET $BASE_ADDR$TASK_URL
+   96  export DISTRIBUTION_HREF=$(http $BASE_ADDR$TASK_URL| jq -r '.created_resources | first')
+   97  http $BASE_ADDR$DISTRIBUTION_HREF
+
+
+
+
