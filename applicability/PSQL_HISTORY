@@ -1,0 +1,94 @@
+\dn
+\dt
+\d rpm_package
+\d rpm_updaterecord
+\d rpm_updatecollectionpackage
+\d rpm_updatecollection
+\d rpm_updatecollectionpackage
+\d rpm_updatecollection_update_record
+\d rpm_package
+\dt
+\d rpm_updatecollectionpackage
+\d rpm_repometadatafile
+\d core_content
+\d core_repositoryversion
+df
+\df
+\df
+\d rpm_updatecollectionpackage
+\dt
+select * from rpm_updaterecord;
+select count(*) from core_content;
+select count(*) from rpm_package;
+select * from rpm_package;
+select provides from rpm_package;
+\d rpm_package;
+select name, epoch, version, release from rpm_package;
+select name, epoch, version, release from rpm_package order by name, epoch, version, release;
+\d rpm_package
+\dt
+\d rpm_updaterecord
+select count(*) from rpm_packages;
+select count(*) from rpm_package;
+select count(*) from rpm_package;
+select name, epoch, version, release from rpm_package order by name, epoch, version, release;
+select name, epoch, version, release from rpm_package where name = 'glibc';
+select name, epoch, version, release from rpm_package order by name, epoch, version, release;
+select name, count(release) from rhn_package group by name order by name;
+select name, count(release) releases from rpm_package where releases > 1 group by name order by name;
+select name, count(release) as releases from rpm_package rp where rp.releases > 1 group by name order by name;
+select name, count(release) from rpm_package group by name order by name;
+select name, count(release) as a_count from rpm_package where a_count > 1 group by name order by name;
+select name, count(release) a_count from rpm_package where a_count > 1 group by name order by name;
+select * from (select name, count(release) a_count from rpm_package group by name order by name) t where t.a_count > 1;
+select * from (select name, count(release) a_count from rpm_package group by name order by name) t where t.a_count > 1 order by a_count desc;
+select name, epoch, version, release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by name, epoch, version, release;
+select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+ALTER TABLE rpm_package ADD COLUMN evr evr_t;
+\dt rpm_package
+\d rpm_package
+update rpm_package rp set evr = (select ROW(coalesce(rp.epoch::numeric,0), rpmver_array(rp.version)::evr_array_item[], rpmver_array(rp.release)::evr_array_item[])::evr_t from rpm_package rp2 where rp2.id = rp2.id);
+update rpm_package rp set evr = (select ROW(coalesce(rp.epoch::numeric,0), rpmver_array(rp.version)::evr_array_item[], rpmver_array(rp.release)::evr_array_item[])::evr_t from rpm_package rp2 where rp2.content_ptr_id = rp2.content_ptr_id);
+update rpm_package rp set rp.evr = (select ROW(coalesce(rp.epoch::numeric,0), rpmver_array(rp.version)::evr_array_item[], rpmver_array(rp.release)::evr_array_item[])::evr_t);
+update rpm_package set evr = (select ROW(coalesce(epoch::numeric,0), rpmver_array(version)::evr_array_item[], rpmver_array(release)::evr_array_item[])::evr_t);
+select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+select rp.name, rp.epoch, rp.version, rp.release, rp.evr from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+select rp.name, rp.epoch, rp.version, rp.release, rp.evr from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.evr;
+select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.evr;
+select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.evr;
+time select rp.name, rp.epoch, rp.version, rp.release, rp.evr from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+\time
+\timing
+time select rp.name, rp.epoch, rp.version, rp.release, rp.evr from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.evr;
+select rp.name, rp.epoch, rp.version, rp.release, rp.evr from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;
+CREATE FUNCTION evr_trigger() RETURNS TRIGGER AS $pkg_evr$                                            BEGIN                                                                                                 NEW.evr = (select ROW(coalesce(epoch::numeric,0), rpmver_array(version)::evr_array_item[], rpmver_array(release)::evr_array_item[])::evr_t);    RETURN NEW;                                                                                       END;                                                                                              $pkg_evr$ LANGUAGE plpgsql;
+CREATE TRIGGER evr_trigger                                                                            AFTER INSERT OR UPDATE OF epoch, version, release                                                   ON rpm_package                                                                                      FOR EACH ROW                                                                                        WHEN (                                                                                                OLD.epoch IS DISTINCT FROM NEW.epoch OR                                                             OLD.version IS DISTINCT FROM NEW.version OR                                                         OLD.release IS DISTINCT FROM NEW.release                                                          )                                                                                                   EXECUTE PROCEDURE evr_trigger();
+CREATE TRIGGER evr_insert_trigger                                                                     AFTER INSERT                                                                                        ON rpm_package                                                                                      FOR EACH ROW                                                                                        EXECUTE PROCEDURE evr_trigger();
+CREATE TRIGGER evr_update_trigger                                                                     AFTER UPDATE OF epoch, version, release                                                             ON rpm_package                                                                                      FOR EACH ROW                                                                                        WHEN (                                                                                                OLD.epoch IS DISTINCT FROM NEW.epoch OR                                                             OLD.version IS DISTINCT FROM NEW.version OR                                                         OLD.release IS DISTINCT FROM NEW.release                                                          )                                                                                                   EXECUTE PROCEDURE evr_trigger();
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('1.fc31')::evr_array_item[])::evr_t);
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);
+\timing
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);
+select name, epoch, version, release from rpm_package where name = 'bash' order by evr;
+select name, epoch, version, release from rpm_package where name = 'bash' order by name. epoch, version, release;
+select name, epoch, version, release from rpm_package where name = 'bash' order by name, epoch, version, release;
+CREATE FUNCTION evr_trigger() RETURNS trigger AS $pkg_evr$                                            BEGIN                                                                                                 NEW.evr = (select ROW(coalesce(NEW.epoch::numeric,0), rpmver_array(NEW.version)::evr_array_item[], rpmver_array(NEW.release)::evr_array_item[])::evr_t);    RETURN NEW;                                                                                       END;                                                                                              $pkg_evr$ LANGUAGE plpgsql;
+CRETAE OR REPLACE FUNCTION evr_trigger() RETURNS trigger AS $pkg_evr$                                            BEGIN                                                                                                 NEW.evr = (select ROW(coalesce(NEW.epoch::numeric,0), rpmver_array(NEW.version)::evr_array_item[], rpmver_array(NEW.release)::evr_array_item[])::evr_t);    RETURN NEW;                                                                                       END;                                                                                              $pkg_evr$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION evr_trigger() RETURNS trigger AS $pkg_evr$                                            BEGIN                                                                                                 NEW.evr = (select ROW(coalesce(NEW.epoch::numeric,0), rpmver_array(NEW.version)::evr_array_item[], rpmver_array(NEW.release)::evr_array_item[])::evr_t);    RETURN NEW;                                                                                       END;                                                                                              $pkg_evr$ LANGUAGE plpgsql;
+select name, epoch, version, release from rpm_package where name = 'bash' order by name, epoch, version, release;
+select name, epoch, version, release from rpm_package where name = 'bash' order by evr;
+select count(*) from rpm_package where evr is null;
+select name, epoch, version, release, evr from rpm_package where evr is null;
+select count(*) rpm_package;
+select count(*) from rpm_package;
+\timing
+select name, epoch, version, release from rpm_package where name = 'bash' order by evr;
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);;
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);;
+\timing
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);;
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);;
+select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);;
+select count(*) from rpm_package;
