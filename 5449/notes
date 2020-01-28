@@ -1,0 +1,25 @@
+\dmin rpm repo content rpm --field name,provides --sort name,ascending --repo-id bar2
+
+FOO:
+Name:         kangaroo
+Provides:     kangaroo = 0.2-1-0
+
+BAR:
+Name:         kangaroo
+Provides:     kangaroo = 0.2-1-0
+
+Name:         kangaroo
+Provides:     kangaroo = 0.3-1-0
+
+rpm-with-modules-updated - BROKEN errata
+RHEA-2012:0055
+- references missing shark-0.1-1.noarch.rpm
+
+RHEA-2012:0056
+- references missing stork-0.12-2.noarch.rpm
+
+RHEA-2012:0059
+- references missing kangaroo-0.3-1.noarch.rpm
+
+
+

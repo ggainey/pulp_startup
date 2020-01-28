@@ -1,0 +1,5 @@
+#!/bin/bash
+for r in `pulp-admin rpm repo list -s`; do echo "Repository [$r]"; pulp-admin rpm repo delete --repo-id $r; done
+echo "Repository [foo1]"
+pulp-admin rpm repo delete --repo-id foo1
+pulp-admin orphan remove --all

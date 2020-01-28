@@ -1,0 +1,34 @@
+#!/bin/bash -v
+#REMOTE1='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-with-modules-modified/'
+#REMOTE2='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-unsigned-modified/'
+REMOTE2='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-with-modules-modified/'
+REMOTE1='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-unsigned-modified/'
+BASE1='foo'
+BASE2='bar'
+DEST='destination'
+# broken erratum
+#ERRATUM='RHEA-2012:0059'
+#ERRATUM='RHEA-2012:0056'
+ERRATUM='RHEA-2012:0057'
+# /rpm-with-modules-modified
+# 'broken' errata
+# RHEA-2012:0055 RHEA-2012:0056 RHEA-2012:0059
+# valid errata:
+# RHEA-2012:0057 RHEA-2012:0058 RHEA-2012:0060
+
+# /rpm-unsigned-modified
+# 'broken' errata
+# none
+# valid errata:
+# RHEA-2012:0055 RHEA-2012:0056 RHEA-2012:0057 RHEA-2012:0058
+
+
+for n in {1..5}; do
+    pulp-admin rpm repo create --repo-id=$BASE1$n --relative-url=$BASE1$n --feed=$REMOTE1
+    pulp-admin rpm repo sync run --repo-id=$BASE1$n
+    pulp-admin rpm repo create --repo-id=$BASE2$n --relative-url=$BASE2$n --feed=$REMOTE2
+    pulp-admin rpm repo sync run --repo-id=$BASE2$n
+    pulp-admin rpm repo create --repo-id=$DEST$n
+    curl -k -u admin:admin --cert ~/.pulp/user-cert.pem -d "{\"source_repo_id\":\"$BASE1$n\",\"criteria\":{\"type_ids\":[\"erratum\"],\"filters\":{\"unit\":{\"id\":\"$ERRATUM\"}}},\"override_config\":{\"recursive_conservative\":true,\"additional_repos\":{\"$BASE2$n\": \"$DEST$n\"}}}" -H "Content-Type: application/json" -X POST https://localhost/pulp/api/v2/repositories/$DEST$n/actions/associate/
+done
+pulp-admin repo list
