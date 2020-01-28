@@ -28,13 +28,9 @@ Filesystem                   Size  Used Avail Use% Mounted on
    18  set -o vi
     7  sudo dnf install httpie -y
    22  dnf install jq
-   # default auth is admin:password (see local.user-config.yml)
-   42  export BASE_ADDR="admin:password@localhost:24817"
-   43  psql -U pulp -d pulp --host 127.0.0.1
-   Password: pulp
-   # default auth is admin:password (see local.user-config.yml)
-   42  export BASE_ADDR="admin:password@localhost:24817"
    47  export REPO_NAME=bar
+   # default auth is admin:password (see local.user-config.yml)
+   42  export BASE_ADDR="admin:password@localhost:24817"
    65  export REPO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/ name=$REPO_NAME | jq -r '.pulp_href')
    69  http $BASE_ADDR$REPO_HREF
    72  http GET $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/
@@ -57,107 +53,6 @@ Filesystem                   Size  Used Avail Use% Mounted on
    96  export DISTRIBUTION_HREF=$(http $BASE_ADDR$TASK_URL| jq -r '.created_resources | first')
    97  http $BASE_ADDR$DISTRIBUTION_HREF
 
-rpm whose evr is non-string-comparable (from FC31)
-bash                                                       | 0     | 5.0.11                    | 1.fc31
-bash                                                       | 0     | 5.0.11                    | 1.fc31
-bash                                                       | 0     | 5.0.7                     | 3.fc31
 
--- DATABASE STUFF
-psql -U pulp -d pulp --host 127.0.0.1 -f evr_t.sql
-
-
-- sql to find rpms with multiple versions available using existing fields
-select rp.name, rp.epoch, rp.version, rp.release, rp.evr
-  from rpm_package rp
-       inner join (select name, count(release) a_count from rpm_package group by name order by name) t
-         on t.name = rp.name
- where t.a_count > 1
- order by rp.name, rp.epoch, rp.version, rp.release;
-
-- fill in evr-col in existing db
-[vagrant@pulp3-sandbox-fedora30 TEMP]$ psql -U pulp -d pulp --host 127.0.0.1 -f populate_evr.sql
-Password for user pulp:
-Timing is on.
-UPDATE 60309
-Time: 10573.793 ms (00:10.574)
-
-- sql to find rpms with multiple versions available using evr
-select rp.name, rp.epoch, rp.version, rp.release
-  from rpm_package rp
-       inner join (select name, count(release) a_count from rpm_package group by name order by name) t
-         on t.name = rp.name
- where t.a_count > 2
- order by rp.name, rp.evr;
-
-- commands to compare order-by-evr_t and order-by-e/v/r
-  197  psql -U pulp -d pulp --host 127.0.0.1 -c "select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.evr;" > evr.csv
-  205  psql -U pulp -d pulp --host 127.0.0.1 -c "select rp.name, rp.epoch, rp.version, rp.release from rpm_package rp inner join (select name, count(release) a_count from rpm_package group by name order by name) t on t.name = rp.name where t.a_count > 2 order by rp.name, rp.epoch, rp.version, rp.release;" > nonevr.csv
-  208  diff nonevr.csv evr.csv
-
-- Use evr to find the bash that is greater-than 5.0.7
-pulp=> \timing
-Timing is on.
-pulp=> select name, epoch, version, release from rpm_package where name = 'bash' and evr > (select ROW(0, rpmver_array('5.0.7')::evr_array_item[], rpmver_array('3.fc31')::evr_array_item[])::evr_t);
- name | epoch | version | release
-------+-------+---------+---------
- bash | 0     | 5.0.11  | 1.fc31
- bash | 0     | 5.0.11  | 1.fc31
-(2 rows)
-
-Time: 0.778 ms
-
-- Use evr to find bash, while limiting repo
-select rp.name, rp.epoch, rp.version, rp.release
-  from rpm_package rp
-       inner join core_repositorycontent crc on rp.content_ptr_id = crc.content_id
- --    inner join core_repository cr on crc.repository_id = cr.pulp_id
- where rp.name = 'bash'
-   and rp.evr > (
-        select ROW(0,
-                   rpmver_array('5.0.7')::evr_array_item[],
-                   rpmver_array('3.fc31')::evr_array_item[])::evr_t
-        )
-   and crc.repository_id in ('e095b5d3-7a32-41e7-b9ff-3f5910484cd6', 'af9a743d-1ea9-4863-befb-f092591c399d');
-   -- and cr.name in ('2-fedora-31-server-x86_64');
-   -- and cr.name in ('2-fedora-31-server-x86_64', '2-fedora-31-updates-x86_64');
-
-- index?
-CREATE INDEX rpm_package_evr_ndx on rpm_package evr;
-
--- other searches
-
-select rp.name, rp.epoch, rp.version, rp.release
-  from rpm_package rp
-       inner join core_repositorycontent crc on rp.content_ptr_id = crc.content_id
- where rp.name = 'bash'
-   and rp.evr > (
-        select ROW(0,
-                   rpmver_array('4.4.23')::evr_array_item[],
-                   rpmver_array('5.fc29')::evr_array_item[])::evr_t
-        )
- order by evr;
-
--- order all packages by name, evr
-select rp.name, rp.epoch, rp.version, rp.release
-  from rpm_package rp
- order by evr;
-Time: 801.224 ms
-
-
-select rp.name, rp.epoch, rp.version, rp.release
-  from rpm_package rp
- where name in ('bash', 'kernel', 'dnf', 'glibc', 'git')
- order by evr;
-Time: 3.208 ms
-
-
--- REPO STUFF
-fedora versions: 29 30 31
-urls:
-https://mirrors.rit.edu/fedora/fedora/linux/releases/$n/Server/x86_64/os/
-https://mirrors.rit.edu/fedora/fedora/linux/updates/$n/Everything/x86_64/
-
-repo_name:
-fedora-$n-server-updates-x86_64
 
 
