@@ -1,5 +1,15 @@
 #!/bin/bash
-for r in `pulp-admin rpm repo list -s`; do echo "Repository [$r]"; pulp-admin rpm repo delete --repo-id $r; done
-echo "Repository [foo1]"
-pulp-admin rpm repo delete --repo-id foo1
+shopt -s extglob
+for r in `pulp-admin rpm repo list -s`; do
+    echo "Repository [$r]"
+    case "$r" in
+        foo+([0-9]) | bar+([0-9]) | destination+([0-9]) )
+            pulp-admin rpm repo delete --repo-id $r
+            ;;
+        *)
+            echo "Skipping..."
+            ;;
+    esac
+done
 pulp-admin orphan remove --all
+pulp-admin rpm repo list -s
