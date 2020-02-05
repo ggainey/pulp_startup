@@ -3,7 +3,8 @@ shopt -s extglob
 for r in `pulp-admin rpm repo list -s`; do
     echo "Repository [$r]"
     case "$r" in
-        foo+([0-9]) | bar+([0-9]) | destination+([0-9]) )
+        foo+([0-9]) | bar+([0-9]) | destination-avocado-+([0-9]) | destination-rhba-2019-0987+([0-9]) )
+            echo "Deleting..."
             pulp-admin rpm repo delete --repo-id $r
             ;;
         *)
