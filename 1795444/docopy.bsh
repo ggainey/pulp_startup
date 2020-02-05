@@ -28,12 +28,15 @@ wait_until_task_finished() {
 
 BASE='rhel8-baseos'
 STREAM='rhel8-appstream'
-DEST='destination-inkscape'
-COPY_MODULE='inkscape'
+DEST_CONSERVATIVE='destination-perl-FCGI-conservative'
+DEST='destination-perl-FCGI-nonconservative'
+#COPY_MODULE='inkscape'
+COPY_MODULE='perl-FCGI'
 FIND_CMD="db.units_modulemd.find({name: '$COPY_MODULE'}, {_id:1}).map(function(item){ return item._id; })"
 
 # insure DEST exists (throws error if it's there already)
 pulp-admin rpm repo create --repo-id=$DEST
+pulp-admin rpm repo create --repo-id=$DEST_CONSERVATIVE
 
 # find all the module-ids for the module we want to test with
 ID_LIST=$(mongo pulp_database --eval "db.units_modulemd.find({name: '$COPY_MODULE'}, {_id:1}).map(function(item){ return item._id; })" --quiet)
@@ -42,11 +45,24 @@ ID_LIST=$(mongo pulp_database --eval "db.units_modulemd.find({name: '$COPY_MODUL
 ID_LIST=$(printf "\"%s\"" "${ID_LIST//,/\",\"}")
 echo $ID_LIST
 
-# do the multi-src copy
+# do the multi-src copy, recursive and then recursive_conservative
+
+# recursive
 TASK_OUTPUT=$(curl -k -u admin:admin --cert ~/.pulp/user-cert.pem \
      -d "{\"source_repo_id\":\"$STREAM\",\"criteria\":{\"type_ids\":[\"modulemd\"],\"filters\":{\"association\":{\"unit_id\":{\"\$in\":[$ID_LIST]}}}},\"override_config\":{\"recursive\":true,\"additional_repos\":{\"$BASE\":\"$DEST\"}}}" \
      -H "Content-Type: application/json" \
      -X POST https://localhost/pulp/api/v2/repositories/$DEST/actions/associate/)
+TASK_URL=$(echo $TASK_OUTPUT | jq -r '.spawned_tasks[]._href')
+echo "Task url : " $TASK_URL
+if [ -z "$TASK_URL" ]; then echo "NO TASK?!?"; exit; fi
+wait_until_task_finished https://localhost$TASK_URL
+
+# recursive_conservative
+TASK_OUTPUT=$(curl -k -u admin:admin --cert ~/.pulp/user-cert.pem \
+     -d "{\"source_repo_id\":\"$STREAM\",\"criteria\":{\"type_ids\":[\"modulemd\"],\"filters\":{\"association\":{\"unit_id\":{\"\$in\":[$ID_LIST]}}}},\"override_config\":{\"recursive_conservative\":true,\"additional_repos\":{\"$BASE\":\"$DEST_CONSERVATIVE\"}}}" \
+     -H "Content-Type: application/json" \
+     -X POST https://localhost/pulp/api/v2/repositories/$DEST_CONSERVATIVE/actions/associate/)
+echo "TASK_OUTPUT : " $TASK_OUTPUT
 TASK_URL=$(echo $TASK_OUTPUT | jq -r '.spawned_tasks[]._href')
 echo "Task url : " $TASK_URL
 if [ -z "$TASK_URL" ]; then echo "NO TASK?!?"; exit; fi
