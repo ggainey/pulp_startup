@@ -1,0 +1,52 @@
+#!/bin/bash -v
+wait_until_task_finished() {
+    echo "Polling the task until it has reached a final state."
+    local task_url=$1
+    while true
+    do
+        local response=$(curl -k -s -u admin:admin --cert ~/.pulp/user-cert.pem -X GET $task_url)
+        local state=$(jq -r .state <<< ${response})
+        #jq . <<< "${response}"
+        case ${state} in
+            failed|canceled)
+                echo "Task in final state: ${state}"
+                exit 1
+                ;;
+            finished)
+                echo "$task_url complete."
+                break
+                ;;
+            *)
+                echo "Still waiting..."
+                sleep 1
+                ;;
+        esac
+    done
+}
+
+EVERYTHING_RELEASE='f30-everything'
+EVERYTHING_UPDATES='f30-everything-updates'
+MODULAR_RELEASE='f30-modular'
+MODULAR_UPDATES='f30-modular-updates'
+ERRATUM='FEDORA-MODULAR-2019-db21bc4abf'
+DEST='destination-'$ERRATUM
+
+
+for n in {1..1}; do
+    pulp-admin rpm repo create --repo-id=$DEST"-"$n
+done
+for n in {1..1}; do
+    N_DEST=$DEST"-"$n
+    echo $N_DEST
+    TASK_OUTPUT=$(curl -k -u admin:admin --cert ~/.pulp/user-cert.pem \
+         -d "{\"source_repo_id\":\"$MODULAR_UPDATES\",\"criteria\":{\"type_ids\":[\"erratum\"],\"filters\":{\"unit\":{\"id\":\"$ERRATUM\"}}},\"override_config\":{\"recursive_conservative\":true,\"additional_repos\":{\"$MODULAR_RELEASE\": \"$N_DEST\", \"$EVERYTHING_RELEASE\": \"$N_DEST\", \"$EVERYTHING_UPDATES\": \"$N_DEST\" }}}" \
+         -H "Content-Type: application/json" \
+         -X POST https://localhost/pulp/api/v2/repositories/$N_DEST/actions/associate/)
+    TASK_URL=$(echo $TASK_OUTPUT | jq -r '.spawned_tasks[]._href')
+    echo "Task url : " $TASK_URL
+    if [ -z "$TASK_URL" ]; then echo "NO TASK?!?"; exit; fi
+    wait_until_task_finished https://localhost$TASK_URL
+    pulp-admin rpm repo publish run --repo-id $N_DEST
+done
+pulp-admin rpm repo search --fields id,content_unit_counts --match "id=^${DEST}-[0-9]+"
+
