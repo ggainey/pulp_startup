@@ -28,11 +28,15 @@ wait_until_task_finished() {
 
 BASE='rhel8-baseos'
 STREAM='rhel8-appstream'
-DEST='destination'
-COPY_MODULE='perl-FCGI'
+DEST='destination-inkscape'
+COPY_MODULE='inkscape'
+FIND_CMD="db.units_modulemd.find({name: '$COPY_MODULE'}, {_id:1}).map(function(item){ return item._id; })"
+
+# insure DEST exists (throws error if it's there already)
+pulp-admin rpm repo create --repo-id=$DEST
 
 # find all the module-ids for the module we want to test with
-ID_LIST=$(mongo pulp_database --eval "db.units_modulemd.find({name: 'perl-FCGI'}, {_id:1}).map(function(item){ return item._id; })" --quiet)
+ID_LIST=$(mongo pulp_database --eval "db.units_modulemd.find({name: '$COPY_MODULE'}, {_id:1}).map(function(item){ return item._id; })" --quiet)
 
 # transform the output into a comma-separated *quoted* list
 ID_LIST=$(printf "\"%s\"" "${ID_LIST//,/\",\"}")

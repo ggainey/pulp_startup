@@ -1,0 +1,26 @@
+#!/bin/bash -v
+EVERYTHING_RELEASE='f30-everything'
+EVERYTHING_UPDATES='f30-everything-updates'
+MODULAR_RELEASE='f30-modular'
+MODULAR_UPDATES='f30-modular-updates'
+E_R_REMOTE='http://mirrors.mit.edu/fedora/linux/updates/30/Everything/x86_64/'
+E_U_REMOTE='http://mirrors.mit.edu/fedora/linux/updates/30/Everything/x86_64/'
+M_R_REMOTE='http://mirrors.mit.edu/fedora/linux/releases/30/Modular/x86_64/os/'
+M_U_REMOTE='http://mirrors.mit.edu/fedora/linux/updates/30/Modular/x86_64/'
+DEST='destination'
+
+pulp-admin rpm repo create --repo-id=$EVERYTHING_RELEASE --relative-url=$EVERYTHING_RELEASE --feed=$E_R_REMOTE --download-policy on_demand 
+pulp-admin rpm repo sync run --repo-id=$EVERYTHING_RELEASE
+
+pulp-admin rpm repo create --repo-id=$EVERYTHING_UPDATES --relative-url=$EVERYTHING_UPDATES --feed=$E_U_REMOTE --download-policy on_demand 
+pulp-admin rpm repo sync run --repo-id=$EVERYTHING_UPDATES
+
+pulp-admin rpm repo create --repo-id=$MODULAR_RELEASE --relative-url=$MODULAR_RELEASE --feed=$M_R_REMOTE --download-policy on_demand 
+pulp-admin rpm repo sync run --repo-id=$MODULAR_RELEASE
+
+pulp-admin rpm repo create --repo-id=$MODULAR_UPDATES --relative-url=$MODULAR_UPDATES --feed=$M_U_REMOTE --download-policy on_demand 
+pulp-admin rpm repo sync run --repo-id=$MODULAR_UPDATES
+
+pulp-admin rpm repo create --repo-id=$DEST
+
+pulp-admin repo list
