@@ -1,0 +1,20 @@
+# ASSOCIATE
+FILTER_RPM="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"rpm\"],\"filters\":{\"unit\":{\"\$and\":[{\"is_modular\":false},{\"\$and\":[{\"filename\":{\"$exists\":true}},{\"\$nor\":[{\"\$or\":[{\"filename\":{\"\$in\":[\"$FILENAME_TO_FILTER\"]}}]}]}]}]}},\"fields\":{\"unit\":[\"name\",\"epoch\",\"version\",\"release\",\"arch\",\"checksumtype\",\"checksum\"]}},\"override_config\":{\"recursive_conservative\":true,\"additional_repos\":{}}}"
+# UNASSOCIATE
+UNASSOCIATE_RPM="{\"criteria\":{\"type_ids\":[\"rpm\"],\"filters\":{\"unit\":{\"filters\":{\"unit\":{\"\$and\":[{\"is_modular\":false},{\"\$or\":[{\"filename\":{\"\$in\":[\"$FILENAME_TO_FILTER\"]}}]}]}}}}}}"
+# ASSOCIATE
+DO_MODULMD="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"modulemd\"],\"filters\":{}},\"override_config\":{\"recursive_conservative\":true,\"additional_repos\":{}}}"
+# ASSOCIATE
+DO_SRPM="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"srpm\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_ERRATUM="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"erratum\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_PGROUP="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"package_group\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_PENV="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"package_environment\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_YUMMETA="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"yum_repo_metadata_file\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_DIST="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"distribution\"],\"filters\":{}}}"
+# ASSOCIATE
+DO_MODULEMD_DEF="{\"source_repo_id\":\"$BASE1\",\"criteria\":{\"type_ids\":[\"modulemd_defaults\"],\"filters\":{}}}"
