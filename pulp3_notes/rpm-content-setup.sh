@@ -27,14 +27,14 @@ wait_until_task_finished() {
 }
 
 BASE_ADDR="admin:password@localhost:24817"
-#for major in 30 ; do
-for major in {29..31} ; do
-  for variant in server updates ; do
-    REPO_NAME="2-fedora-$major-$variant-x86_64"
+for major in 31 ; do
+#for major in {29..31} ; do
+  for variant in modular ; do
+    REPO_NAME="4-fedora-$major-$variant-x86_64"
     echo "repo_name : " $REPO_NAME
     if [ -z "$REPO_NAME" ]; then break 2; fi
     URL_PART=''
-    [[ $variant = 'server' ]] && URL_PART=releases/$major/Server/x86_64/os/ || URL_PART=updates/$major/Everything/x86_64/
+    [[ $variant = 'modular' ]] && URL_PART=releases/31/Modular/x86_64/os/ || [[ $variant = 'server' ]] && URL_PART=releases/$major/Server/x86_64/os/ || URL_PART=updates/$major/Everything/x86_64/
     echo "url_part : " $URL_PART
     if [ -z "$URL_PART" ]; then break 2; fi
     # create repo
@@ -42,7 +42,7 @@ for major in {29..31} ; do
     echo "repo_href : " $REPO_HREF
     if [ -z "$REPO_HREF" ]; then break 2; fi
     # add remote
-    http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name=$REPO_NAME url=https://mirrors.rit.edu/fedora/fedora/linux/$URL_PART  policy='on_demand'
+    http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name=$REPO_NAME url=https://dl.fedoraproject.org/pub/fedora/linux/$URL_PART  policy='on_demand'
     # find remote's href
     REMOTE_HREF=$(http $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ | jq -r ".results[] | select(.name == \"${REPO_NAME}\") | .pulp_href")
     echo "remote_href : " $REMOTE_HREF

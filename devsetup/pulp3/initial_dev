@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Setting up machine to work on pulp-rpm for the first time
+# required rpms, repos, creating vagrant-box
+#
+sudo dnf install -y ansible vagrant vagrant-sshfs VirtualBox akmod-VirtualBox
+mkdir -p ~/github/Pulp3
+cd ~/github/Pulp3
+git clone git@github.com:ggainey/pulpcore.git
+cd pulp
+git remote add upstream https://github.com/pulp/pulpcore.git
+cd ..
+git clone git@github.com:ggainey/pulp_rpm.git
+cd pulp_rpm/
+git remote add upstream https://github.com/pulp/pulp_rpm.git
+cd ..
+git clone git@github.com:ggainey/pulp_file.git
+cd pulp_file/
+git remote add upstream https://github.com/pulp/pulp_file.git
+cd ..
+git clone git@github.com:ggainey/pulplift.git
+cd pulplift/
+git remote add upstream https://github.com/pulp/pulplift.git
+#cp Vagrantfile.example Vagrantfile
+#vagrant up

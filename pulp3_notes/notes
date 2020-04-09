@@ -16,6 +16,7 @@ DEV-BOX
  5004  export WORKON_HOME=~/Envs
  5005  mkdir -p $WORKON_HOME
  5019  sudo alternatives --config python
+       <edit .bashrc to find/source virtualenvwrapper.sh>
  5020  mkvirtualenv pulp3
  5022  workon pulp3
 
@@ -54,5 +55,15 @@ Filesystem                   Size  Used Avail Use% Mounted on
    97  http $BASE_ADDR$DISTRIBUTION_HREF
 
 
+
+MORE ON VAGRANT BOX
+   may not need?
+   49  sudo dnf install pytest
+   55  pip install ipython
+   56  pip install git+https://github.com/PulpQE/Pulp-2-Tests.git#egg=pulp-2-tests
+
+   95  workon pulp # DO NOT FORGET to do this
+   96  cd devel/pulpcore/
+(pulp) [vagrant@pulp3-source-fedora31 pulpcore]$ python manage.py test pulp_rpm.tests.functional
 
 

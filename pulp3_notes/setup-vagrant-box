@@ -1,0 +1,6 @@
+    8  alias h="history 25"
+   10  sudo dnf install httpie jq -y
+   45  psql -U pulp -d pulp --host 127.0.0.1
+   88  sudo systemctl status pulpcore-api pulpcore-content pulpcore-resource-manager
+ 5024  http :24817/pulp/api/v3/status/  # This should show the status API
+
