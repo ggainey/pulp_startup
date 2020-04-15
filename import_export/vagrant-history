@@ -1,0 +1,32 @@
+  587  BASE_ADDR="admin:password@localhost:24817"
+  588  EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
+  589  FILE_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/file/file/ | jq -r ".results[0] | .pulp_href")
+  590  FILE_UUID=${FILE_HREF##/pulp/api/v3/repositories/file/file/}
+  591  FILE_UUID=${FILE_UUID%%/}
+  592  RPM_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
+  593  RPM_UUID=${RPM_HREF##/pulp/api/v3/repositories/rpm/rpm/}
+  594  RPM_UUID=${RPM_UUID%%/}
+  595  echo $RPM_UUID
+
+  557  http --timeout 1200 POST http://localhost:24817/pulp/api/v3/exporters/core/pulp/5bdde6f4-3ae2-46ae-9108-37453fa98f93/exports/
+
+  510  http GET http://localhost:24817/pulp/api/v3/exporters/core/pulp/5bdde6f4-3ae2-46ae-9108-37453fa98f93/exports/
+  508  django-admin show_urls  | less
+  479  http DELETE http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/8f89f0ea-f653-4e07-bc10-23887678f47d/
+  464  http GET http://localhost:24817/pulp/api/v3/repositories/file/file/
+  465  http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/
+  466  http GET http://localhost:24817/pulp/api/v3/status
+  449  BASE_ADDR="admin:password@localhost:24817"
+  450  EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
+  451  http GET $BASE_ADDR$EXPORTER_URL
+
+
+
+phelp
+alias h="history 25"
+set -o vi
+sudo dnf install httpie -y
+sudo dnf install jq -y
+pip3 install pydevd-pycharm
+pip install pydevd-pycharm~=191.7479.30
+
