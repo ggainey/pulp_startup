@@ -31,16 +31,12 @@ EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
 # get a FILE repo UUID
 FILE_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/file/file/ | jq -r ".results[0] | .pulp_href")
-FILE_UUID=${FILE_HREF##/pulp/api/v3/repositories/file/file/}
-FILE_UUID=${FILE_UUID%%/}
 # get an RPM repo UUID
 RPM_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
-RPM_UUID=${RPM_HREF##/pulp/api/v3/repositories/rpm/rpm/}
-RPM_UUID=${RPM_UUID%%/}
 
 # create exporter
 EXPORT_NAME="test"
-EXPORT_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORT_NAME}"-exporter repositories:=[\"${FILE_UUID}\",\"${RPM_UUID}\"] path=/tmp/exports/) #"
+EXPORT_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORT_NAME}"-exporter repositories:=[\"${FILE_HREF}\",\"${RPM_HREF}\"] path=/tmp/exports/) #"
 echo "repo_href : " $EXPORT_HREF
 if [ -z "$EXPORT_HREF" ]; then exit; fi
 
