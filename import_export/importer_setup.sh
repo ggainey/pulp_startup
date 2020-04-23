@@ -41,11 +41,11 @@ ISO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/file/file/ name=$ISO_NA
 echo "repo_href : " $ISO_HREF
 if [ -z "$ISO_HREF" ]; then exit; fi
 
-# create exporter
+# create importer
 IMPORT_NAME="test"
 IMPORT_HREF=$(http POST $BASE_ADDR$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}") 
 echo "repo_href : " $IMPORT_HREF
 if [ -z "$IMPORT_HREF" ]; then exit; fi
 
-# LIST all exporters
+# LIST all importers
 http GET $BASE_ADDR$IMPORTER_URL
