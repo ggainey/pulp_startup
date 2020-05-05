@@ -1,0 +1,47 @@
+{
+  "config": [
+    {
+      "source_repo_version": "/pulp/api/v3/repositories/rpm/rpm/e1d3e54d-2f5a-42e7-ad87-f69119a2db2e/versions/1/",
+      "dest_repo": "/pulp/api/v3/repositories/rpm/rpm/814c4ffe-fdbb-4e10-acb1-b74fa9201c91/",
+      "content": [
+        "/pulp/api/v3/content/rpm/packages/2c123250-2874-49b7-8e4f-07d7d14fc7ec/",
+        "/pulp/api/v3/content/rpm/packages/c3616ead-7a03-446e-9e19-e1e1b51f23bf/",
+        "/pulp/api/v3/content/rpm/packages/6642f65e-d3f8-4361-9904-ccbfbdcb514f/",
+        "/pulp/api/v3/content/rpm/packages/4555cf8a-27f6-47de-9678-2fd3296e1e0e/",
+        "/pulp/api/v3/content/rpm/packages/b8517a31-af03-4a65-80fb-07b31ea09530/",
+        "/pulp/api/v3/content/rpm/packages/27a21824-3937-48a5-940c-79ff641def42/",
+        "/pulp/api/v3/content/rpm/packages/2c51d39a-d156-4e8d-8196-a72fe52958c9/",
+        "/pulp/api/v3/content/rpm/packages/a408f89a-8ec3-432b-b6bf-dfa9e8278d36/",
+        "/pulp/api/v3/content/rpm/packages/ecdf6e2e-e5d7-4b3c-923a-1fe29f0c7cc2/",
+        "/pulp/api/v3/content/rpm/packages/ecb4c200-9f62-42db-80f6-d79e9b503ead/",
+        "/pulp/api/v3/content/rpm/packages/39e0da10-ccb9-4131-a2ee-68ebb99fd706/",
+        "/pulp/api/v3/content/rpm/packages/6d56ea02-34ee-4153-bc3c-79a561e72f8f/",
+        "/pulp/api/v3/content/rpm/packages/9dd1273d-8003-4c07-8805-6a91ceb65608/",
+        "/pulp/api/v3/content/rpm/packages/bdd350bc-e816-4423-920d-18e7faecae2d/",
+        "/pulp/api/v3/content/rpm/packages/24fc9bfe-63ee-449d-9c9e-0954a7772604/",
+        "/pulp/api/v3/content/rpm/packages/78d5367f-4d3d-4aa8-b2a5-4b58bc46fd19/",
+        "/pulp/api/v3/content/rpm/packages/d4e50c37-ed47-44fa-96b5-16f889953e27/",
+        "/pulp/api/v3/content/rpm/packages/45bc229f-3c65-4549-af28-a8da8e13b327/",
+        "/pulp/api/v3/content/rpm/packages/944d6a22-5f69-4429-b512-d67ed55e2a5f/",
+        "/pulp/api/v3/content/rpm/packages/45306619-eeb4-467d-ac34-89f1bf10d6d8/",
+        "/pulp/api/v3/content/rpm/packages/7fb01ff5-f13e-41b2-804a-f5fe5484526b/",
+        "/pulp/api/v3/content/rpm/packages/273ca636-cb66-481c-ab65-0b71ef97b2ea/",
+        "/pulp/api/v3/content/rpm/packages/3488b9a6-4286-4220-8dc5-c0a31a05482b/",
+        "/pulp/api/v3/content/rpm/packages/a0ee765f-816c-4332-b374-0c0a0631ca36/",
+        "/pulp/api/v3/content/rpm/packages/96d08f13-7032-4af1-9ed8-4e3439bc611e/",
+        "/pulp/api/v3/content/rpm/packages/49927c6c-ceca-4b31-a386-214a66134e5a/",
+        "/pulp/api/v3/content/rpm/packages/43472431-145d-4967-9fa0-da1f63cb75ae/",
+        "/pulp/api/v3/content/rpm/packages/e53d2f0f-3014-413c-b207-a801736fce3d/",
+        "/pulp/api/v3/content/rpm/packages/3d040cd7-807f-4c19-b780-252fabc332b6/",
+        "/pulp/api/v3/content/rpm/packages/ceb3fa82-6d85-4328-9414-5af75a63d90d/",
+        "/pulp/api/v3/content/rpm/packages/90f622d0-1978-4096-921d-ce3b285515f2/",
+        "/pulp/api/v3/content/rpm/packages/dd323c59-9c7f-4142-bb05-6ae56b592399/",
+        "/pulp/api/v3/content/rpm/advisories/2b1b1fad-9027-48fe-97c5-8840728090c4/",
+        "/pulp/api/v3/content/rpm/advisories/4b90045b-4f7a-4d6b-9f53-431c736622f9/",
+        "/pulp/api/v3/content/rpm/advisories/8751526a-2bc5-4be2-8db6-decbd1417d91/",
+        "/pulp/api/v3/content/rpm/advisories/bfec6cb4-9b82-4210-98e5-caecbb47f007/"
+      ]
+    }
+  ],
+  "dependency_solving": true
+}
