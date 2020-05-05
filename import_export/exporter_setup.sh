@@ -36,7 +36,7 @@ RPM_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/ | j
 
 # create exporter
 EXPORTER_NAME="test"
-EXPORTER_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORT_NAME}"-exporter repositories:=[\"${FILE_HREF}\",\"${RPM_HREF}\"] path=/tmp/exports/) #"
+EXPORTER_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${FILE_HREF}\",\"${RPM_HREF}\"] path=/tmp/exports/) #"
 if [ -z "$EXPORTER_HREF" ]; then exit; fi
 
 # LIST all exporters
