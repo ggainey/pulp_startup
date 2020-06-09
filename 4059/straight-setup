@@ -1,10 +1,10 @@
 #!/bin/bash
 pin
 pulp-admin rpm repo create --repo-id zoo_straight --relative-url zoo_straight --feed \
-   https://fixtures.pulpproject.org/rpm-with-modules/
+   https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/
 pulp-admin rpm repo sync run --repo-id zoo_straight
 curl -L -O -k -v \
-  https://fixtures.pulpproject.org/rpm-with-non-ascii/rpm-with-non-ascii-1-1.fc25.noarch.rpm
+  https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-non-ascii/rpm-with-non-ascii-1-1.fc25.noarch.rpm
 pulp-admin rpm repo uploads rpm --file rpm-with-non-ascii-1-1.fc25.noarch.rpm --repo-id zoo_straight
 pulp-admin rpm repo publish run --repo-id zoo_straight
 curl -L -k -v -o weird_rpm.rpm \

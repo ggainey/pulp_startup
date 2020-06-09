@@ -1,6 +1,6 @@
 #!/bin/bash
 # top-lvl url fir test repos
-base_remote_url='https://fixtures.pulpproject.org'
+base_remote_url='https://repos.fedorapeople.org/repos/pulp/pulp/fixtures'
 # repos to use w/this set of tests
 zoo_1='rpm-with-modules'
 zoo_2='rpm-test-modularity'

@@ -24,8 +24,8 @@ wait_until_task_finished() {
     done
 }
 
-REMOTE1='https://fixtures.pulpproject.org/rpm-with-modules-modified/'
-REMOTE2='https://fixtures.pulpproject.org/rpm-unsigned-modified/'
+REMOTE1='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-with-modules-modified/'
+REMOTE2='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm-unsigned-modified/'
 BASE1='foo'
 BASE2='bar'
 DEST='destination'
