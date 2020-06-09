@@ -27,18 +27,20 @@ wait_until_task_finished() {
 }
 
 BASE_ADDR="admin:password@localhost:24817"
-EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
+IMPORTER_URL="/pulp/api/v3/importers/core/pulp/"
+ISO_NAME='new-file'
+MAPPING='{"iso": "new-file"}'
 
-# get a FILE repo UUID
-FILE_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/file/file/ | jq -r ".results[0] | .pulp_href")
-# get an RPM repo UUID
-RPM_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
+# create repo
+ISO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/file/file/ name=$ISO_NAME | jq -r '.pulp_href')
+echo "repo_href : " $ISO_HREF
+if [ -z "$ISO_HREF" ]; then exit; fi
 
-# create exporter
-EXPORTER_NAME="test-both"
-EXPORTER_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${FILE_HREF}\",\"${RPM_HREF}\"] path=/tmp/exports/) #"
-echo $EXPORTER_HREF
-if [ -z "$EXPORTER_HREF" ]; then exit; fi
+# create importer
+IMPORT_NAME="test"
+IMPORT_HREF=$(http POST $BASE_ADDR$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}") 
+echo "repo_href : " $IMPORT_HREF
+if [ -z "$IMPORT_HREF" ]; then exit; fi
 
-# LIST all exporters
-http GET $BASE_ADDR$EXPORTER_URL
+# LIST all importers
+http GET $BASE_ADDR$IMPORTER_URL
