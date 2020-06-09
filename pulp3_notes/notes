@@ -6,7 +6,7 @@ https://pulp.plan.io/issues/5933
 https://docs.pulpproject.org/en/3.0/nightly/contributing/dev-setup.html#get-the-source
 https://github.com/pulp/pulplift/#pulplift
 https://pulp-rpm.readthedocs.io/en/latest/workflows/scripting.html
-https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/
+https://fixtures.pulpproject.org/
 
 DEV-BOX
  4983  ansible-galaxy install pulp.pulp_rpm_prerequisites -p ./roles/
@@ -36,7 +36,7 @@ Filesystem                   Size  Used Avail Use% Mounted on
    69  http $BASE_ADDR$REPO_HREF
    72  http GET $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/
 
-   75  http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name='bar' url='https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm/'  policy='on_demand'
+   75  http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name='bar' url='https://fixtures.pulpproject.org/rpm/'  policy='on_demand'
    77  export REMOTE_HREF=$(http $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ | jq -r '.results[] | select(.name == "bar") | .pulp_href')
    79  http $BASE_ADDR$REMOTE_HREF
 

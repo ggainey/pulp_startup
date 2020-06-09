@@ -1,8 +1,8 @@
 #!/bin/bash
 pin
-pulp-admin rpm repo create --repo-id broken_zoo_on_demand --relative-url broken_zoo_on_demand --feed https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/ --download-policy on_demand
+pulp-admin rpm repo create --repo-id broken_zoo_on_demand --relative-url broken_zoo_on_demand --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy on_demand
 pulp-admin rpm repo sync run --repo-id broken_zoo_on_demand
-curl -L -O -k -v https://repos.fedorapeople.org/repos/pulp/pulp/fixtures/rpm-with-modules/wolf-9.4-2.noarch.rpm
+curl -L -O -k -v https://fixtures.pulpproject.org/rpm-with-modules/wolf-9.4-2.noarch.rpm
 sudo vi /etc/hosts <<HERE
 G
 o
