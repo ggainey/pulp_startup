@@ -24,7 +24,7 @@ create type evr_array_item as (
 
 -- an epoch/version/release (evr) type
 create type evr_t as (
-        epoch INT,
+        epoch TEXT,
         version evr_array_item[],
         release evr_array_item[]
 );
@@ -146,16 +146,14 @@ $$ language 'plpgsql';
 -- This function creates an evr_t entry for an existing rpm_package row
 CREATE FUNCTION evr_trigger() RETURNS trigger AS $$
   BEGIN
-    NEW.evr = (select ROW(coalesce(epoch::numeric,0),
-                          rpmver_array(version)::evr_array_item[],
-                          rpmver_array(release)::evr_array_item[])::evr_t);
+    NEW.evr = ROW(NEW.epoch, rpmver_array(NEW.version)::evr_array_item[], rpmver_array(NEW.release)::evr_array_item[])::evr_t;
     RETURN NEW;
   END;
 $$ language 'plpgsql';
 
 -- create evr_t on insert, so it matches the provided E/V/R cols
 CREATE TRIGGER evr_insert_trigger
-  AFTER INSERT
+  BEFORE INSERT
   ON rpm_package
   FOR EACH ROW
   EXECUTE PROCEDURE evr_trigger();
@@ -163,7 +161,7 @@ CREATE TRIGGER evr_insert_trigger
 -- create evr_t on update, so it continues to match the provided E/V/R cols,
 -- but only if Something Changed
 CREATE TRIGGER evr_update_trigger
-  AFTER UPDATE OF epoch, version, release
+  BEFORE UPDATE OF epoch, version, release
   ON rpm_package
   FOR EACH ROW
   WHEN (
