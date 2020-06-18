@@ -28,7 +28,7 @@ wait_until_task_finished() {
 
 BASE_ADDR="admin:password@localhost:24817"
 
-ZOO_URL="https://repos.fedorapeople.org/pulp/pulp/fixtures/rpm/"
+ZOO_URL="https://fixtures.pulpproject.org/rpm-signed/"
 ZOO_NAME="zoo"
 # FOR ZOO
 # create repos
@@ -63,7 +63,7 @@ if [ -z "$PUBLICATION_HREF" ]; then exit; fi
 # show it
 http $BASE_ADDR$PUBLICATION_HREF
 
-ISO_URL="https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST"
+ISO_URL="https://fixtures.pulpproject.org/file/PULP_MANIFEST"
 ISO_NAME="iso"
 # FOR ISO
 # create repo
