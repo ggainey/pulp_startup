@@ -1,0 +1,94 @@
+CENTOS8_BASE_URL="http://centos.mirror.rafal.ca/8.2.2004/BaseOS/x86_64/kickstart/"
+CENTOS8_NAME="centos8"
+CENTOS8_BASE_NAME="centos8-base"
+
+EXPORTER_NAME="centos8"
+EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
+
+CENTOS_NAME='new-centos8'
+IMPORT_NAME="test-centos8"
+IMPORTER_URL="/pulp/api/v3/importers/core/pulp/"
+MAPPING='{"centos8-base": "new-centos8-base"}'
+
+# create repo/remote/sync
+CENTOS8_BASE_HREF=$(http POST :/pulp/api/v3/repositories/rpm/rpm/ name=${CENTOS8_BASE_NAME} | jq -r '.pulp_href')
+BASE_REMOTE_HREF=$(http :/pulp/api/v3/remotes/rpm/rpm/ | jq -r ".results[] | select(.name == \"${CENTOS8_BASE_NAME}\") | .pulp_href")
+http POST :$CENTOS8_BASE_HREF'sync/' remote=$BASE_REMOTE_HREF
+
+# create exporter/export
+EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${CENTOS8_BASE_HREF}\"] path=/tmp/exports/) "
+http POST :${EXPORTER_HREF}exports/
+
+# reset pulp
+pclean
+prestart
+
+# create destination repo/importer
+CENTOS8_BASE_HREF=$(http POST :/pulp/api/v3/repositories/rpm/rpm/ name="${CENTOS_NAME}-base" | jq -r '.pulp_href')
+IMPORT_HREF=$(http POST :$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}")
+
+# http POST :${IMPORT_HREF}imports/ toc=/tmp/exports/<EXPORT-TOC-HERE>
+
+
+
+
+
+
+
+
+
+
+
+{
+    "base_version": null,
+    "content_summary": {
+        "added": {
+            "rpm.distribution_tree": {
+                "count": 1,
+                "href": "/pulp/api/v3/content/rpm/distribution_trees/?repository_version_added=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.package": {
+                "count": 1674,
+                "href": "/pulp/api/v3/content/rpm/packages/?repository_version_added=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packagecategory": {
+                "count": 4,
+                "href": "/pulp/api/v3/content/rpm/packagecategories/?repository_version_added=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packageenvironment": {
+                "count": 3,
+                "href": "/pulp/api/v3/content/rpm/packageenvironments/?repository_version_added=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packagegroup": {
+                "count": 35,
+                "href": "/pulp/api/v3/content/rpm/packagegroups/?repository_version_added=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            }
+        },
+        "present": {
+            "rpm.distribution_tree": {
+                "count": 1,
+                "href": "/pulp/api/v3/content/rpm/distribution_trees/?repository_version=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.package": {
+                "count": 1674,
+                "href": "/pulp/api/v3/content/rpm/packages/?repository_version=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packagecategory": {
+                "count": 4,
+                "href": "/pulp/api/v3/content/rpm/packagecategories/?repository_version=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packageenvironment": {
+                "count": 3,
+                "href": "/pulp/api/v3/content/rpm/packageenvironments/?repository_version=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            },
+            "rpm.packagegroup": {
+                "count": 35,
+                "href": "/pulp/api/v3/content/rpm/packagegroups/?repository_version=/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+            }
+        },
+        "removed": {}
+    },
+    "number": 1,
+    "pulp_created": "2020-08-31T14:05:49.160746Z",
+    "pulp_href": "/pulp/api/v3/repositories/rpm/rpm/d155518a-84e3-4c37-9c28-b369ccff0aab/versions/1/"
+

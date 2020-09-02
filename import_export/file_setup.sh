@@ -27,23 +27,22 @@ wait_until_task_finished() {
 }
 
 BASE_ADDR="admin:password@localhost:24817"
-EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
-CENTOS7_URL="http://mirror.fileplanet.com/centos/7/os/x86_64/"
-CENTOS7_NAME="centos7"
-# FOR CENTOS7
-# create repos
-CENTOS7_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/rpm/rpm/ name=$CENTOS7_NAME | jq -r '.pulp_href')
-echo "repo_href : " $CENTOS7_HREF
-if [ -z "$CENTOS7_HREF" ]; then exit; fi
+ISO_URL="https://fixtures.pulpproject.org/file/PULP_MANIFEST"
+ISO_NAME="iso"
+# FOR ISO
+# create repo
+ISO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/file/file/ name=$ISO_NAME | jq -r '.pulp_href')
+echo "repo_href : " $ISO_HREF
+if [ -z "$ISO_HREF" ]; then exit; fi
 # add remote
-http POST $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ name=$CENTOS7_NAME url=$CENTOS7_URL  policy='immediate'
+http POST $BASE_ADDR/pulp/api/v3/remotes/file/file/ name=$ISO_NAME url=$ISO_URL
 # find remote's href
-REMOTE_HREF=$(http $BASE_ADDR/pulp/api/v3/remotes/rpm/rpm/ | jq -r ".results[] | select(.name == \"${CENTOS7_NAME}\") | .pulp_href")
+REMOTE_HREF=$(http $BASE_ADDR/pulp/api/v3/remotes/file/file/ | jq -r ".results[] | select(.name == \"${ISO_NAME}\") | .pulp_href")
 echo "remote_href : " $REMOTE_HREF
 if [ -z "$REMOTE_HREF" ]; then exit; fi
 # sync
-TASK_URL=$(http POST $BASE_ADDR$CENTOS7_HREF'sync/' remote=$REMOTE_HREF | jq -r '.task')
+TASK_URL=$(http POST $BASE_ADDR$ISO_HREF'sync/' remote=$REMOTE_HREF | jq -r '.task')
 echo "Task url : " $TASK_URL
 if [ -z "$TASK_URL" ]; then exit; fi
 # wait for task
@@ -53,7 +52,7 @@ REPOVERSION_HREF=$(http $BASE_ADDR$TASK_URL| jq -r '.created_resources | first')
 echo "repoversion_href : " $REPOVERSION_HREF
 if [ -z "$REPOVERSION_HREF" ]; then exit; fi
 # publish
-TASK_URL=$(http POST $BASE_ADDR/pulp/api/v3/publications/rpm/rpm/ repository=$CENTOS7_HREF | jq -r '.task')
+TASK_URL=$(http POST $BASE_ADDR/pulp/api/v3/publications/file/file/ repository=$ISO_HREF | jq -r '.task')
 echo "Task url : " $TASK_URL
 if [ -z "$TASK_URL" ]; then exit; fi
 wait_until_task_finished $BASE_ADDR$TASK_URL
@@ -63,12 +62,4 @@ echo "publication_href : " $PUBLICATION_HREF
 if [ -z "$PUBLICATION_HREF" ]; then exit; fi
 # show it
 http $BASE_ADDR$PUBLICATION_HREF
-
-# create exporter
-EXPORTER_NAME="test"
-EXPORTER_HREF=$(http POST $BASE_ADDR$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${CENTOS7_HREF}\"] path=/tmp/exports/) #"
-if [ -z "$EXPORTER_HREF" ]; then exit; fi
-
-# LIST all exporters
-http GET $BASE_ADDR$EXPORTER_URL
 

@@ -26,18 +26,17 @@ wait_until_task_finished() {
     done
 }
 
-BASE_ADDR="admin:password@localhost:24817"
+
 EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
-# get a FILE repo UUID
-FILE_HREF=$(http GET :/pulp/api/v3/repositories/file/file/ | jq -r ".results[0] | .pulp_href")
-echo $FILE_HREF
+REPO1_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
+REPO2_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[1] | .pulp_href")
 
 # create exporter
-EXPORTER_NAME="test-file"
-EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${FILE_HREF}\"] path=/tmp/exports/) #"
+EXPORTER_NAME="centos8"
+EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${REPO1_HREF}\",\"${REPO2_HREF}\"] path=/tmp/exports/) #"
 echo $EXPORTER_HREF
 if [ -z "$EXPORTER_HREF" ]; then exit; fi
 
 # LIST all exporters
-http GET $BASE_ADDR$EXPORTER_URL
+http GET :$EXPORTER_URL

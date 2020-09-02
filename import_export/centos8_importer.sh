@@ -26,21 +26,24 @@ wait_until_task_finished() {
     done
 }
 
-BASE_ADDR="admin:password@localhost:24817"
 IMPORTER_URL="/pulp/api/v3/importers/core/pulp/"
-ISO_NAME='new-file'
-MAPPING='{"iso": "new-file"}'
+CENTOS_NAME='new-centos8'
+MAPPING='{"centos8-base": "new-centos8-base", "centos8-apps": "new-centos8-apps"}'
 
 # create repo
-ISO_HREF=$(http POST $BASE_ADDR/pulp/api/v3/repositories/file/file/ name=$ISO_NAME | jq -r '.pulp_href')
-echo "repo_href : " $ISO_HREF
-if [ -z "$ISO_HREF" ]; then exit; fi
+CENTOS8_BASE_HREF=$(http POST :/pulp/api/v3/repositories/rpm/rpm/ name="${CENTOS_NAME}-base" | jq -r '.pulp_href')
+echo "repo_href : " $CENTOS8_BASE_HREF
+if [ -z "$CENTOS8_BASE_HREF" ]; then exit; fi
+
+CENTOS8_APPS_HREF=$(http POST :/pulp/api/v3/repositories/rpm/rpm/ name="${CENTOS_NAME}-apps" | jq -r '.pulp_href')
+echo "repo_href : " $CENTOS8_APPS_HREF
+if [ -z "$CENTOS8_APPS_HREF" ]; then exit; fi
 
 # create importer
-IMPORT_NAME="test-file"
-IMPORT_HREF=$(http POST $BASE_ADDR$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}") 
+IMPORT_NAME="test-centos8"
+IMPORT_HREF=$(http POST :$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}") 
 echo "repo_href : " $IMPORT_HREF
 if [ -z "$IMPORT_HREF" ]; then exit; fi
 
 # LIST all importers
-http GET $BASE_ADDR$IMPORTER_URL
+http GET :$IMPORTER_URL
