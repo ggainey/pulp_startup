@@ -1,0 +1,6 @@
+#!/bin/bash -v
+BASE='rhel8-beta-baseos-ks'
+#REMOTE1=https://cdn.redhat.com/content/dist/rhel8/8.2/ppc64le/baseos/kickstart/
+REMOTE1=https://cdn.redhat.com/content/beta/rhel8/8/ppc64le/baseos/kickstart/
+pulp-admin rpm repo create --serve-http=true --repo-id=$BASE --relative-url=$BASE --feed=$REMOTE1 --download-policy immediate --feed-key ./cdn.pem --feed-cert ./cdn.pem --feed-ca-cert ./redhat-uep.pem
+pulp-admin rpm repo sync run --repo-id=$BASE
