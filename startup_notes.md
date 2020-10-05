@@ -210,3 +210,10 @@ Per dkliban:
     [vagrant@pulp2 ~]$ sudo systemctl start mongod
     [vagrant@pulp2 ~]$ sudo systemctl status mongod
     [vagrant@pulp2 ~]$ prestart
+
+## Playing with Pulp2 permissions
+   18  sudo chmod -R g+rwX /var/lib/pulp/
+   28  sudo chgrp -R pulp /var/lib/pulp/
+   24  sudo find /var/lib/pulp/ -type d -perm -g-s -exec sudo chmod g+s {} \;
+
+sudo systemctl restart goferd httpd pulp_workers pulp_celerybeat pulp_resource_manager pulp_streamer

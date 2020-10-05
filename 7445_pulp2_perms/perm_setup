@@ -1,0 +1,5 @@
+sudo groupadd pulp
+sudo groupmems -a apache -g pulp
+sudo chmod -R g+rwX /var/lib/pulp/
+sudo find /var/lib/pulp/ -type d -perm -g-s -exec sudo chmod g+s {} \;
+sudo chgrp -R pulp /var/lib/pulp/

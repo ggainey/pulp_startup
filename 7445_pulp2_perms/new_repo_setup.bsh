@@ -1,0 +1,30 @@
+#!/bin/bash -v
+wait_until_task_finished() {
+    echo "Polling the task until it has reached a final state."
+    local task_url=$1
+    while true
+    do
+        local response=$(curl -k -s -u admin:admin --cert ~/.pulp/user-cert.pem -X GET $task_url)
+        local state=$(jq -r .state <<< ${response})
+        #jq . <<< "${response}"
+        case ${state} in
+            failed|canceled)
+                echo "Task in final state: ${state}"
+                exit 1
+                ;;
+            finished)
+                echo "$task_url complete."
+                break
+                ;;
+            *)
+                echo "Still waiting..."
+                sleep 1
+                ;;
+        esac
+    done
+}
+
+REMOTE1='https://fixtures.pulpproject.org/rpm-with-modules/'
+BASE1='bar'
+pulp-admin rpm repo create --repo-id=$BASE1$n --relative-url=$BASE1$n --feed=$REMOTE1 --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id=$BASE1$n
