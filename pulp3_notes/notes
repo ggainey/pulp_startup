@@ -73,5 +73,15 @@ MORE ON VAGRANT BOX
   303  black --diff .
   300  flake8 --config  flake8.cfg
 
+RUNNING TESTS
+ 1127  pulpcore-manager test -t /home/vagrant/devel/pulpcore pulpcore.tests.unit
+ 1130  pulpcore-manager test -t /home/vagrant/devel/pulp_file pulp_file.tests.unit
+ 1133  pulpcore-manager test -t /home/vagrant/devel/pulp_rpm pulp_rpm.tests.unit
+ 1135  pulpcore-manager test -t /home/vagrant/devel/pulpcore pulpcore.tests.functional
+ 1138  pulpcore-manager test -t /home/vagrant/devel/pulp_file pulp_file.tests.functional
+
+ 1028  pytest -v -r sx --color=yes --pyargs pulpcore.tests.functional.api | tee tests.out
+ 1090  pytest -v -r sx --color=yes --pyargs pulp_file.tests.functional
+
 
 
