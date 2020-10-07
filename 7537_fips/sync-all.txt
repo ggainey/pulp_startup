@@ -1,0 +1,1060 @@
+# time ./all_sync_test.sh | tee sync-all.txt
+# 
+# real    348m47.956s
+# user    28m26.907s
+# sys 3m48.287s
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/extras/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_extras_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/3cbc92f2-2a04-4ebe-ac50-5c55144f4c85/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/02e504c4-b16a-4996-973c-310c1960c8c2/
+Task url :  /pulp/api/v3/tasks/071e7218-8c95-46d8-8bda-a8c582afc19f/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/071e7218-8c95-46d8-8bda-a8c582afc19f/ complete.
+State: [completed] Start: [2020-10-06T16:32:51.069446Z] Finish: [2020-10-06T16:32:55.150044Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/790b2bcd-e431-4657-9ae2-4fe7bffb8443/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/2a06fa7a-1445-435a-a05f-6515cc60e567/
+Task url :  /pulp/api/v3/tasks/03257bae-6aa5-472d-ba4c-6452b6e25d1a/
+Polling the task until it has reached a final state.
+.........................:/pulp/api/v3/tasks/03257bae-6aa5-472d-ba4c-6452b6e25d1a/ complete.
+State: [completed] Start: [2020-10-06T16:32:58.733115Z] Finish: [2020-10-06T16:35:15.713379Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/supplementary/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d090717d-966d-47e2-82f0-7659f68441bf/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ed319bc1-3db6-4baa-8885-002310422e47/
+Task url :  /pulp/api/v3/tasks/6a31daf6-9a49-46d3-94f4-71dc85b82c5d/
+Polling the task until it has reached a final state.
+....:/pulp/api/v3/tasks/6a31daf6-9a49-46d3-94f4-71dc85b82c5d/ complete.
+State: [completed] Start: [2020-10-06T16:35:21.696318Z] Finish: [2020-10-06T16:35:40.211851Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/93f8494b-e1a8-481d-bcb6-5c937a703b96/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/307a2f8b-ad0d-4c34-855f-e50580efc49f/
+Task url :  /pulp/api/v3/tasks/25d6575d-bba5-4a0d-b5ff-692d9408e255/
+Polling the task until it has reached a final state.
+.................................................................................................:/pulp/api/v3/tasks/25d6575d-bba5-4a0d-b5ff-692d9408e255/ complete.
+State: [completed] Start: [2020-10-06T16:35:46.665250Z] Finish: [2020-10-06T16:44:47.944639Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_extras_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1d5eb166-5ebb-42a9-91ed-67025a2ca4f6/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ff38956e-f3a5-4596-a41d-df9695059da7/
+Task url :  /pulp/api/v3/tasks/5b47c048-7972-46de-83b6-bf2799d854b7/
+Polling the task until it has reached a final state.
+....:/pulp/api/v3/tasks/5b47c048-7972-46de-83b6-bf2799d854b7/ complete.
+State: [completed] Start: [2020-10-06T16:44:57.063492Z] Finish: [2020-10-06T16:45:16.546846Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1b616e87-705e-4bfe-bccb-15c51460ade8/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/d245e629-a21c-4660-b7f5-28f2b1c8752d/
+Task url :  /pulp/api/v3/tasks/a89932db-4b32-41cc-be78-ba3d509a2584/
+Polling the task until it has reached a final state.
+..................................................:/pulp/api/v3/tasks/a89932db-4b32-41cc-be78-ba3d509a2584/ complete.
+State: [completed] Start: [2020-10-06T16:45:21.760651Z] Finish: [2020-10-06T16:50:01.401185Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/555c17c0-4153-46e6-941d-985d6e0aa62c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/7c071d3f-1ba5-4aa8-a6b0-7cff645eff20/
+Task url :  /pulp/api/v3/tasks/04864a25-adb8-4df8-b7fb-e9b75c4f7f7c/
+Polling the task until it has reached a final state.
+....................:/pulp/api/v3/tasks/04864a25-adb8-4df8-b7fb-e9b75c4f7f7c/ complete.
+State: [completed] Start: [2020-10-06T16:50:08.000235Z] Finish: [2020-10-06T16:51:59.915966Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-7/7/extras/x86_64/] INTO [mirror.centos.org_centos-7_7_extras_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d14a4062-b58b-410b-95e6-f25bddbeab69/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/76f04426-9075-4b60-88f3-3b88bb6d2a63/
+Task url :  /pulp/api/v3/tasks/ee9dda73-90e3-4401-a659-6c707f556d8a/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/ee9dda73-90e3-4401-a659-6c707f556d8a/ complete.
+State: [completed] Start: [2020-10-06T16:52:03.678945Z] Finish: [2020-10-06T16:52:09.867336Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/] INTO [mirror.centos.org_centos-7_7_sclo_x86_64_sclo]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/8b5d1541-24e3-4157-a78a-02770dcc96f2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/19d0d882-664e-4680-bbcc-a5a3a5d7176b/
+Task url :  /pulp/api/v3/tasks/fa56cb68-9f98-41d7-a0d0-c0b5697929bf/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/fa56cb68-9f98-41d7-a0d0-c0b5697929bf/ complete.
+State: [completed] Start: [2020-10-06T16:52:18.058343Z] Finish: [2020-10-06T16:52:26.174236Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.6/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.6_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/cb2b94b1-f545-4902-b64e-332e67cd4692/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/70510dc9-2364-4e0f-bcef-c7122bf97d28/
+Task url :  /pulp/api/v3/tasks/8c768368-e5fa-4ec9-96d3-0b6447b9e42e/
+Polling the task until it has reached a final state.
+...............:/pulp/api/v3/tasks/8c768368-e5fa-4ec9-96d3-0b6447b9e42e/ complete.
+State: [completed] Start: [2020-10-06T16:52:32.177772Z] Finish: [2020-10-06T16:53:56.124428Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.7/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.7_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c6e40461-be2b-435e-a93f-bb2b8a267760/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/e7925615-07a2-45dc-949f-27e23fcf4a79/
+Task url :  /pulp/api/v3/tasks/fc77b6bd-b606-46d6-a98b-2064f8854214/
+Polling the task until it has reached a final state.
+...........:/pulp/api/v3/tasks/fc77b6bd-b606-46d6-a98b-2064f8854214/ complete.
+State: [completed] Start: [2020-10-06T16:53:59.604984Z] Finish: [2020-10-06T16:54:58.350288Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.0/x86_64/baseos/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.0_x86_64_baseos_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1f2e5e77-c7eb-4ec6-b775-b202e1b681c3/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/4dae1494-b567-4b6e-9225-f06e528fa627/
+Task url :  /pulp/api/v3/tasks/4772b4ac-357c-4dab-a710-e4e4d2dbbc84/
+Polling the task until it has reached a final state.
+....:/pulp/api/v3/tasks/4772b4ac-357c-4dab-a710-e4e4d2dbbc84/ complete.
+State: [completed] Start: [2020-10-06T16:55:03.801333Z] Finish: [2020-10-06T16:55:24.080447Z]
+
+>>>>>  TESTING [https://mirrors.kernel.org/fedora-epel/7/x86_64/] INTO [mirrors.kernel.org_fedora-epel_7_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ae430398-e513-4beb-be40-66796cf3aaab/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/27d129e2-c00a-4f7b-8444-eb70f3ab8cdd/
+Task url :  /pulp/api/v3/tasks/f7f14c55-1a25-4757-a2b1-d34a5ee1d7b8/
+Polling the task until it has reached a final state.
+....................................:/pulp/api/v3/tasks/f7f14c55-1a25-4757-a2b1-d34a5ee1d7b8/ complete.
+State: [completed] Start: [2020-10-06T16:55:28.583558Z] Finish: [2020-10-06T16:58:47.171153Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.7/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.7_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ab2b2d7a-cbdf-4699-ab87-03e0dd16c483/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/79b8eef2-7d2b-4398-a95e-20d26f1f8372/
+Task url :  /pulp/api/v3/tasks/ea840643-f304-4942-975c-666edb349ee5/
+Polling the task until it has reached a final state.
+..................:/pulp/api/v3/tasks/ea840643-f304-4942-975c-666edb349ee5/ complete.
+State: [completed] Start: [2020-10-06T16:58:53.215962Z] Finish: [2020-10-06T17:00:29.353439Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.6/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.6_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/e7c578c8-bc53-4ab2-bcf5-8645dde6a81b/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/212686a9-3e6b-463b-a47a-f82a3d593030/
+Task url :  /pulp/api/v3/tasks/f3593125-0917-42b3-9fce-4c4625650a59/
+Polling the task until it has reached a final state.
+...........:/pulp/api/v3/tasks/f3593125-0917-42b3-9fce-4c4625650a59/ complete.
+State: [completed] Start: [2020-10-06T17:00:37.128074Z] Finish: [2020-10-06T17:01:35.412075Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.6/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.6_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/eafc3a08-3ee9-4b5f-b922-e7f29a86a7ef/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8f4a7f77-3b4e-4c03-94fa-a006b94779ab/
+Task url :  /pulp/api/v3/tasks/273ee94e-9621-4e8d-b2bf-bea19ba138c0/
+Polling the task until it has reached a final state.
+.....................................:/pulp/api/v3/tasks/273ee94e-9621-4e8d-b2bf-bea19ba138c0/ complete.
+State: [completed] Start: [2020-10-06T17:01:41.578026Z] Finish: [2020-10-06T17:05:07.258168Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.3/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.3_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1149a823-214c-4dad-b40b-5cbfff503b25/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8edad75d-e6ee-4590-9927-62b2fecb24fd/
+Task url :  /pulp/api/v3/tasks/0bf58cf7-3466-495d-b053-730e764265f4/
+Polling the task until it has reached a final state.
+............:/pulp/api/v3/tasks/0bf58cf7-3466-495d-b053-730e764265f4/ complete.
+State: [completed] Start: [2020-10-06T17:05:10.527455Z] Finish: [2020-10-06T17:06:13.906091Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.0/x86_64/appstream/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.0_x86_64_appstream_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/5bfb1197-ac4b-4bed-8fdf-437928046b1c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6f3f4495-77a1-4755-b79e-d09305f559a5/
+Task url :  /pulp/api/v3/tasks/1a2cdd6d-ea77-453e-a90e-253d5619046e/
+Polling the task until it has reached a final state.
+............:/pulp/api/v3/tasks/1a2cdd6d-ea77-453e-a90e-253d5619046e/ complete.
+State: [completed] Start: [2020-10-06T17:06:21.593508Z] Finish: [2020-10-06T17:07:22.823994Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.3/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.3_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/eedb92dd-3f55-453f-9642-8b6b61999cd6/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/17a21cd4-114f-425c-8939-99708a448eec/
+Task url :  /pulp/api/v3/tasks/a0e770fb-10a0-483e-954c-fe6d7ab2109d/
+Polling the task until it has reached a final state.
+......................:/pulp/api/v3/tasks/a0e770fb-10a0-483e-954c-fe6d7ab2109d/ complete.
+State: [completed] Start: [2020-10-06T17:07:31.851568Z] Finish: [2020-10-06T17:09:32.037589Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.3/x86_64/supplementary/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.3_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c5308fcc-32a1-4528-8013-1882b910b6a0/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ffdc5ac3-ce64-4fa7-bc2f-815e5e928c57/
+Task url :  /pulp/api/v3/tasks/60f6b39f-630c-4d32-adb7-78fc289446e1/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/60f6b39f-630c-4d32-adb7-78fc289446e1/ complete.
+State: [completed] Start: [2020-10-06T17:09:37.265499Z] Finish: [2020-10-06T17:09:45.078763Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.3/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.3_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/6ff051e3-f0c8-423b-8da1-b097ce222cb1/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/15673064-3cdb-40a3-a284-abd01c70dc66/
+Task url :  /pulp/api/v3/tasks/bea5b543-5cb5-4b8a-99ec-9ac78df23985/
+Polling the task until it has reached a final state.
+............................:/pulp/api/v3/tasks/bea5b543-5cb5-4b8a-99ec-9ac78df23985/ complete.
+State: [completed] Start: [2020-10-06T17:09:51.653618Z] Finish: [2020-10-06T17:12:22.988470Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-6/6/os/x86_64/] INTO [mirror.centos.org_centos-6_6_os_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c1c17433-0888-426b-95cb-975c65eba618/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/1eeb6fd1-1bb3-49e5-b89c-a6dfd7be8f67/
+Task url :  /pulp/api/v3/tasks/a49ea047-49eb-44e4-87f2-d381148cdc17/
+Polling the task until it has reached a final state.
+...................:/pulp/api/v3/tasks/a49ea047-49eb-44e4-87f2-d381148cdc17/ complete.
+State: [completed] Start: [2020-10-06T17:12:30.780342Z] Finish: [2020-10-06T17:14:14.231818Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/367acb08-cfe6-4060-910e-c3c53c65d32e/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/b5763541-c0f9-4c03-9604-867823848753/
+Task url :  /pulp/api/v3/tasks/c78d38a9-5f68-4270-b8cc-37c28796f126/
+Polling the task until it has reached a final state.
+.............................................................................:/pulp/api/v3/tasks/c78d38a9-5f68-4270-b8cc-37c28796f126/ complete.
+State: [completed] Start: [2020-10-06T17:14:23.065592Z] Finish: [2020-10-06T17:21:29.468699Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/ansible/2.5/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_ansible_2.5_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/8449833b-9df6-41d6-a07a-b298e2735227/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/faf7b3cf-e7b7-46dd-9116-b35805d27b4b/
+Task url :  /pulp/api/v3/tasks/faa8dcf1-d913-4a65-b1b9-31f726e4180b/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/faa8dcf1-d913-4a65-b1b9-31f726e4180b/ complete.
+State: [completed] Start: [2020-10-06T17:21:36.503349Z] Finish: [2020-10-06T17:21:40.784218Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server-nfs/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhgs-server-nfs_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/73e257bf-d1ab-4c96-9406-e4de907edb66/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8b4cb7fe-da79-45b6-9906-3ce172a02a0d/
+Task url :  /pulp/api/v3/tasks/b6d06f6b-2ff7-4d27-994c-9e1ccb758c1a/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/b6d06f6b-2ff7-4d27-994c-9e1ccb758c1a/ complete.
+State: [completed] Start: [2020-10-06T17:21:44.544892Z] Finish: [2020-10-06T17:21:48.323230Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.6/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.6_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c18b6f43-a1f6-4824-a659-c332683347f0/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/eff819a7-5437-468d-aa97-7b4d229667d1/
+Task url :  /pulp/api/v3/tasks/a887d229-a842-4a96-8ab6-ceab501db163/
+Polling the task until it has reached a final state.
+............:/pulp/api/v3/tasks/a887d229-a842-4a96-8ab6-ceab501db163/ complete.
+State: [completed] Start: [2020-10-06T17:21:52.471903Z] Finish: [2020-10-06T17:22:59.820021Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7.5/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7.5_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/e0195ed0-f236-4219-933c-b7a7700ce1d8/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6110db94-bf72-444e-b315-f710e8074e5a/
+Task url :  /pulp/api/v3/tasks/8ff5bb6f-71ab-461f-8738-4a27fe0c7817/
+Polling the task until it has reached a final state.
+..............:/pulp/api/v3/tasks/8ff5bb6f-71ab-461f-8738-4a27fe0c7817/ complete.
+State: [completed] Start: [2020-10-06T17:23:05.699440Z] Finish: [2020-10-06T17:24:21.183857Z]
+
+>>>>>  TESTING [https://mirrors.kernel.org/fedora-epel/8/Everything/x86_64/] INTO [mirrors.kernel.org_fedora-epel_8_Everything_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/93e33066-a902-4ba3-be7c-9b9a2b69b603/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/4f6b9595-b6f2-41c6-8230-54ae9fcf705e/
+Task url :  /pulp/api/v3/tasks/056f36cd-ee43-4e47-b676-87f40388eff9/
+Polling the task until it has reached a final state.
+................................:/pulp/api/v3/tasks/056f36cd-ee43-4e47-b676-87f40388eff9/ complete.
+State: [completed] Start: [2020-10-06T17:24:30.235614Z] Finish: [2020-10-06T17:27:28.934022Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/insights/3/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_insights_3_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ee980ef9-2abf-42e1-b29e-009dd7859298/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/fe808baf-983e-4a2f-8834-442ef318e131/
+Task url :  /pulp/api/v3/tasks/857090c3-b783-49cd-9362-a27b909e69b2/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/857090c3-b783-49cd-9362-a27b909e69b2/ complete.
+State: [completed] Start: [2020-10-06T17:27:37.723749Z] Finish: [2020-10-06T17:27:46.727866Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/18730ddc-290c-4c77-98a7-30f35f332db3/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/7aef294b-b74e-4b78-aa3c-5961a709249d/
+Task url :  /pulp/api/v3/tasks/7708fe88-d687-457a-aed3-9f55326d3785/
+Polling the task until it has reached a final state.
+.............................................:/pulp/api/v3/tasks/7708fe88-d687-457a-aed3-9f55326d3785/ complete.
+State: [completed] Start: [2020-10-06T17:27:50.927318Z] Finish: [2020-10-06T17:32:02.056043Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/rh-common/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_rh-common_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/f4bde126-a315-46a2-a395-1da43bbf7422/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/27a15c3b-6957-41bf-90e6-3bb799bd2388/
+Task url :  /pulp/api/v3/tasks/bdf59a3a-b99b-41f5-b00b-1abb196f68ee/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/bdf59a3a-b99b-41f5-b00b-1abb196f68ee/ complete.
+State: [completed] Start: [2020-10-06T17:32:06.829583Z] Finish: [2020-10-06T17:32:17.393958Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/58978acb-2feb-4ca4-ae70-e0ef86286c5f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/03ba60ce-257a-4e5c-93c3-e2a170396b63/
+Task url :  /pulp/api/v3/tasks/da521f43-74e2-459c-b194-345b014615e1/
+Polling the task until it has reached a final state.
+.................................................................................:/pulp/api/v3/tasks/da521f43-74e2-459c-b194-345b014615e1/ complete.
+State: [completed] Start: [2020-10-06T17:32:21.850664Z] Finish: [2020-10-06T17:39:53.767101Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/extras/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_extras_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/67e7923b-a108-4b2b-b423-e51fdc94efd2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/af4fd24f-cb9c-46b9-acf6-d140e81f9e5a/
+Task url :  /pulp/api/v3/tasks/ea56382b-dbe6-4507-a57a-e692d8dbef04/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/ea56382b-dbe6-4507-a57a-e692d8dbef04/ complete.
+State: [completed] Start: [2020-10-06T17:40:02.423529Z] Finish: [2020-10-06T17:40:07.753631Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rh-gluster-samba/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rh-gluster-samba_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d998bccc-48c8-40f4-bca5-022fa6abea72/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/b9c4e0bb-c394-4065-9774-efafa0a41cc8/
+Task url :  /pulp/api/v3/tasks/bff0ab92-2066-4988-baae-8e20e74f98c2/
+Polling the task until it has reached a final state.
+....:/pulp/api/v3/tasks/bff0ab92-2066-4988-baae-8e20e74f98c2/ complete.
+State: [completed] Start: [2020-10-06T17:40:10.018798Z] Finish: [2020-10-06T17:40:27.928552Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhgs-server_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/fe079c8c-b035-4a4a-9c82-1215850b7d81/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/7bd05b73-8afa-474b-9e22-586c3cea31af/
+Task url :  /pulp/api/v3/tasks/f650bc0b-8657-4d3b-bd62-1411e47c4d4a/
+Polling the task until it has reached a final state.
+........:/pulp/api/v3/tasks/f650bc0b-8657-4d3b-bd62-1411e47c4d4a/ complete.
+State: [completed] Start: [2020-10-06T17:40:36.013939Z] Finish: [2020-10-06T17:41:20.169827Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.10/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.10_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/18db2341-1454-45d2-b150-90c9e4ea90a6/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ad2e2c98-2e4d-4076-9d9c-93c0d37aa93c/
+Task url :  /pulp/api/v3/tasks/a83451e0-d143-4ae1-ad86-e8d85c7a540c/
+Polling the task until it has reached a final state.
+...........................:/pulp/api/v3/tasks/a83451e0-d143-4ae1-ad86-e8d85c7a540c/ complete.
+State: [completed] Start: [2020-10-06T17:41:24.773622Z] Finish: [2020-10-06T17:43:51.579099Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-nagios/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhgs-nagios_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/152e9e42-88b7-4757-9213-fd3383ae6414/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8a5937d8-8a33-4e39-83c2-a94f90e2accd/
+Task url :  /pulp/api/v3/tasks/ad286d96-6e0a-42c5-85df-1546509900c5/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/ad286d96-6e0a-42c5-85df-1546509900c5/ complete.
+State: [completed] Start: [2020-10-06T17:44:00.492339Z] Finish: [2020-10-06T17:44:03.910780Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscon-agent/2/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhscon-agent_2_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b793808b-0254-4511-8937-bfecb3c841a0/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/9988852a-95c8-487d-a05f-d4f5c4bfe986/
+Task url :  /pulp/api/v3/tasks/9a6e05dc-8fae-4cf2-ac36-920229c70614/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/9a6e05dc-8fae-4cf2-ac36-920229c70614/ complete.
+State: [completed] Start: [2020-10-06T17:44:07.849488Z] Finish: [2020-10-06T17:44:11.355789Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscon-installer/2/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhscon-installer_2_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/2ac15ddb-a507-4129-b3eb-bf9ba6ed6e8d/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/c0f25d7a-199e-479f-918d-32c887f01a6a/
+Task url :  /pulp/api/v3/tasks/3b826f19-c795-43e3-81df-82afde81667d/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/3b826f19-c795-43e3-81df-82afde81667d/ complete.
+State: [completed] Start: [2020-10-06T17:44:16.127988Z] Finish: [2020-10-06T17:44:19.607717Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscon-main/2/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhscon-main_2_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/685df304-cb20-4e67-933a-f1137a5a4c04/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/faa25178-4ff3-45d7-b687-df48253c1b84/
+Task url :  /pulp/api/v3/tasks/4a38120d-005c-418e-8efc-1928274cab03/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/4a38120d-005c-418e-8efc-1928274cab03/ complete.
+State: [completed] Start: [2020-10-06T17:44:24.578763Z] Finish: [2020-10-06T17:44:27.635285Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-6/6/updates/x86_64/] INTO [mirror.centos.org_centos-6_6_updates_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/7d8bf2e6-edf9-48af-8715-b05f48bde3eb/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/63d068c3-6909-4fcc-bf70-f752d78a3a41/
+Task url :  /pulp/api/v3/tasks/701821d4-70a5-4030-a7da-13331a56b3f4/
+Polling the task until it has reached a final state.
+.........:/pulp/api/v3/tasks/701821d4-70a5-4030-a7da-13331a56b3f4/ complete.
+State: [completed] Start: [2020-10-06T17:44:32.623381Z] Finish: [2020-10-06T17:45:19.232409Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/rhs-client/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_rhs-client_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b0c40788-dbe0-4942-be4d-996aada318da/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/03f031cf-a8e4-49d6-bcb3-01e411f63f92/
+Task url :  /pulp/api/v3/tasks/57bc34fe-73b8-439d-a154-32d09046365e/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/57bc34fe-73b8-439d-a154-32d09046365e/ complete.
+State: [completed] Start: [2020-10-06T17:45:28.738695Z] Finish: [2020-10-06T17:45:43.552773Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhs-client/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhs-client_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/9bbd4a09-b980-4d4c-8cdc-b1ed5831333f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8e14cd21-f56a-4d35-903a-23a81162a0eb/
+Task url :  /pulp/api/v3/tasks/9d51b1f9-3327-403f-90eb-a82f59b5116e/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/9d51b1f9-3327-403f-90eb-a82f59b5116e/ complete.
+State: [completed] Start: [2020-10-06T17:45:51.736075Z] Finish: [2020-10-06T17:46:05.974035Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-7/7/sclo/x86_64/rh/] INTO [mirror.centos.org_centos-7_7_sclo_x86_64_rh]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b3fcc10f-fe5d-47c3-bd0f-527106184a58/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/22dfd4ce-cdeb-4a09-86b9-c8f5d228cdfa/
+Task url :  /pulp/api/v3/tasks/3906cdd5-51f6-4a85-9623-4a62d281a721/
+Polling the task until it has reached a final state.
+.............................:/pulp/api/v3/tasks/3906cdd5-51f6-4a85-9623-4a62d281a721/ complete.
+State: [completed] Start: [2020-10-06T17:46:11.355278Z] Finish: [2020-10-06T17:48:51.130019Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/supplementary/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1f1c33a6-b92f-4321-8d90-42c00ce5fdaa/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6ec28cf5-f761-469c-92f8-e4c5403b5dcd/
+Task url :  /pulp/api/v3/tasks/c8db272c-a04d-43bd-8e22-1be38f27fe75/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/c8db272c-a04d-43bd-8e22-1be38f27fe75/ complete.
+State: [completed] Start: [2020-10-06T17:49:01.707141Z] Finish: [2020-10-06T17:49:16.760293Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/f9f9f891-5572-4c1b-9aea-c1d8beac72e8/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/fae357ab-1700-44ad-94a3-2ea61c1674de/
+Task url :  /pulp/api/v3/tasks/733b0922-3081-4d89-9d63-e5afafbb8e12/
+Polling the task until it has reached a final state.
+.......................................:/pulp/api/v3/tasks/733b0922-3081-4d89-9d63-e5afafbb8e12/ complete.
+State: [completed] Start: [2020-10-06T17:49:24.137920Z] Finish: [2020-10-06T17:53:02.181747Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7.6/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7.6_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/399d2160-62e0-48a9-874f-0d3d3432e7ff/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/f5b720eb-cd81-4b79-a7e6-f4369ca80e54/
+Task url :  /pulp/api/v3/tasks/85d1806b-1780-47c3-b0f8-bfee5d9ba670/
+Polling the task until it has reached a final state.
+...........:/pulp/api/v3/tasks/85d1806b-1780-47c3-b0f8-bfee5d9ba670/ complete.
+State: [completed] Start: [2020-10-06T17:53:07.958550Z] Finish: [2020-10-06T17:54:08.206672Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-7/7/updates/x86_64/] INTO [mirror.centos.org_centos-7_7_updates_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/be003281-8216-41db-a939-93582b9a6202/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ab17ae01-4b20-4f50-b214-f843011bcf01/
+Task url :  /pulp/api/v3/tasks/9456cd2e-3fbc-453e-babb-c500914ccfb2/
+Polling the task until it has reached a final state.
+.....:/pulp/api/v3/tasks/9456cd2e-3fbc-453e-babb-c500914ccfb2/ complete.
+State: [completed] Start: [2020-10-06T17:54:16.046060Z] Finish: [2020-10-06T17:54:44.638318Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.8/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.8_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/f92bad72-1e00-46b3-8fdd-58a1107b2c78/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/063fb1ae-bf94-4a44-9691-5e4a7eef380b/
+Task url :  /pulp/api/v3/tasks/c73e1b4b-8e5d-414c-9000-570de8c8b861/
+Polling the task until it has reached a final state.
+.........................:/pulp/api/v3/tasks/c73e1b4b-8e5d-414c-9000-570de8c8b861/ complete.
+State: [completed] Start: [2020-10-06T17:54:47.758022Z] Finish: [2020-10-06T17:57:05.411627Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.9/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.9_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1f40592b-faa9-4ab5-a555-7e214432d726/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/b79a2642-5f55-493f-8a1b-6536f3915114/
+Task url :  /pulp/api/v3/tasks/3384592f-c3a9-4e0f-9d12-97ede4da8de8/
+Polling the task until it has reached a final state.
+.....................:/pulp/api/v3/tasks/3384592f-c3a9-4e0f-9d12-97ede4da8de8/ complete.
+State: [completed] Start: [2020-10-06T17:57:14.656456Z] Finish: [2020-10-06T17:59:09.073512Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.6/x86_64/sat-tools/6.2/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.6_x86_64_sat-tools_6.2_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/2b47627e-f211-4211-a35c-41d8f8129610/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/709cc8e5-cb51-40ff-b534-fcc18f3eccc1/
+Task url :  /pulp/api/v3/tasks/3505e02d-a596-4f03-bd42-748b0b3a701d/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/3505e02d-a596-4f03-bd42-748b0b3a701d/ complete.
+State: [completed] Start: [2020-10-06T17:59:19.099928Z] Finish: [2020-10-06T17:59:24.590007Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c7235cac-ab5e-41f1-8c05-a6941d219639/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/d78a25ad-53e2-42cd-bc8e-6f7b9c4736ae/
+Task url :  /pulp/api/v3/tasks/b09086f7-68db-41ab-a165-90292d490cd6/
+Polling the task until it has reached a final state.
+................................:/pulp/api/v3/tasks/b09086f7-68db-41ab-a165-90292d490cd6/ complete.
+State: [completed] Start: [2020-10-06T17:59:27.026575Z] Finish: [2020-10-06T18:02:25.155496Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-7/7/os/x86_64/] INTO [mirror.centos.org_centos-7_7_os_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/09d610a4-a9b1-436d-802a-36bb868073f9/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6bcb917d-6598-4c05-a078-181d2fe5323d/
+Task url :  /pulp/api/v3/tasks/8a584107-7dc6-427e-8161-ad5f181a1557/
+Polling the task until it has reached a final state.
+..............................................:/pulp/api/v3/tasks/8a584107-7dc6-427e-8161-ad5f181a1557/ complete.
+State: [completed] Start: [2020-10-06T18:02:31.156273Z] Finish: [2020-10-06T18:06:48.081482Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/ansible/2.7/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_ansible_2.7_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/7be8fd13-d24e-4fd6-8428-aad9cce61ab4/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/3186043e-b62a-4666-b082-0576ad70ac15/
+Task url :  /pulp/api/v3/tasks/439507bc-a9dc-46eb-933a-13bf9d719ef0/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/439507bc-a9dc-46eb-933a-13bf9d719ef0/ complete.
+State: [completed] Start: [2020-10-06T18:07:01.231830Z] Finish: [2020-10-06T18:07:07.875219Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.3/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.3_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/92634da3-180a-40b8-9165-009ff61714a7/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/1f2be833-fbf3-46b2-b3a8-18e070917d45/
+Task url :  /pulp/api/v3/tasks/35ea1d97-81a5-4838-a91c-b98a8b9d5b6a/
+Polling the task until it has reached a final state.
+............................................:/pulp/api/v3/tasks/35ea1d97-81a5-4838-a91c-b98a8b9d5b6a/ complete.
+State: [completed] Start: [2020-10-06T18:07:14.344351Z] Finish: [2020-10-06T18:11:18.816228Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/489bb8cc-0aae-4181-95fd-0a8d05c6ce7b/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/76655421-910e-4791-89b0-dfa6c59b0982/
+Task url :  /pulp/api/v3/tasks/5f47b917-b3c2-4fef-a46f-370061c7a53b/
+Polling the task until it has reached a final state.
+........................................................................................................................................................:/pulp/api/v3/tasks/5f47b917-b3c2-4fef-a46f-370061c7a53b/ complete.
+State: [completed] Start: [2020-10-06T18:11:24.408143Z] Finish: [2020-10-06T18:25:31.378837Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.4_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/25ca5d05-1f05-4330-8c8f-27b9887c3140/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ffa9f292-99ac-4ac3-b2bd-3537aa2a9a30/
+Task url :  /pulp/api/v3/tasks/0a4c1047-76ea-4294-8a17-1e887fd01f30/
+Polling the task until it has reached a final state.
+.............:/pulp/api/v3/tasks/0a4c1047-76ea-4294-8a17-1e887fd01f30/ complete.
+State: [completed] Start: [2020-10-06T18:25:36.909308Z] Finish: [2020-10-06T18:26:46.623380Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-maintenance/6/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_sat-maintenance_6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/aa4a680e-c8ef-4ef3-95f2-b026110d505c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/735b11a8-335e-487e-8290-0cef90016d24/
+Task url :  /pulp/api/v3/tasks/e682f4c3-09b2-4a1c-bb52-72b59074409b/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/e682f4c3-09b2-4a1c-bb52-72b59074409b/ complete.
+State: [completed] Start: [2020-10-06T18:26:55.390866Z] Finish: [2020-10-06T18:26:58.811647Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.5/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.5_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/7833f8ff-ba72-410a-a32a-1cc7bbe52131/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/461769bb-04da-4ea4-ab28-d3a4fde4dc0c/
+Task url :  /pulp/api/v3/tasks/9b55fb15-e98c-47bd-af64-52bad8052f73/
+Polling the task until it has reached a final state.
+..............:/pulp/api/v3/tasks/9b55fb15-e98c-47bd-af64-52bad8052f73/ complete.
+State: [completed] Start: [2020-10-06T18:27:03.577347Z] Finish: [2020-10-06T18:28:16.538059Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server-bigdata/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhgs-server-bigdata_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/0248a33c-8e53-4954-bd26-f632e75c72f2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/1c899244-adc2-40d5-86f4-2cd5f488e58e/
+Task url :  /pulp/api/v3/tasks/58c55ff0-904b-4833-b3ef-819b3d407498/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/58c55ff0-904b-4833-b3ef-819b3d407498/ complete.
+State: [completed] Start: [2020-10-06T18:28:24.384249Z] Finish: [2020-10-06T18:28:25.937971Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server-splunk/3.1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_rhgs-server-splunk_3.1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/a1c8bbdb-70d4-4f8b-9a25-90ee24140c18/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/403efaab-7d11-4450-bb14-6d3f1870d896/
+Task url :  /pulp/api/v3/tasks/d5105416-59e1-4871-a522-6b15fc039044/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/d5105416-59e1-4871-a522-6b15fc039044/ complete.
+State: [completed] Start: [2020-10-06T18:28:32.854765Z] Finish: [2020-10-06T18:28:35.399690Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/workstation/7/7Workstation/x86_64/supplementary/os] INTO [cdn.redhat.com_content_dist_rhel_workstation_7_7Workstation_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/0e38f499-e4f5-451a-bae6-3b27d63fa21a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/977181a6-dfde-49b9-a17e-99250a1e9615/
+Task url :  /pulp/api/v3/tasks/5d151362-8c74-457d-b0a0-a1cc1953d72b/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/5d151362-8c74-457d-b0a0-a1cc1953d72b/ complete.
+State: [completed] Start: [2020-10-06T18:28:40.532249Z] Finish: [2020-10-06T18:28:51.314629Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/ansible/2.6/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_ansible_2.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/01af2451-baa4-45fb-a3ff-834f5447a80f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/3454bef4-f938-47f0-8afe-b49b19caedd0/
+Task url :  /pulp/api/v3/tasks/2ec9f24e-cbf8-48e7-a25b-e5c3323be29a/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/2ec9f24e-cbf8-48e7-a25b-e5c3323be29a/ complete.
+State: [completed] Start: [2020-10-06T18:28:54.328407Z] Finish: [2020-10-06T18:28:58.584905Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/dotnet/1/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_dotnet_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/6ea7f425-ae5b-4537-bab1-72f7fd09dfcc/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/9a2a70fb-a65c-4039-bbfe-b336862ac4ef/
+Task url :  /pulp/api/v3/tasks/6b1ebae9-dfd4-4409-a1b2-c8927ee9c30f/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/6b1ebae9-dfd4-4409-a1b2-c8927ee9c30f/ complete.
+State: [completed] Start: [2020-10-06T18:29:03.935575Z] Finish: [2020-10-06T18:29:19.072623Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.10/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.10_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/65015dd2-9871-48c0-99e9-7fd436cc2502/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/70439ba7-c9b8-4921-8fbd-21826935ec9e/
+Task url :  /pulp/api/v3/tasks/7937fa98-dbb7-460a-a18c-2d501cff68cd/
+Polling the task until it has reached a final state.
+.................................:/pulp/api/v3/tasks/7937fa98-dbb7-460a-a18c-2d501cff68cd/ complete.
+State: [completed] Start: [2020-10-06T18:29:23.397792Z] Finish: [2020-10-06T18:32:26.385852Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7Server/x86_64/sat-tools/6.5/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7Server_x86_64_sat-tools_6.5_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/bd0b010e-cba1-4f99-b23c-02b07590e621/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/dd11d4f4-ddeb-4002-b018-4179ef68965a/
+Task url :  /pulp/api/v3/tasks/c7ecc7c7-f5a9-4f54-9f1d-6b816baaaee3/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/c7ecc7c7-f5a9-4f54-9f1d-6b816baaaee3/ complete.
+State: [completed] Start: [2020-10-06T18:32:30.157804Z] Finish: [2020-10-06T18:32:33.857574Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/sat-tools/6.5/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_sat-tools_6.5_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/31abe3a3-06ab-4545-924b-35b8842330da/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/bb648cf4-8623-462d-8f0d-a41c6106c959/
+Task url :  /pulp/api/v3/tasks/3c046154-6731-4539-8d7a-aa8e61447d20/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/3c046154-6731-4539-8d7a-aa8e61447d20/ complete.
+State: [completed] Start: [2020-10-06T18:32:37.645466Z] Finish: [2020-10-06T18:32:41.272420Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.7/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.7_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/e144dd41-9000-47db-b2f0-d98a5e679a24/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/237203fa-a77b-4d55-a333-b045009aba66/
+Task url :  /pulp/api/v3/tasks/be05f806-52ea-4d1b-aac9-217801bb9c92/
+Polling the task until it has reached a final state.
+.............................................................:/pulp/api/v3/tasks/be05f806-52ea-4d1b-aac9-217801bb9c92/ complete.
+State: [completed] Start: [2020-10-06T18:32:45.355464Z] Finish: [2020-10-06T18:38:25.726200Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.4_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/4bcf45d8-d6bb-46ac-97b1-67b6fe96aa1a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ba10aa4f-96c3-445d-bda8-31b509731982/
+Task url :  /pulp/api/v3/tasks/6ba7e2ba-cfb4-4929-9b8f-a2fbc1dadaf8/
+Polling the task until it has reached a final state.
+.........................................:/pulp/api/v3/tasks/6ba7e2ba-cfb4-4929-9b8f-a2fbc1dadaf8/ complete.
+State: [completed] Start: [2020-10-06T18:38:30.377383Z] Finish: [2020-10-06T18:42:16.636451Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.7/x86_64/supplementary/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.7_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/38f63fc2-400d-4d50-9ad0-d8f7b73b147b/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/5862cf16-ddaf-4018-90ca-4e3ff2e142c8/
+Task url :  /pulp/api/v3/tasks/35ba6c8e-4778-436d-b21c-95ca29f0d1a3/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/35ba6c8e-4778-436d-b21c-95ca29f0d1a3/ complete.
+State: [completed] Start: [2020-10-06T18:42:24.573662Z] Finish: [2020-10-06T18:42:39.749833Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.7/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.7_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1e6bc17e-8d9f-430c-a2cc-ff21f8bd7d91/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/e891d713-6a41-40b5-86b0-e07355ef49a9/
+Task url :  /pulp/api/v3/tasks/9b7df78a-5feb-416c-90aa-7e79c252ada2/
+Polling the task until it has reached a final state.
+..........................:/pulp/api/v3/tasks/9b7df78a-5feb-416c-90aa-7e79c252ada2/ complete.
+State: [completed] Start: [2020-10-06T18:42:45.477342Z] Finish: [2020-10-06T18:45:10.517076Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.7/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.7_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/507ee830-6998-4e21-83b6-013a5f62bdb2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/b645b9a1-16a6-437d-a7c6-5889b8603018/
+Task url :  /pulp/api/v3/tasks/b526be92-c97b-43ed-9302-2a9bd2f2df19/
+Polling the task until it has reached a final state.
+.........................:/pulp/api/v3/tasks/b526be92-c97b-43ed-9302-2a9bd2f2df19/ complete.
+State: [completed] Start: [2020-10-06T18:45:16.918999Z] Finish: [2020-10-06T18:47:36.942788Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/3c5ddfe0-87c4-4d3b-b199-0d603b9c1acd/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/75bc523f-b752-426e-a0bd-06d51a9d4f2d/
+Task url :  /pulp/api/v3/tasks/9eab2f4b-8810-4381-89c1-c7f817a73b12/
+Polling the task until it has reached a final state.
+...................................:/pulp/api/v3/tasks/9eab2f4b-8810-4381-89c1-c7f817a73b12/ complete.
+State: [completed] Start: [2020-10-06T18:47:41.096381Z] Finish: [2020-10-06T18:50:56.794944Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/256dd7e3-3405-4a66-b996-951b77c2483d/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/4bb1939e-a437-4a37-b756-bf34c3062148/
+Task url :  /pulp/api/v3/tasks/739706e7-85f4-4d26-88fa-396c1be461b6/
+Polling the task until it has reached a final state.
+.........................................................................................:/pulp/api/v3/tasks/739706e7-85f4-4d26-88fa-396c1be461b6/ complete.
+State: [completed] Start: [2020-10-06T18:51:01.883541Z] Finish: [2020-10-06T18:59:20.910362Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.7/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.7_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/5590f475-8b8a-4cdf-b7c3-df5cd2355ab4/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/147d09af-d213-4ca3-bc66-f7fc2594d378/
+Task url :  /pulp/api/v3/tasks/60a28dfb-1a3e-4d99-91fe-139756dfe0c9/
+Polling the task until it has reached a final state.
+................................:/pulp/api/v3/tasks/60a28dfb-1a3e-4d99-91fe-139756dfe0c9/ complete.
+State: [completed] Start: [2020-10-06T18:59:24.201464Z] Finish: [2020-10-06T19:02:22.132979Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.10/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.10_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/44d78c7f-77ce-4aff-981a-e8bcedd29dd7/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/96b0cb1d-70ce-474f-9e0d-bfcb808b5e20/
+Task url :  /pulp/api/v3/tasks/4829b84c-99f3-4eee-b264-4ea9464bb412/
+Polling the task until it has reached a final state.
+......................................................................:/pulp/api/v3/tasks/4829b84c-99f3-4eee-b264-4ea9464bb412/ complete.
+State: [completed] Start: [2020-10-06T19:02:28.260869Z] Finish: [2020-10-06T19:09:00.184769Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.8/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.8_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/12a75798-0493-406b-9f38-ef5e61cff0fa/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/cb14f64a-f3fe-486a-bcc0-bae256d9410a/
+Task url :  /pulp/api/v3/tasks/1a5bb49b-3feb-473e-8166-41683389df85/
+Polling the task until it has reached a final state.
+..................................................................:/pulp/api/v3/tasks/1a5bb49b-3feb-473e-8166-41683389df85/ complete.
+State: [completed] Start: [2020-10-06T19:09:06.955384Z] Finish: [2020-10-06T19:15:18.731239Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.6/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.6_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/04d19339-5c22-431a-aeec-716091a91e3c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/18cd9dd2-e321-49e6-ab2c-b8cbe4abebb9/
+Task url :  /pulp/api/v3/tasks/0b65abf0-465b-41f5-8402-4721ccd181c3/
+Polling the task until it has reached a final state.
+.Task in final state: failed
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/6/6.7/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_6_6.7_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/4a1eb044-b94a-460b-8a81-cd07d9a3411c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/03a18625-3871-40a7-9a31-a5171917bbbc/
+Task url :  /pulp/api/v3/tasks/ed327f09-df74-469d-8098-2c40c0c5da9a/
+Polling the task until it has reached a final state.
+.....................................................:/pulp/api/v3/tasks/ed327f09-df74-469d-8098-2c40c0c5da9a/ complete.
+State: [completed] Start: [2020-10-06T19:15:29.607588Z] Finish: [2020-10-06T19:20:26.113667Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/supplementary/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/5754b083-1778-4fc7-aa10-92eb287cb28a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/f0000889-21a2-4beb-bd14-55c80f2125b5/
+Task url :  /pulp/api/v3/tasks/5fa8c1b2-275c-4ab7-b475-ff82cc6b4329/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/5fa8c1b2-275c-4ab7-b475-ff82cc6b4329/ complete.
+State: [completed] Start: [2020-10-06T19:20:31.347270Z] Finish: [2020-10-06T19:20:41.420608Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/sat-tools/6.4/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_sat-tools_6.4_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/cbfe7613-6b92-4542-9a7c-2753a4889188/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/dfa638cf-284d-45b1-92a2-e6d07bc46f00/
+Task url :  /pulp/api/v3/tasks/d1b17417-ee23-4832-a342-9fb4febd1fa5/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/d1b17417-ee23-4832-a342-9fb4febd1fa5/ complete.
+State: [completed] Start: [2020-10-06T19:20:44.375158Z] Finish: [2020-10-06T19:20:48.657720Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/a23d69b1-f013-4b39-b227-cb645c96aaa8/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/4e260b14-c8e4-4836-bb67-3f1ab3870344/
+Task url :  /pulp/api/v3/tasks/464c4aef-ffe0-4c5d-ad6c-806c2ce4c4b0/
+Polling the task until it has reached a final state.
+..........................................................:/pulp/api/v3/tasks/464c4aef-ffe0-4c5d-ad6c-806c2ce4c4b0/ complete.
+State: [completed] Start: [2020-10-06T19:20:52.593594Z] Finish: [2020-10-06T19:26:16.626907Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.3/x86_64/sat-tools/6.4/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.3_x86_64_sat-tools_6.4_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b5301e8e-f1ff-44ef-a82f-41b34f91ed5a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/fa7edcae-8285-42d9-acfc-ac3ff64af832/
+Task url :  /pulp/api/v3/tasks/7a56fc4d-89b8-4031-b60c-d7755db2f9c8/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/7a56fc4d-89b8-4031-b60c-d7755db2f9c8/ complete.
+State: [completed] Start: [2020-10-06T19:26:22.393942Z] Finish: [2020-10-06T19:26:26.997709Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os] INTO [cdn.redhat.com_content_dist_rhel8_8_x86_64_appstream_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/609edd49-a917-4745-8940-6fc726cceccd/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/675c2570-41be-4939-b66e-f18298ba1492/
+Task url :  /pulp/api/v3/tasks/b3165494-81ca-4624-9c94-71e5d00de740/
+Polling the task until it has reached a final state.
+.......................................................................:/pulp/api/v3/tasks/b3165494-81ca-4624-9c94-71e5d00de740/ complete.
+State: [completed] Start: [2020-10-06T19:26:30.246388Z] Finish: [2020-10-06T19:33:12.563840Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os] INTO [cdn.redhat.com_content_dist_rhel8_8_x86_64_baseos_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1baa857d-1a02-4b41-a78d-9e27282cfed6/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/9ce3553b-43cd-47b4-b83b-10e53db4faca/
+Task url :  /pulp/api/v3/tasks/47b9227b-15bd-4c3c-b4c2-c012ab514c5f/
+Polling the task until it has reached a final state.
+.............................................:/pulp/api/v3/tasks/47b9227b-15bd-4c3c-b4c2-c012ab514c5f/ complete.
+State: [completed] Start: [2020-10-06T19:33:17.324848Z] Finish: [2020-10-06T19:37:27.686023Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8/x86_64/supplementary/os] INTO [cdn.redhat.com_content_dist_rhel8_8_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/e45225ef-4f6a-4421-9861-5d9346b6688a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/3a4c179a-fdd4-42bc-b3ce-41c0e8eec5d3/
+Task url :  /pulp/api/v3/tasks/ef3d3f89-8b8d-4949-8028-ccc67f87e2a5/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/ef3d3f89-8b8d-4949-8028-ccc67f87e2a5/ complete.
+State: [completed] Start: [2020-10-06T19:37:35.203107Z] Finish: [2020-10-06T19:37:39.501875Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8_x86_64_baseos_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/1dbc372b-d66d-484d-8743-84d48762eeff/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/17425331-fb3d-4480-b17c-6c9430a2a796/
+Task url :  /pulp/api/v3/tasks/88597024-907a-49e3-b3aa-b4bb0c8bca8c/
+Polling the task until it has reached a final state.
+......:/pulp/api/v3/tasks/88597024-907a-49e3-b3aa-b4bb0c8bca8c/ complete.
+State: [completed] Start: [2020-10-06T19:37:43.541174Z] Finish: [2020-10-06T19:38:14.742229Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8_x86_64_appstream_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/21e3c03a-ee03-4381-9d21-2d0aa030c42f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/d3f49183-b9fa-406a-a95e-7fc1387b8538/
+Task url :  /pulp/api/v3/tasks/799f02d2-2bc6-4d82-b292-a9504d4139a7/
+Polling the task until it has reached a final state.
+.................:/pulp/api/v3/tasks/799f02d2-2bc6-4d82-b292-a9504d4139a7/ complete.
+State: [completed] Start: [2020-10-06T19:38:22.681821Z] Finish: [2020-10-06T19:39:56.864144Z]
+
+>>>>>  TESTING [https://mirrors.kernel.org/fedora-epel/6Server/x86_64/] INTO [mirrors.kernel.org_fedora-epel_6Server_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/6843794b-d4f1-496a-9de4-8f85ab09370d/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/da8671c8-7aaf-4622-b056-14d679444375/
+Task url :  /pulp/api/v3/tasks/b130192b-6181-4e79-9e9a-a83a72a08078/
+Polling the task until it has reached a final state.
+.....................................................................................:/pulp/api/v3/tasks/b130192b-6181-4e79-9e9a-a83a72a08078/ complete.
+State: [completed] Start: [2020-10-06T19:40:02.839951Z] Finish: [2020-10-06T19:48:01.395964Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.6/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.6_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b1231233-2915-492f-a361-54386b0d6c40/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/08a9e34f-ed3d-4d3a-8f61-bfdc8a50ff02/
+Task url :  /pulp/api/v3/tasks/7e605f79-7589-44f4-8c17-756b641a4897/
+Polling the task until it has reached a final state.
+..................................................................:/pulp/api/v3/tasks/7e605f79-7589-44f4-8c17-756b641a4897/ complete.
+State: [completed] Start: [2020-10-06T19:48:07.612797Z] Finish: [2020-10-06T19:54:15.833001Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.3/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.3_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/fee45671-97d4-4009-b743-59300cdf508f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8210bf9e-d60f-4719-9114-f72a6ed5c04a/
+Task url :  /pulp/api/v3/tasks/966202de-bfeb-4e40-88f5-bad767bb8122/
+Polling the task until it has reached a final state.
+.......................................:/pulp/api/v3/tasks/966202de-bfeb-4e40-88f5-bad767bb8122/ complete.
+State: [completed] Start: [2020-10-06T19:54:23.077219Z] Finish: [2020-10-06T19:58:02.882327Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.9/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.9_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/4d0c8cde-7c45-4d41-89d3-e923f3efbd12/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/2efe4927-5412-4638-99b8-14fdb9229c5a/
+Task url :  /pulp/api/v3/tasks/30f44251-3f2d-463e-a07e-75590c91ccb6/
+Polling the task until it has reached a final state.
+................................................................................:/pulp/api/v3/tasks/30f44251-3f2d-463e-a07e-75590c91ccb6/ complete.
+State: [completed] Start: [2020-10-06T19:58:06.336315Z] Finish: [2020-10-06T20:05:37.853417Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.8/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.8_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/8a77ce57-7f48-4a6e-a774-97e3a619cc78/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/39d07fc0-10e1-4d8f-98f5-d5da49afff5e/
+Task url :  /pulp/api/v3/tasks/3ed5b27b-e3f9-4dfb-a6ba-6a718b29e453/
+Polling the task until it has reached a final state.
+...........................................:/pulp/api/v3/tasks/3ed5b27b-e3f9-4dfb-a6ba-6a718b29e453/ complete.
+State: [completed] Start: [2020-10-06T20:05:40.052515Z] Finish: [2020-10-06T20:09:42.763060Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.7/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.7_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d0ab97dd-d238-4d6b-9eca-41f15f3bf3b0/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/77902f36-17c4-4c91-b1fe-c815884ee257/
+Task url :  /pulp/api/v3/tasks/97e96241-57b2-4ac9-bf3c-ee067ef2a4ee/
+Polling the task until it has reached a final state.
+.....................................................................:/pulp/api/v3/tasks/97e96241-57b2-4ac9-bf3c-ee067ef2a4ee/ complete.
+State: [completed] Start: [2020-10-06T20:09:49.774426Z] Finish: [2020-10-06T20:16:17.800632Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6.9/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6.9_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/61bc08ea-f74a-4bf6-a1f6-2c53bd29b77c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/9bd2a8c9-565b-4607-8c6e-d5af0d039d52/
+Task url :  /pulp/api/v3/tasks/5077f9e2-1cf0-4a2d-a537-77d277036af4/
+Polling the task until it has reached a final state.
+...............................................:/pulp/api/v3/tasks/5077f9e2-1cf0-4a2d-a537-77d277036af4/ complete.
+State: [completed] Start: [2020-10-06T20:16:23.131137Z] Finish: [2020-10-06T20:20:46.990553Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.5/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.5_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/af43d09e-8a61-4868-9682-6e355baefaf1/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6491a5b6-fbb8-4b79-8988-338d3d19f4ce/
+Task url :  /pulp/api/v3/tasks/960e5c92-c110-4476-8a1f-469b0a05475f/
+Polling the task until it has reached a final state.
+..........................................................:/pulp/api/v3/tasks/960e5c92-c110-4476-8a1f-469b0a05475f/ complete.
+State: [completed] Start: [2020-10-06T20:20:50.997092Z] Finish: [2020-10-06T20:26:18.365455Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.2/x86_64/optional/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.2_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/e3a5b04a-088d-4b30-9d2f-1e556098f542/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/c1a754e7-5c9f-4880-8e3a-9416c0bbd503/
+Task url :  /pulp/api/v3/tasks/72585e45-8eb6-4727-99ef-299c0bf09dcb/
+Polling the task until it has reached a final state.
+.................................:/pulp/api/v3/tasks/72585e45-8eb6-4727-99ef-299c0bf09dcb/ complete.
+State: [completed] Start: [2020-10-06T20:26:21.053531Z] Finish: [2020-10-06T20:29:23.833190Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.6/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.6_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/6301f2bd-045d-4bcb-8b4b-fb6b5dd333ba/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/d60f86bd-e8b2-4e75-a50d-d2f21eda43ec/
+Task url :  /pulp/api/v3/tasks/7cd07682-71b4-4d99-b9ea-77e04a02ea4a/
+Polling the task until it has reached a final state.
+.................................................................................................:/pulp/api/v3/tasks/7cd07682-71b4-4d99-b9ea-77e04a02ea4a/ complete.
+State: [completed] Start: [2020-10-06T20:29:29.675447Z] Finish: [2020-10-06T20:38:31.054245Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.5/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.5_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ab1a16da-4987-42bc-9b16-e5562c264153/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/b6ac9879-ac27-4989-ab19-348f02f7fb5c/
+Task url :  /pulp/api/v3/tasks/752fa672-2424-40d9-b65e-ad03296896e8/
+Polling the task until it has reached a final state.
+................................................................................:/pulp/api/v3/tasks/752fa672-2424-40d9-b65e-ad03296896e8/ complete.
+State: [completed] Start: [2020-10-06T20:38:36.942800Z] Finish: [2020-10-06T20:46:04.655405Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.3/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.3_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/4a5b648d-f59c-4d4d-992a-0d06d716279c/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/27ec4aba-ab9a-4edc-8de3-669ef5d0fd50/
+Task url :  /pulp/api/v3/tasks/8bf3482d-224d-4ffc-8c48-b5b0a07ddefe/
+Polling the task until it has reached a final state.
+........................................................:/pulp/api/v3/tasks/8bf3482d-224d-4ffc-8c48-b5b0a07ddefe/ complete.
+State: [completed] Start: [2020-10-06T20:46:06.850368Z] Finish: [2020-10-06T20:51:21.992209Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/sat-tools/6.5/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_sat-tools_6.5_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ee245017-1010-4787-be07-047882569ae9/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/697dbdd8-5dfa-4a9e-bbdb-66b10098978e/
+Task url :  /pulp/api/v3/tasks/16369c0d-3d01-42ed-ae4a-cb0f2b5184ff/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/16369c0d-3d01-42ed-ae4a-cb0f2b5184ff/ complete.
+State: [completed] Start: [2020-10-06T20:51:28.637492Z] Finish: [2020-10-06T20:51:38.289299Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d3f886fe-92f9-4128-9f12-5ba0dcb59712/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/57d734f3-2385-4238-8217-40fabbb71bac/
+Task url :  /pulp/api/v3/tasks/9c4f4b60-ff1f-48a8-b6b1-b5a752d2a3ec/
+Polling the task until it has reached a final state.
+................................................................................................................................................:/pulp/api/v3/tasks/9c4f4b60-ff1f-48a8-b6b1-b5a752d2a3ec/ complete.
+State: [completed] Start: [2020-10-06T20:51:42.756986Z] Finish: [2020-10-06T21:05:05.712232Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-capsule/6.6/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_sat-capsule_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b286b2a2-8a39-4534-87eb-bf4d2ab66f01/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/f9001e59-3b55-4600-883c-4f1e370d14fe/
+Task url :  /pulp/api/v3/tasks/47148cb8-f816-4c32-bfdd-2d6ad452edbe/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/47148cb8-f816-4c32-bfdd-2d6ad452edbe/ complete.
+State: [completed] Start: [2020-10-06T21:05:15.541303Z] Finish: [2020-10-06T21:05:24.960354Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/f3f981a7-3293-45e1-a7f0-204a1f31a451/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/32b7cbea-3134-4c0c-9556-cbeeae070023/
+Task url :  /pulp/api/v3/tasks/c0b90713-d65a-4810-93af-ef3946dc2563/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/c0b90713-d65a-4810-93af-ef3946dc2563/ complete.
+State: [completed] Start: [2020-10-06T21:05:27.801921Z] Finish: [2020-10-06T21:05:30.139988Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/layered/rhel8/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_dist_layered_rhel8_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/52879f87-158b-40ca-b20e-fa8b624b471a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/cd13c5e4-c4c4-4c7d-88fa-50359c956729/
+Task url :  /pulp/api/v3/tasks/07bcc0ba-9349-43e9-a169-b9b0853f62f8/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/07bcc0ba-9349-43e9-a169-b9b0853f62f8/ complete.
+State: [completed] Start: [2020-10-06T21:05:35.636384Z] Finish: [2020-10-06T21:05:37.827493Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/ansible/2.8/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_ansible_2.8_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d35031bd-c0fe-45a0-a793-ed1090edb05d/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/58c66c9e-0cbd-479c-a529-d8eff8199bd4/
+Task url :  /pulp/api/v3/tasks/1be3b61e-9dd7-4ae7-b4f8-7f67cdd18695/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/1be3b61e-9dd7-4ae7-b4f8-7f67cdd18695/ complete.
+State: [completed] Start: [2020-10-06T21:05:43.355582Z] Finish: [2020-10-06T21:05:47.130282Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/5c932d5d-0103-4701-a496-1c296d45a418/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/6e77ae70-b560-46c3-ad24-82b0ad3ae114/
+Task url :  /pulp/api/v3/tasks/f94bf812-6cd5-42ae-b242-a28099e46526/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/f94bf812-6cd5-42ae-b242-a28099e46526/ complete.
+State: [completed] Start: [2020-10-06T21:05:51.531996Z] Finish: [2020-10-06T21:05:54.387281Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.7/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.7_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c4a206e4-2916-4ea1-9636-0764ac4597da/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/0a04bbf8-3939-428e-968a-41479b5b6f9b/
+Task url :  /pulp/api/v3/tasks/ea855c18-4c47-4a89-b523-240ef5549ef8/
+Polling the task until it has reached a final state.
+..........................................................................................................................:/pulp/api/v3/tasks/ea855c18-4c47-4a89-b523-240ef5549ef8/ complete.
+State: [completed] Start: [2020-10-06T21:06:01.167545Z] Finish: [2020-10-06T21:17:21.628982Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.1/x86_64/appstream/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.1_x86_64_appstream_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/07f652d8-2f7f-4ba2-8ce0-e7e9e3ccaabb/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/f966661a-398b-4c15-b9d1-1dc6df528138/
+Task url :  /pulp/api/v3/tasks/7cb1b737-9919-4260-b8fe-0fb4220ceeac/
+Polling the task until it has reached a final state.
+................:/pulp/api/v3/tasks/7cb1b737-9919-4260-b8fe-0fb4220ceeac/ complete.
+State: [completed] Start: [2020-10-06T21:17:27.883697Z] Finish: [2020-10-06T21:18:55.994270Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.4/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.4_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/13bf13b4-b9da-402e-a7d8-2afad8831672/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/956240be-c12b-44e2-8a7c-bd8119860e05/
+Task url :  /pulp/api/v3/tasks/858b66c1-3c49-4701-b732-f92acd9976b7/
+Polling the task until it has reached a final state.
+...........................................................................:/pulp/api/v3/tasks/858b66c1-3c49-4701-b732-f92acd9976b7/ complete.
+State: [completed] Start: [2020-10-06T21:19:00.310056Z] Finish: [2020-10-06T21:25:58.248032Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.2/x86_64/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.2_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/97f87f86-d277-418a-93a5-084be0aa120f/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/bb2913a0-aedc-420c-9342-a02bda88a0f8/
+Task url :  /pulp/api/v3/tasks/14b677cf-19e3-4053-bac9-d5211aecaa0b/
+Polling the task until it has reached a final state.
+..............................................:/pulp/api/v3/tasks/14b677cf-19e3-4053-bac9-d5211aecaa0b/ complete.
+State: [completed] Start: [2020-10-06T21:26:03.966660Z] Finish: [2020-10-06T21:30:18.390754Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/supplementary/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/12f76921-7739-43d1-a0b7-0570dcc42412/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/28058238-69ee-4dc2-b645-2447a08a6ebb/
+Task url :  /pulp/api/v3/tasks/5ee0c88a-433c-4350-a1a5-0937c83c49e6/
+Polling the task until it has reached a final state.
+...:/pulp/api/v3/tasks/5ee0c88a-433c-4350-a1a5-0937c83c49e6/ complete.
+State: [completed] Start: [2020-10-06T21:30:24.608437Z] Finish: [2020-10-06T21:30:37.607961Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.6/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.6_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/515f04cc-4911-4cd8-b343-90fa737fcc7a/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/f0f8d4d9-4de1-4546-b301-ceb9030cdcd8/
+Task url :  /pulp/api/v3/tasks/cb588497-7da3-4f44-8f4d-b49895fda2ee/
+Polling the task until it has reached a final state.
+...............................................................................................:/pulp/api/v3/tasks/cb588497-7da3-4f44-8f4d-b49895fda2ee/ complete.
+State: [completed] Start: [2020-10-06T21:30:44.545280Z] Finish: [2020-10-06T21:39:34.441050Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/8a980445-893d-4f52-bed5-1458ec1024ce/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/7da406ef-8214-4574-90ae-e5a96a91471c/
+Task url :  /pulp/api/v3/tasks/86cb6ea7-8ad5-4b63-93a4-db4c7ed54eeb/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/86cb6ea7-8ad5-4b63-93a4-db4c7ed54eeb/ complete.
+State: [completed] Start: [2020-10-06T21:39:39.894941Z] Finish: [2020-10-06T21:39:43.786679Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.5/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.5_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/11a45679-dc96-4b74-b0c7-7602b94114b6/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/22f8790e-5726-4cf4-85ab-f53964b6911d/
+Task url :  /pulp/api/v3/tasks/6da6a9e9-f7bc-4767-a3bd-680b2f97ed0d/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/6da6a9e9-f7bc-4767-a3bd-680b2f97ed0d/ complete.
+State: [completed] Start: [2020-10-06T21:39:48.856272Z] Finish: [2020-10-06T21:39:52.280637Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.1/x86_64/baseos/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.1_x86_64_baseos_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/54439bbd-bafa-411e-a05c-02be8dc51f5e/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/2bedd5d6-805d-4053-a9a6-67cde796f608/
+Task url :  /pulp/api/v3/tasks/49ab8a0b-2ee6-4c0b-8175-00ae71e436d9/
+Polling the task until it has reached a final state.
+.......:/pulp/api/v3/tasks/49ab8a0b-2ee6-4c0b-8175-00ae71e436d9/ complete.
+State: [completed] Start: [2020-10-06T21:39:56.460167Z] Finish: [2020-10-06T21:40:31.561932Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/highavailability/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_highavailability_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/7a320e7e-09f3-4046-be32-132965455c43/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/0ee8a03a-8142-47ef-a45b-64ca6993facd/
+Task url :  /pulp/api/v3/tasks/40d75e60-9032-4a28-adef-ab8eeb769385/
+Polling the task until it has reached a final state.
+.......:/pulp/api/v3/tasks/40d75e60-9032-4a28-adef-ab8eeb769385/ complete.
+State: [completed] Start: [2020-10-06T21:40:41.992632Z] Finish: [2020-10-06T21:41:20.915335Z]
+
+>>>>>  TESTING [https://packages.vmware.com/tools/releases/10.3.5/rhel6/x86_64/] INTO [packages.vmware.com_tools_releases_10.3.5_rhel6_x86_64]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/f1dd64bd-e776-4418-9034-2fe5df2292b2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/1628817e-01a0-4cc5-ace2-6941e5ba72c5/
+Task url :  /pulp/api/v3/tasks/3a3ec678-3b55-401c-8a02-c86e14892be6/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/3a3ec678-3b55-401c-8a02-c86e14892be6/ complete.
+State: [completed] Start: [2020-10-06T21:41:29.418751Z] Finish: [2020-10-06T21:41:37.768798Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7.8/x86_64/kickstart] INTO [cdn.redhat.com_content_dist_rhel_server_7_7.8_x86_64_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/387669e8-acb1-410b-8c6d-a22edca478f2/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/155e0944-e81d-44aa-ae73-13acbae1976e/
+Task url :  /pulp/api/v3/tasks/3613360e-1ffe-4240-afa0-440ecccf79d1/
+Polling the task until it has reached a final state.
+.........................:/pulp/api/v3/tasks/3613360e-1ffe-4240-afa0-440ecccf79d1/ complete.
+State: [completed] Start: [2020-10-06T21:41:47.433051Z] Finish: [2020-10-06T21:44:04.799216Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.7_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/9f71047d-1f6f-48ef-9941-cabded872278/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/46cdad92-2a88-4304-9473-72943e38e518/
+Task url :  /pulp/api/v3/tasks/55a263e8-d10e-4af3-ba42-0ee8e574a2c4/
+Polling the task until it has reached a final state.
+..................................................................................................................................................:/pulp/api/v3/tasks/55a263e8-d10e-4af3-ba42-0ee8e574a2c4/ complete.
+State: [completed] Start: [2020-10-06T21:44:13.983672Z] Finish: [2020-10-06T21:57:51.969310Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/supplementary/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.7_x86_64_supplementary_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/b9efc9aa-b959-4b3e-8235-a60bdebe0ff5/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/e491d350-d652-4385-8970-f0f46a123911/
+Task url :  /pulp/api/v3/tasks/f3403427-ad3f-4bf1-a8ad-617d9893c3c6/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/f3403427-ad3f-4bf1-a8ad-617d9893c3c6/ complete.
+State: [completed] Start: [2020-10-06T21:57:55.297618Z] Finish: [2020-10-06T21:58:03.608560Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/rhscl/1/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.7_x86_64_rhscl_1_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/0de85d5a-fb58-4dce-a8d4-706cedf85ea5/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/047c4a4f-3078-4250-9af7-dfba0b308132/
+Task url :  /pulp/api/v3/tasks/3021ed50-ae05-4dce-a985-1c1f99a1d71b/
+Polling the task until it has reached a final state.
+.............................................:/pulp/api/v3/tasks/3021ed50-ae05-4dce-a985-1c1f99a1d71b/ complete.
+State: [completed] Start: [2020-10-06T21:58:08.638280Z] Finish: [2020-10-06T22:02:16.708381Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/optional/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.7_x86_64_optional_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/644b4c4e-5bb6-4b10-b726-ed2db849da76/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/d342de67-5dfa-44f6-972d-1a8144368e0b/
+Task url :  /pulp/api/v3/tasks/f96eadbd-6ec7-491a-bfa9-e77bf5f2163e/
+Polling the task until it has reached a final state.
+.................................................................................................:/pulp/api/v3/tasks/f96eadbd-6ec7-491a-bfa9-e77bf5f2163e/ complete.
+State: [completed] Start: [2020-10-06T22:02:22.674616Z] Finish: [2020-10-06T22:11:25.216072Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/sat-tools/6.6/os] INTO [cdn.redhat.com_content_eus_rhel_server_7_7.7_x86_64_sat-tools_6.6_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/67672331-9731-4707-8a71-d85f0437bff3/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/15a84367-6cdc-48bb-9a0d-83b69ffac804/
+Task url :  /pulp/api/v3/tasks/b4edfb20-4a3a-41c8-8d12-1b50ed9a4b2d/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/b4edfb20-4a3a-41c8-8d12-1b50ed9a4b2d/ complete.
+State: [completed] Start: [2020-10-06T22:11:34.010139Z] Finish: [2020-10-06T22:11:37.016220Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-capsule/6.7/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_sat-capsule_6.7_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/882e494f-3c11-4afe-a168-4ee19373900d/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/800847af-3ed1-4fbf-8269-df95c60b243e/
+Task url :  /pulp/api/v3/tasks/0a054522-fd12-45d4-b530-4848325801d6/
+Polling the task until it has reached a final state.
+..:/pulp/api/v3/tasks/0a054522-fd12-45d4-b530-4848325801d6/ complete.
+State: [completed] Start: [2020-10-06T22:11:41.754364Z] Finish: [2020-10-06T22:11:50.722764Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/sat-tools/6.7/os] INTO [cdn.redhat.com_content_dist_rhel_server_6_6Server_x86_64_sat-tools_6.7_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/a6e7657f-b8db-4ac0-9e06-0bd6573cb9ba/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/e47c2fa7-1442-4bb1-887b-9e2b9ea93964/
+Task url :  /pulp/api/v3/tasks/395583f6-3a43-43c0-905a-3f49651c9d1a/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/395583f6-3a43-43c0-905a-3f49651c9d1a/ complete.
+State: [completed] Start: [2020-10-06T22:11:55.062229Z] Finish: [2020-10-06T22:11:57.582548Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-tools/6.7/os] INTO [cdn.redhat.com_content_dist_rhel_server_7_7Server_x86_64_sat-tools_6.7_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/c935a5d7-e701-4c31-8cda-5b97d65eed39/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/e4af0509-e3ac-4c47-9b5d-1b30b72a469f/
+Task url :  /pulp/api/v3/tasks/85bff5b8-ae1c-443e-b9d3-bfcaecf43a37/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/85bff5b8-ae1c-443e-b9d3-bfcaecf43a37/ complete.
+State: [completed] Start: [2020-10-06T22:12:03.137958Z] Finish: [2020-10-06T22:12:07.722554Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/layered/rhel8/x86_64/sat-tools/6.7/os] INTO [cdn.redhat.com_content_dist_layered_rhel8_x86_64_sat-tools_6.7_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/5128ee9f-e1d9-4e19-ab1b-b4f5156b3940/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ae66d839-15e8-4b19-b2d2-ba37dedfa49c/
+Task url :  /pulp/api/v3/tasks/f4cdfb6d-5da0-47e8-b416-7a9216e86b98/
+Polling the task until it has reached a final state.
+.:/pulp/api/v3/tasks/f4cdfb6d-5da0-47e8-b416-7a9216e86b98/ complete.
+State: [completed] Start: [2020-10-06T22:12:11.647525Z] Finish: [2020-10-06T22:12:15.925194Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.2/x86_64/appstream/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.2_x86_64_appstream_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/d0642fdf-c42f-4170-9871-8cb3bdae771b/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/ea63223d-f58b-43c0-ab4f-4b1663761c9b/
+Task url :  /pulp/api/v3/tasks/c5e89d82-96bf-4b6b-889c-e3a2d1af846e/
+Polling the task until it has reached a final state.
+.....................:/pulp/api/v3/tasks/c5e89d82-96bf-4b6b-889c-e3a2d1af846e/ complete.
+State: [completed] Start: [2020-10-06T22:12:22.131043Z] Finish: [2020-10-06T22:14:16.189984Z]
+
+>>>>>  TESTING [https://cdn.redhat.com/content/dist/rhel8/8.2/x86_64/baseos/kickstart] INTO [cdn.redhat.com_content_dist_rhel8_8.2_x86_64_baseos_kickstart]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/7f6fbcc2-6cea-4993-8373-94c1a5285b71/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/a178b4a9-e00a-469f-8a57-02f83131007d/
+Task url :  /pulp/api/v3/tasks/91262eda-dea1-45f3-b037-4e0cfb747c02/
+Polling the task until it has reached a final state.
+.......:/pulp/api/v3/tasks/91262eda-dea1-45f3-b037-4e0cfb747c02/ complete.
+State: [completed] Start: [2020-10-06T22:14:24.507834Z] Finish: [2020-10-06T22:15:02.866260Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-8/8/BaseOS/x86_64/os/] INTO [mirror.centos.org_centos-8_8_BaseOS_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/ff597a17-8338-4943-9767-3e3e3e632df1/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/8ae3d969-d51c-45ed-a648-692373ff8345/
+Task url :  /pulp/api/v3/tasks/e6bffeb1-57f7-46b1-9d62-07d03834f52b/
+Polling the task until it has reached a final state.
+..............................................:/pulp/api/v3/tasks/e6bffeb1-57f7-46b1-9d62-07d03834f52b/ complete.
+State: [completed] Start: [2020-10-06T22:15:11.639352Z] Finish: [2020-10-06T22:19:31.520598Z]
+
+>>>>>  TESTING [http://mirror.centos.org/centos-8/8/AppStream/x86_64/os/] INTO [mirror.centos.org_centos-8_8_AppStream_x86_64_os]
+repo_href :  /pulp/api/v3/repositories/rpm/rpm/92ae176a-3d36-49ec-9e48-3d176780e3b1/
+remote_href :  /pulp/api/v3/remotes/rpm/rpm/644cfc81-4ad6-4986-9073-8971ed773466/
+Task url :  /pulp/api/v3/tasks/acdf2e29-1475-4205-b543-8c89e0352672/
+Polling the task until it has reached a final state.
+....................:/pulp/api/v3/tasks/acdf2e29-1475-4205-b543-8c89e0352672/ complete.
+State: [completed] Start: [2020-10-06T22:19:45.382084Z] Finish: [2020-10-06T22:21:34.841809Z]
+
