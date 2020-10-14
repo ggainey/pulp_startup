@@ -1,0 +1,42 @@
+#
+# Brute-force approach to making it possible to build just the static-docs-pages
+# for pulpcore.
+#
+# Notes:
+# 1) This is UGLY, but it seems to work.
+# 2) The same approach should work for building docs in plugins, but the docs.patch
+#    may not apply; use it as a guideline.
+# 3) The 'dirhtml' target skips trying to build the REST API docs
+# 4) 'python -m http.server 8010' starts a webserver with current-working-directory as
+#    its root. You can access the pages therein at 'http://localhost:8010'
+#
+# This process has been tested on a 'bare' install of Fedora32.
+#
+# We need git and make and virtualenvwrapper
+sudo dnf install git make
+pip3 install --user virtualenvwrapper
+# If virtualenvwrapper.sh isn't here, you can look for it with
+# the command 'find / -name virtualenvwrapper.sh'
+source ~/.local/bin/virtualenvwrapper.sh
+# Set up to use workon
+export WORKON_HOME=~/Envs
+mkdir -p $WORKON_HOME
+# Make an environment for docs
+mkvirtualenv docs
+workon docs
+# Grab pulpcore
+git clone https://github.com/pulp/pulpcore.git
+cd pulpcore/
+# Apply the brute-force fixes to let the build work(ish)
+# They can be found as 'docs.patch' in this directory
+git apply docs.patch
+# Install *only* the docs-requirements (the patch removes the intstall of requirements.txt)
+pip install -r doc_requirements.txt
+# Go to and build the docs
+cd ./docs
+# SO many errors here - ignore them
+make dirhtml
+# Start a webserver, at port 8010
+cd _build/dirhtml/
+python -m http.server 8010
+
