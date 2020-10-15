@@ -8,7 +8,7 @@ wait_until_task_finished() {
     do
         local response=$(http $task_url)
         local state=$(jq -r .state <<< ${response})
-        jq . <<< "${response}"
+        # jq . <<< "${response}"
         case ${state} in
             failed|canceled)
                 echo "Task in final state: ${state}"
@@ -19,7 +19,8 @@ wait_until_task_finished() {
                 break
                 ;;
             *)
-                echo "Still waiting..."
+                #echo "Still waiting..."
+                echo -n "."
                 sleep 1
                 ;;
         esac
@@ -29,7 +30,7 @@ wait_until_task_finished() {
 ISO_URL="https://fixtures.pulpproject.org/file/PULP_MANIFEST"
 EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
-ISO_NAME="iso-multi-0"
+ISO_NAME="iso-multi-3"
 COPY_NAME="${ISO_NAME}-copy"
 
 # FOR ISO
@@ -71,6 +72,13 @@ EXPORTER_HREF=$(echo $RESULT | jq -r '.pulp_href')
 echo "EXPORTER " $EXPORTER_HREF
 if [ -z "$EXPORTER_HREF" ]; then exit; fi
 
+# export diff-1-to-1
+RESULT=$(http POST :$EXPORTER_HREF'exports/' start_versions:=[\"${COPY_HREF}versions/1/\"] versions:=[\"${COPY_HREF}versions/1/\"] full=False) #"
+TASK_URL=$(echo $RESULT | jq -r '.task')
+if [ -z "$TASK_URL" ]; then exit; fi
+wait_until_task_finished :$TASK_URL
+sleep 1
+
 # export-full-latest
 TASK_URL=$(http POST :$EXPORTER_HREF'exports/' | jq -r '.task')
 if [ -z "$TASK_URL" ]; then exit; fi
@@ -89,4 +97,5 @@ RESULT=$(http POST :$EXPORTER_HREF'exports/' start_versions:=[\"${COPY_HREF}vers
 TASK_URL=$(echo $RESULT | jq -r '.task')
 if [ -z "$TASK_URL" ]; then exit; fi
 wait_until_task_finished :$TASK_URL
+sleep 1
 
