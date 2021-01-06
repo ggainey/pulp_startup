@@ -1,0 +1,8 @@
+{
+  "config": [
+    {"source_repo_version": "/pulp/api/v3/repositories/rpm/rpm/871fea49-f1bb-4b32-871b-f2d0b739b89e/versions/1/", "dest_repo": "/pulp/api/v3/repositories/rpm/rpm/1e2c5ffb-1eb6-4fc9-a2c2-830a1989da4b/", "content": ["/pulp/api/v3/content/rpm/advisories/2e3556bf-14ff-4690-9efc-096c97858cfe/"]},
+    {"source_repo_version": "/pulp/api/v3/repositories/rpm/rpm/a7c3836c-65cc-4d4a-b1b4-3d2cd1766c1f/versions/1/", "dest_repo": "/pulp/api/v3/repositories/rpm/rpm/e93b9628-0bf0-4dc7-bee7-b5151dae9a8e/", "content": []}
+  ],
+  "dependency_solving": true
+}
+

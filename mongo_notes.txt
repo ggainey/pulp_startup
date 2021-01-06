@@ -1,0 +1,102 @@
+MongoDB shell version v3.4.24
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.24
+Server has startup warnings:
+2020-12-09T13:28:28.380+0000 I CONTROL  [initandlisten]
+2020-12-09T13:28:28.381+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-12-09T13:28:28.381+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-12-09T13:28:28.381+0000 I CONTROL  [initandlisten]
+2020-12-09T13:28:28.382+0000 I CONTROL  [initandlisten]
+2020-12-09T13:28:28.382+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2020-12-09T13:28:28.382+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2020-12-09T13:28:28.382+0000 I CONTROL  [initandlisten]
+2020-12-09T13:28:28.382+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2020-12-09T13:28:28.383+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2020-12-09T13:28:28.383+0000 I CONTROL  [initandlisten]
+> db
+test
+> show dbs
+admin          0.000GB
+local          0.000GB
+pulp_database  1.290GB
+> use pulp_database
+switched to db pulp_database
+> db.collection.find()
+> ;
+> show collections
+celery_beat_lock
+consumer_history
+content_catalog
+content_types
+deferred_download
+erratum_pkglists
+event_listeners
+lazy_content_catalog
+migration_trackers
+permissions
+repo_content_units
+repo_distributors
+repo_group_publish_results
+repo_importers
+repo_publish_results
+repo_sync_results
+repos
+reserved_resources
+resource_manager_lock
+roles
+scheduled_calls
+task_status
+units_deb
+units_deb_component
+units_deb_release
+units_distribution
+units_docker_blob
+units_docker_image
+units_docker_manifest
+units_docker_manifest_list
+units_docker_tag
+units_drpm
+units_erratum
+units_iso
+units_modulemd
+units_modulemd_defaults
+units_ostree
+units_package_category
+units_package_environment
+units_package_group
+units_package_langpacks
+units_puppet_module
+units_python_package
+units_rpm
+units_srpm
+units_yum_repo_metadata_file
+users
+workers
+> db.units_rpm.count()
+23095
+> db.units_rpm.find( { $query: {}, $orderby: { last_updated: -1 } } )
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "unknown top level operator: $query",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.units_rpm.sort( { last_updated: -1 } )
+2020-12-10T19:19:52.617+0000 E QUERY    [thread1] TypeError: db.units_rpm.sort is not a function :
+@(shell):1:1
+> db.units_rpm.find().sort( { last_updated: -1 } )
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "Executor error during find command: OperationFailed: Sort operation used more than the maximum 33554432 bytes of RAM. Add an index, or specify a smaller limit.",
+	"code" : 96,
+	"codeName" : "OperationFailed"
+}
+> db.units_rpm.find().sort( { last_updated: 1 } )
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "Executor error during find command: OperationFailed: Sort operation used more than the maximum 33554432 bytes of RAM. Add an index, or specify a smaller limit.",
+	"code" : 96,
+	"codeName" : "OperationFailed"
+}
+>
+
