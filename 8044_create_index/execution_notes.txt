@@ -1,0 +1,136 @@
+== no-index error
+
+> db.units_rpm.find().sort( { _last_updated: -1 } )
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Executor error during find command: OperationFailed: Sort operation used more than the maximum 33554432 bytes of RAM. Add an index, or specify a smaller limit.",
+        "code" : 96,
+        "codeName" : "OperationFailed"
+}
+
+== remotes
+https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/extras/os \
+https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/optional/os \
+https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/supplementary/os \
+https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os \
+https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os \
+https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os \
+
+create-index for all took ~= 11 sec
+
+== sizes
+
+> db.getCollectionNames().filter(function (collection) { return /units_/.test(collection) }).forEach(function(collname) {   print( collname + " has [" + db[collname].count() + "] units" ) });
+units_distribution has [0] units
+units_docker_blob has [0] units
+units_docker_image has [0] units
+units_docker_manifest has [0] units
+units_docker_manifest_list has [0] units
+units_docker_tag has [0] units
+units_drpm has [0] units
+units_erratum has [8538] units
+units_iso has [0] units
+units_modulemd has [0] units
+units_modulemd_defaults has [0] units
+units_node has [0] units
+units_package_category has [12] units
+units_package_environment has [6] units
+units_package_group has [87] units
+units_package_langpacks has [2] units
+units_repository has [0] units
+units_rpm has [77974] units
+units_srpm has [0] units
+units_yum_repo_metadata_file has [5] units
+>
+
+== create-index execution
+
+> db.getCollectionNames().filter(function (collection) { return /units_/.test(collection) }).forEach(function(collname) {   db[collname].createIndex({"_last_updated": -1});   print(collname + " index created") });
+units_distribution index created
+units_docker_blob index created
+units_docker_image index created
+units_docker_manifest index created
+units_docker_manifest_list index created
+units_docker_tag index created
+units_drpm index created
+units_erratum index created
+units_iso index created
+units_modulemd index created
+units_modulemd_defaults index created
+units_node index created
+units_package_category index created
+units_package_environment index created
+units_package_group index created
+units_package_langpacks index created
+units_repository index created
+units_rpm index created
+units_srpm index created
+units_yum_repo_metadata_file index created
+
+== timing from logs
+
+2021-01-06T21:56:34.846+0000 I INDEX    [conn210] build index on: pulp_database.units_distribution properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_distribution" }
+2021-01-06T21:56:34.866+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:34.989+0000 I INDEX    [conn210] build index on: pulp_database.units_docker_blob properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_docker_blob" }
+2021-01-06T21:56:35.001+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.058+0000 I INDEX    [conn210] build index on: pulp_database.units_docker_image properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_docker_image" }
+2021-01-06T21:56:35.065+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.113+0000 I INDEX    [conn210] build index on: pulp_database.units_docker_manifest properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_docker_manifest" }
+2021-01-06T21:56:35.123+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.174+0000 I INDEX    [conn210] build index on: pulp_database.units_docker_manifest_list properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_docker_manifest_list" }
+2021-01-06T21:56:35.182+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.247+0000 I INDEX    [conn210] build index on: pulp_database.units_docker_tag properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_docker_tag" }
+2021-01-06T21:56:35.257+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.308+0000 I INDEX    [conn210] build index on: pulp_database.units_drpm properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_drpm" }
+2021-01-06T21:56:35.316+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.406+0000 I INDEX    [conn210] build index on: pulp_database.units_erratum properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_erratum" }
+2021-01-06T21:56:35.741+0000 I INDEX    [conn210] build index done.  scanned 8538 total records. 0 secs
+2021-01-06T21:56:35.790+0000 I INDEX    [conn210] build index on: pulp_database.units_iso properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_iso" }
+2021-01-06T21:56:35.798+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.857+0000 I INDEX    [conn210] build index on: pulp_database.units_modulemd properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_modulemd" }
+2021-01-06T21:56:35.865+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:35.907+0000 I INDEX    [conn210] build index on: pulp_database.units_modulemd_defaults properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_modulemd_defaults" }
+2021-01-06T21:56:35.915+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:36.000+0000 I INDEX    [conn210] build index on: pulp_database.units_node properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_node" }
+2021-01-06T21:56:36.008+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:36.058+0000 I INDEX    [conn210] build index on: pulp_database.units_package_category properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_package_category" }
+2021-01-06T21:56:36.091+0000 I INDEX    [conn210] build index done.  scanned 12 total records. 0 secs
+2021-01-06T21:56:36.150+0000 I INDEX    [conn210] build index on: pulp_database.units_package_environment properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_package_environment" }
+2021-01-06T21:56:36.192+0000 I INDEX    [conn210] build index done.  scanned 6 total records. 0 secs
+2021-01-06T21:56:36.242+0000 I INDEX    [conn210] build index on: pulp_database.units_package_group properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_package_group" }
+2021-01-06T21:56:36.275+0000 I INDEX    [conn210] build index done.  scanned 87 total records. 0 secs
+2021-01-06T21:56:36.349+0000 I INDEX    [conn210] build index on: pulp_database.units_package_langpacks properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_package_langpacks" }
+2021-01-06T21:56:36.375+0000 I INDEX    [conn210] build index done.  scanned 2 total records. 0 secs
+2021-01-06T21:56:36.456+0000 I INDEX    [conn210] build index on: pulp_database.units_repository properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_repository" }
+2021-01-06T21:56:36.467+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:36.517+0000 I INDEX    [conn210] build index on: pulp_database.units_rpm properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_rpm" }
+2021-01-06T21:56:45.595+0000 I INDEX    [conn210] build index done.  scanned 77974 total records. 9 secs
+2021-01-06T21:56:45.692+0000 I INDEX    [conn210] build index on: pulp_database.units_srpm properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_srpm" }
+2021-01-06T21:56:45.700+0000 I INDEX    [conn210] build index done.  scanned 0 total records. 0 secs
+2021-01-06T21:56:45.751+0000 I INDEX    [conn210] build index on: pulp_database.units_yum_repo_metadata_file properties: { v: 2, key: { _last_updated: -1.0 }, name: "_last_updated_-1", ns: "pulp_database.units_yum_repo_metadata_file" }
+2021-01-06T21:56:45.792+0000 I INDEX    [conn210] build index done.  scanned 5 total records. 0 secs
+
+
+> db.getCollectionNames().filter(function (collection) { return /units_/.test(collection) }).forEach(function(collname) {   print( collname + " has [" + db[collname].count() + "] units" ) });
+units_distribution has [23] units
+units_docker_blob has [0] units
+units_docker_image has [0] units
+units_docker_manifest has [0] units
+units_docker_manifest_list has [0] units
+units_docker_tag has [0] units
+units_drpm has [15] units
+units_erratum has [20886] units
+units_iso has [0] units
+units_modulemd has [371] units
+units_modulemd_defaults has [254] units
+units_node has [0] units
+units_package_category has [396] units
+units_package_environment has [180] units
+units_package_group has [4745] units
+units_package_langpacks has [34] units
+units_repository has [0] units
+units_rpm has [259738] units
+units_srpm has [0] units
+units_yum_repo_metadata_file has [75] units
+>
+
