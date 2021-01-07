@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    {
+      "type": "rpm",
+      "repositories": [
+        {
+          "name": "rhel8-base"
+        },
+        {
+          "name": "rhel8-appstream"
+        },
+      ]
+    }
+  ]
+}
