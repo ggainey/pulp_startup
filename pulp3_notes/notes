@@ -84,4 +84,9 @@ RUNNING TESTS
  1090  pytest -v -r sx --color=yes --pyargs pulp_file.tests.functional
 
 
+  682  export PATH=/usr/local/lib/pulp/bin/:$PATH
+  683  django-admin
+  684  pulpcore-manager makemigrations
+  685  pip install -r requirements.txt
+  686  pulpcore-manager makemigrations
 
