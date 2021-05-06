@@ -1,0 +1,22 @@
+katello:
+    server: https://katello.local.int
+    username: admin
+    password: ler0ler0
+    api_url: /katello/api/v2/
+    ssl_verify: False
+
+data_files:
+    errata_files: ./data/errata.latest.xml
+    oval_files: ./data/com.redhat.rhsa-all.xml
+
+redis:
+    server: localhost
+    port: 6379
+
+repositories:
+    os:
+        pulp_id: a6919dee-be28-4f7d-983e-b3827240603e
+        os_release: 7
+    updates:
+        pulp_id: 2ca771ff-c07c-475c-bfdc-aa23b85bc289
+        os_release: 7
