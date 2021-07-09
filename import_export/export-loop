@@ -1,0 +1,27 @@
+# create and fill repos
+pulp rpm remote create --name both --url https://fixtures.pulpproject.org/rpm-signed/
+for r in one two three four five six seven eight nine ten
+do
+  pulp rpm repository create --name ${r}
+  pulp rpm repository sync --name ${r} --remote both
+done
+
+# create exporter
+pulp exporter pulp create --name ten --path /home/vagrant/devel/exports/ten/ --repository one rpm --repository two rpm --repository three rpm --repository four rpm --repository five rpm --repository six rpm --repository seven rpm --repository eight rpm --repository nine rpm --repository ten rpm
+# export
+pulp export pulp run --exporter ten
+
+# set up for import
+pclean
+prestart
+
+# create destination-repos
+for r in one two three four five six seven eight nine ten
+do
+  pulp rpm repository create --name new-${r}
+done
+
+# create importer
+pulp importer pulp create --name ten --repo-map one new-one --repo-map two new-two --repo-map three new-three --repo-map four new-four --repo-map five new-five --repo-map six new-six --repo-map seven new-seven --repo-map eight new-eight --repo-map nine new-nine --repo-map ten new-ten
+
+

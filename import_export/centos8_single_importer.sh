@@ -26,17 +26,20 @@ wait_until_task_finished() {
     done
 }
 
+IMPORTER_URL="/pulp/api/v3/importers/core/pulp/"
+CENTOS_NAME='new-centos8'
+MAPPING='{"centos8-base": "new-centos8-base"}'
 
-EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
+# create repo
+CENTOS8_BASE_HREF=$(http POST :/pulp/api/v3/repositories/rpm/rpm/ name="${CENTOS_NAME}-base" | jq -r '.pulp_href')
+echo "repo_href : " $CENTOS8_BASE_HREF
+if [ -z "$CENTOS8_BASE_HREF" ]; then exit; fi
 
-REPO1_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
-REPO2_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[1] | .pulp_href")
+# create importer
+IMPORT_NAME="test-centos8"
+IMPORT_HREF=$(http POST :$IMPORTER_URL name="${IMPORT_NAME}"-importer repo_mapping:="${MAPPING}") 
+echo "repo_href : " $IMPORT_HREF
+if [ -z "$IMPORT_HREF" ]; then exit; fi
 
-# create exporter
-EXPORTER_NAME="centos8"
-EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${REPO1_HREF}\",\"${REPO2_HREF}\"] path=/home/vagrant/devel/exports/) #"
-echo $EXPORTER_HREF
-if [ -z "$EXPORTER_HREF" ]; then exit; fi
-
-# LIST all exporters
-http GET :$EXPORTER_URL
+# LIST all importers
+http GET :$IMPORTER_URL

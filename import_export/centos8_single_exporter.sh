@@ -30,11 +30,10 @@ wait_until_task_finished() {
 EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
 REPO1_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
-REPO2_HREF=$(http GET :/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[1] | .pulp_href")
 
 # create exporter
 EXPORTER_NAME="centos8"
-EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${REPO1_HREF}\",\"${REPO2_HREF}\"] path=/home/vagrant/devel/exports/) #"
+EXPORTER_HREF=$(http POST :$EXPORTER_URL name="${EXPORTER_NAME}"-exporter repositories:=[\"${REPO1_HREF}\"] path=/tmp/exports/) #"
 echo $EXPORTER_HREF
 if [ -z "$EXPORTER_HREF" ]; then exit; fi
 

@@ -30,7 +30,7 @@ wait_until_task_finished() {
 ISO_URL="https://fixtures.pulpproject.org/file/PULP_MANIFEST"
 EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
-ISO_NAME="iso-multi-3"
+ISO_NAME="iso-multi-7"
 COPY_NAME="${ISO_NAME}-copy"
 
 # FOR ISO
@@ -72,6 +72,14 @@ EXPORTER_HREF=$(echo $RESULT | jq -r '.pulp_href')
 echo "EXPORTER " $EXPORTER_HREF
 if [ -z "$EXPORTER_HREF" ]; then exit; fi
 
+# export diff-1-to-2
+RESULT=$(http POST :$EXPORTER_HREF'exports/' start_versions:=[\"${COPY_HREF}versions/1/\"] versions:=[\"${COPY_HREF}versions/2/\"] full=False) #"
+TASK_URL=$(echo $RESULT | jq -r '.task')
+if [ -z "$TASK_URL" ]; then exit; fi
+wait_until_task_finished :$TASK_URL
+sleep 1
+exit
+
 # export diff-1-to-1
 RESULT=$(http POST :$EXPORTER_HREF'exports/' start_versions:=[\"${COPY_HREF}versions/1/\"] versions:=[\"${COPY_HREF}versions/1/\"] full=False) #"
 TASK_URL=$(echo $RESULT | jq -r '.task')
@@ -92,10 +100,4 @@ if [ -z "$TASK_URL" ]; then exit; fi
 wait_until_task_finished :$TASK_URL
 sleep 1
 
-# export diff-1-to-2
-RESULT=$(http POST :$EXPORTER_HREF'exports/' start_versions:=[\"${COPY_HREF}versions/1/\"] versions:=[\"${COPY_HREF}versions/2/\"] full=False) #"
-TASK_URL=$(echo $RESULT | jq -r '.task')
-if [ -z "$TASK_URL" ]; then exit; fi
-wait_until_task_finished :$TASK_URL
-sleep 1
 

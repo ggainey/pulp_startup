@@ -8,7 +8,7 @@ wait_until_task_finished() {
     do
         local response=$(http $task_url)
         local state=$(jq -r .state <<< ${response})
-        jq . <<< "${response}"
+        # jq . <<< "${response}"
         case ${state} in
             failed|canceled)
                 echo "Task in final state: ${state}"
@@ -19,7 +19,7 @@ wait_until_task_finished() {
                 break
                 ;;
             *)
-                echo "Still waiting..."
+                echo -n "."
                 sleep 1
                 ;;
         esac

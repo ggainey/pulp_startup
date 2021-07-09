@@ -8,7 +8,7 @@ wait_until_task_finished() {
     do
         local response=$(http $task_url)
         local state=$(jq -r .state <<< ${response})
-        jq . <<< "${response}"
+        #jq . <<< "${response}"
         case ${state} in
             failed|canceled)
                 echo "Task in final state: ${state}"
@@ -19,14 +19,17 @@ wait_until_task_finished() {
                 break
                 ;;
             *)
-                echo "Still waiting..."
+                #echo "Waiting..."
+                echo -n "."
                 sleep 1
                 ;;
         esac
     done
+    echo ""
 }
 
-BASE_ADDR="admin:password@localhost:24817"
+#BASE_ADDR="admin:password@localhost:24817"
+BASE_ADDR=":"
 
 # RPM fixtures
 #rpm-advisory-diff-repo
@@ -56,8 +59,9 @@ BASE_ADDR="admin:password@localhost:24817"
 #rpm-with-sha-1-modular
 #rpm-with-sha-512
 #rpm-with-vendor
+#rpm-with-md5
 #ZOO_URL="https://fixtures.pulpproject.org/rpm-with-modules/"
-ZOO_URL="https://fixtures.pulpproject.org/rpm-distribution-tree/"
+ZOO_URL="https://fixtures.pulpproject.org/rpm-with-md5/"
 ZOO_NAME="zoo"
 # FOR ZOO
 # create repos
@@ -91,9 +95,15 @@ echo "publication_href : " $PUBLICATION_HREF
 if [ -z "$PUBLICATION_HREF" ]; then exit; fi
 # show it
 http $BASE_ADDR$PUBLICATION_HREF
-# sync it again
-TASK_URL=$(http POST $BASE_ADDR$ZOO_HREF'sync/' remote=$REMOTE_HREF | jq -r '.task')
-echo "Task url : " $TASK_URL
+# Distribute it
+TASK_URL=$(http POST $BASE_ADDR/pulp/api/v3/distributions/rpm/rpm/ name=$ZOO_NAME base_path=$ZOO_NAME publication=$PUBLICATION_HREF | jq -r '.task')
+echo $TASK_URL
 if [ -z "$TASK_URL" ]; then exit; fi
 # wait for task
 wait_until_task_finished $BASE_ADDR$TASK_URL
+# find latest distribution
+DISTRIBUTION_HREF=$(http $BASE_ADDR$TASK_URL | jq -r '.created_resources | first')
+echo "distribution href : " $DISTRIBUTION_HREF
+if [ -z "$DISTRIBUTION_HREF" ]; then exit; fi
+# show it
+http $BASE_ADDR$DISTRIBUTION_HREF
