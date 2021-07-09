@@ -1,0 +1,31 @@
+# Build your fixture
+rm -rf fixtures
+make fixtures/rpm-modules-static-context
+
+# Clean up containers
+podman container list
+podman container stop 6bd91e56a5ae
+podman container rm -a
+
+# Clean up and build image
+buildah images
+buildah rmi 6978b1b73c4e
+buildah bud -f Containerfile -t pulp/pulp-fixtures .
+
+# Start the container
+podman run -d -p 8000:8080 pulp/pulp-fixtures
+
+# Check the container content
+http http://localhost:8000/rpm-modules-static-context/
+wget http://localhost:8000/rpm-modules-static-context/repodata/6472619acfd0800653fd6a277ef6e2c618ee8c2e07fbd4920a084da5e1d7a317-modules.yaml.gz
+
+
+# Create the pulp3 repo/remote/publication/distribution
+pulp rpm remote create --name foo --url http://localhost:8000/rpm-modules-static-context/
+pulp rpm repository create --name bang
+pulp rpm repository sync --name bang --remote foo
+pulp rpm publication create --repository bang
+pulp rpm distribution create --name bang --base-path bang --repository bang --publication /pulp/api/v3/publications/rpm/rpm/e4bb1e79-af6e-4bfc-839c-aaf308c8dcb3/
+
+# verify distribution
+http http://pulp3-source-fedora33.padre-fedora.example.com/pulp/content/

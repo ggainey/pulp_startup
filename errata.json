@@ -1,0 +1,60 @@
+{
+  "title": "CentOS ipxe Enhancement Update",
+  "type": "enhancement",
+  "description": "CentOS ipxe Enhancement Update",
+  "release": "el7",
+  "version": "1",
+  "severity": "Low",
+  "status": "final",
+  "updated": "2020-10-20 18:16:05",
+  "issued": "2020-10-20 18:16:05",
+  "pkglist": [
+    {
+      "packages": [
+        {
+          "arch": "noarch",
+          "epoch": "0",
+          "filename": "ipxe-bootimgs-20180825-3.git133f4c.el7.noarch.rpm",
+          "release": "3.git133f4c.el7",
+          "name": "ipxe-bootimgs",
+          "sum": "4d2c6e4365df9b0d023432167027ad249247a14bb74220c82197400999902e7d",
+          "sum_type": "sha256"
+        },
+        {
+          "arch": "noarch",
+          "epoch": "0",
+          "filename": "ipxe-roms-20180825-3.git133f4c.el7.noarch.rpm",
+          "release": "3.git133f4c.el7",
+          "name": "ipxe-roms",
+          "sum": "c8e568663ec0c6219619171ea1f1ea900bff4cf9a46e8a87020be72d0e105fa0",
+          "sum_type": "sha256"
+        },
+        {
+          "arch": "noarch",
+          "epoch": "0",
+          "filename": "ipxe-roms-qemu-20180825-3.git133f4c.el7.noarch.rpm",
+          "release": "3.git133f4c.el7",
+          "name": "ipxe-roms-qemu",
+          "sum": "35baa49dde0a5aff5efa3895480e34eb52954d727e454995655931c132eb9ca3",
+          "sum_type": "sha256"
+        }
+      ]
+    }
+  ],
+  "id": "CEEA-2020:4006",
+  "from": "centos-announce@centos.org",
+  "references": [
+    {
+      "href": "https://access.redhat.com/errata/RHEA-2020:4006",
+      "ref_id": "CEEA-2020:4006",
+      "title": "CentOS ipxe Enhancement Update",
+      "ref_type": "enhancement"
+    },
+    {
+      "href": "https://lists.centos.org/pipermail/centos-cr-announce/2020-October/012736.html",
+      "ref_id": "CEEA-2020:4006",
+      "title": "CentOS ipxe Enhancement Update",
+      "ref_type": "enhancement"
+    }
+  ]
+}
