@@ -4,3 +4,29 @@
    88  sudo systemctl status pulpcore-api pulpcore-content pulpcore-resource-manager
  5024  http :24817/pulp/api/v3/status/  # This should show the status API
 
+== setup cli tooling
+=== pulp3 side
+systemctl restart pulpcore-api
+pip3 install httpie pulp-cli
+mkdir -p .config/pulp
+vi .config/pulp/settings.toml
+[cli]
+base_url = "https://dhcp-2-52.vms.sat.rdu2.redhat.com"
+username = "admin"
+password = "password"
+verify_ssl = false
+format = "json"
+
+=== pulp2 side
+vi /etc/yum.repos.d/pulp.repo
+[pulp]
+baseurl=https://repos.fedorapeople.org/pulp/pulp/stable/2.21/7Server/x86_64/
+gpgcheck=0
+name=Pulp Project repository
+priority=99
+enabled=1
+
+sudo yum install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+pulpversion=$(rpm -qa pulp-server --queryformat "%{VERSION}")
+yum install pulp-admin-client-${pulpversion} pulp-rpm-admin-extensions.noarch --disableplugin=foreman-protector
+
