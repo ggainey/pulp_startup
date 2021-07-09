@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+REPO_NAME=rpm-signed
+pulp-admin login -u admin -p admin
+#
+pulp-admin rpm repo delete --repo-id ${REPO_NAME}
+pulp-admin orphan remove --all
+#
+pulp-admin rpm repo create --repo-id ${REPO_NAME} --relative-url ${REPO_NAME} --feed https://fixtures.pulpproject.org/rpm-signed/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id ${REPO_NAME}
+#
+PLAN_HREF=$(pulp migration plan create --plan '{"plugins": [{"type": "rpm"}]}' | jq -r '.pulp_href')
+echo "PLAN_HREF = ${PLAN_HREF}"
+pulp migration plan run --href ${PLAN_HREF}
+#
+pulp-admin rpm repo update --repo-id ${REPO_NAME} --download-policy immediate
+pulp-admin rpm repo sync run --repo-id ${REPO_NAME}
+#
+pulp migration plan run --href ${PLAN_HREF}
+PGPASSWORD=pulp psql -U pulp -d pulp --host 127.0.0.1 \
+    -c 'select pulp2_id, pulp2_content_type_id, pulp2_repo_id, pulp2_subid, count(*) from pulp_2to3_migration_pulp2content group by pulp2_id, pulp2_content_type_id, pulp2_repo_id, pulp2_subid having count(*) > 1;'
