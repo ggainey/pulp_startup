@@ -30,7 +30,8 @@ export PULP2_AUTH=`python -c 'import base64; print(base64.encodestring("admin:ad
 cleanup=""
 p2setup=""
 migrate="yes"
-resync=""
+resync="yes"
+mirror="yes"
 
 pulp-admin login -u admin -p admin
 
@@ -39,7 +40,7 @@ if [ -n "$cleanup" ]; then
     echo ">>> REPO/REMOTE CLEANUP"
     for i in ${!PROBLEM_NAMES[@]}
     do
-        if [ $i -lt 0 ]
+        if [ $i -gt 2 ]
         then
             continue
         fi
@@ -59,14 +60,14 @@ if [ -n "$p2setup" ]; then
     echo ">>> SYNC"
     for i in ${!PROBLEM_NAMES[@]}
     do
-        if [ $i -lt 0 ]
+        if [ $i -gt 2 ]
         then
             continue
         fi
         echo ${PROBLEM_NAMES[$i]} : ${PROBLEM_URLS[$i]}
         echo Token : ${SUSE_TOKENS[$i]}
         pulp-admin rpm repo create --repo-id ${PROBLEM_NAMES[$i]} \
-            --feed ${PROBLEM_URLS[$i]} --download-policy on_demand
+            --feed ${PROBLEM_URLS[$i]} --download-policy immediate
         if [[ "NULL" != ${SUSE_TOKENS[$i]} ]]
         then
             CONFIG="{\"query_auth_token\": \"${SUSE_TOKENS[$i]}\" }"
@@ -97,13 +98,12 @@ if [ -n "$migrate" ]; then
     sleep 180
 fi
 
-# syncing SUSE repos post-migration fails due to https://pulp.plan.io/issues/9088
 if [ -n "$resync" ]; then
     # sync in pulp3
     echo ">>> SYNC AUTOPUBLISH"
     for i in ${!PROBLEM_NAMES[@]}
     do
-        if [ $i -lt 0 ]
+        if [ $i -gt 2 ]
         then
             continue
         fi
@@ -112,6 +112,25 @@ if [ -n "$resync" ]; then
         REMOTE_HREF=$(pulp rpm repository show --name ${PROBLEM_NAMES[$i]} | jq -r .remote)
         echo "Remote-href: ${REMOTE_HREF}"
         pulp rpm repository sync --name ${PROBLEM_NAMES[$i]}
+        echo -e "\n\n"
+    done
+fi
+
+if [ -n "$mirror" ]; then
+    # sync in pulp3
+    echo ">>> SYNC MIRROR"
+    for i in ${!PROBLEM_NAMES[@]}
+    do
+        if [ $i -gt 2 ]
+        then
+            continue
+        fi
+        echo ${PROBLEM_NAMES[$i]} : ${PROBLEM_URLS[$i]}
+        echo Token : ${SUSE_TOKENS[$i]}
+        REMOTE_HREF=$(pulp rpm repository show --name ${PROBLEM_NAMES[$i]} | jq -r .remote)
+        echo "Remote-href: ${REMOTE_HREF}"
+        pulp rpm repository update --name ${PROBLEM_NAMES[$i]} --no-autopublish
+        pulp rpm repository sync --name ${PROBLEM_NAMES[$i]} --mirror
         echo -e "\n\n"
     done
 fi

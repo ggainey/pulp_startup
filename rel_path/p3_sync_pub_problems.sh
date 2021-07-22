@@ -2,18 +2,24 @@
 PROBLEM_NAMES=(\
 grafana \
 centos-ops \
+mysql \
 sles12-backport-sp5-standard \
 sles12-backport-sp5-product \
 sles12-backport-sp4-standard \
 sles12-backport-sp4-product \
+sles12-update-sp5 \
+sles12-debug-update-sp5 \
 )
 PROBLEM_URLS=(\
 https://packages.grafana.com/oss/rpm \
 http://ftp.cs.stanford.edu/centos/7/opstools/x86_64/ \
+http://repo.mysql.com/yum/mysql-tools-community/el/7/x86_64/ \
 https://updates.suse.com/SUSE/Backports/SLE-12-SP5_x86_64/standard/ \
 https://updates.suse.com/SUSE/Backports/SLE-12-SP5_x86_64/product/ \
 https://updates.suse.com/SUSE/Backports/SLE-12-SP4_x86_64/standard/ \
 https://updates.suse.com/SUSE/Backports/SLE-12-SP4_x86_64/product/ \
+https://updates.suse.com/SUSE/Updates/SLE-SERVER/12-SP5/x86_64/update/ \
+https://updates.suse.com/SUSE/Updates/SLE-SERVER/12-SP5/x86_64/update_debug/ \
 )
 # ordered list of repo-auth-tokens matching the URLs above. Fill from your own
 # account-access. For non-SUSE-repos, use "NULL"
@@ -25,6 +31,10 @@ echo TOKENS : ${SUSE_TOKENS[@]}
 echo ">>> REPO/REMOTE CLEANUP"
 for i in ${!PROBLEM_NAMES[@]}
 do
+    if [ $i -gt 2 ]
+    then
+        continue
+    fi
     echo clean ${PROBLEM_NAMES[$i]}
     pulp rpm remote destroy --name ${PROBLEM_NAMES[$i]}
     pulp rpm repository destroy --name ${PROBLEM_NAMES[$i]}
@@ -36,6 +46,10 @@ pulp orphans delete | jq .pulp_href
 echo ">>> SYNC AUTOPUBLISH"
 for i in ${!PROBLEM_NAMES[@]}
 do
+    if [ $i -gt 2 ]
+    then
+        continue
+    fi
     echo ${PROBLEM_NAMES[$i]} : ${PROBLEM_URLS[$i]}
     echo Token : ${SUSE_TOKENS[$i]}
     if [[ "NULL" != ${SUSE_TOKENS[$i]} ]]
@@ -59,6 +73,10 @@ done
 echo ">>> REPO/REMOTE CLEANUP"
 for i in ${!PROBLEM_NAMES[@]}
 do
+    if [ $i -gt 2 ]
+    then
+        continue
+    fi
     echo clean ${PROBLEM_NAMES[$i]}
     pulp rpm repository destroy --name ${PROBLEM_NAMES[$i]}
 done
@@ -69,6 +87,10 @@ pulp orphans delete | jq .pulp_href
 echo ">>> SYNC MIRROR"
 for i in ${!PROBLEM_NAMES[@]}
 do
+    if [ $i -gt 2 ]
+    then
+        continue
+    fi
     echo ${PROBLEM_NAMES[$i]} : ${PROBLEM_URLS[$i]}
     pulp rpm repository create --name ${PROBLEM_NAMES[$i]} --remote ${PROBLEM_NAMES[$i]} | jq .pulp_href
     pulp rpm repository sync --name ${PROBLEM_NAMES[$i]} --mirror | jq .pulp_href

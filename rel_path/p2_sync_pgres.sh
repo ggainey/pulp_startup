@@ -5,8 +5,8 @@ VERSIONS=(11 12)
 RHEL_VARIANTS=(rhel-7 rhel-8)
 ARCHS=(x86_64)
 
-cleanup=
-p2setup=
+cleanup="yes"
+p2setup="yes"
 migrate="yes"
 resync="yes"
 
