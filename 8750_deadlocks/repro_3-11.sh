@@ -35,6 +35,7 @@ do
             pulp rpm repository create --name ${NAMES[$n]}-${i} --remote ${NAMES[$n]}-${i} | jq .pulp_href
         done
     done
+    starting_failed=`pulp task list --state failed | jq length`
     echo "SYNCING..."
     for n in ${!NAMES[@]}
     do
@@ -58,8 +59,9 @@ do
     done
     failed=`pulp task list --state failed | jq length`
     echo "FAILURES : ${failed}"
-    if [ ${failed} -gt 0 ]
+    if [ ${failed} -gt ${starting_failed} ]
     then
+      echo "FAILED: " ${failed} - ${starting_failed}
       exit
     fi
     echo "CLEANUP FOR NEXT"
