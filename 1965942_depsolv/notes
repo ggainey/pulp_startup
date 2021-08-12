@@ -1,0 +1,271 @@
+curl -X PATCH -d state=canceled --cert /etc/pki/katello/certs/pulp-client.crt --key /etc/pki/katello/private/pulp-client.key https://$(hostname -f)/pulp/api/v3/tasks/4d90955f-82a3-40ee-b7fd-d80a4fe55a22/
+
+[root@sat-r220-09 ~]# sudo su - postgres
+-bash-4.2$ psql pulpcore
+
+
+[root@sat-r220-09 ~]# df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+devtmpfs                              16G     0   16G   0% /dev
+tmpfs                                 16G  260K   16G   1% /dev/shm
+tmpfs                                 16G   18M   16G   1% /run
+tmpfs                                 16G     0   16G   0% /sys/fs/cgroup
+/dev/mapper/rhel_sat--r220--09-root  915G   13G  903G   2% /
+/dev/sda1                           1014M  234M  781M  23% /boot
+tmpfs                                3.2G     0  3.2G   0% /run/user/0
+[root@sat-r220-09 ~]# rpm -qa | grep libsolv
+libsolv-0.7.17-1.el7pc.x86_64
+rpm -q[root@sat-r220-09 ~]# rpm -qa | grep pulp
+tfm-rubygem-pulpcore_client-3.14.1-1.el7sat.noarch
+python3-pulp-file-1.8.1-1.el7pc.noarch
+tfm-rubygem-pulp_certguard_client-1.4.0-1.el7sat.noarch
+tfm-rubygem-pulp_container_client-2.7.0-1.el7sat.noarch
+python3-pulp-rpm-3.14.0-1.el7pc.noarch
+pulp-client-1.0-1.noarch
+pulpcore-selinux-1.2.4-1.el7pc.x86_64
+python3-pulp-ansible-0.9.0-1.el7pc.noarch
+tfm-rubygem-pulp_rpm_client-3.13.3-1.el7sat.noarch
+tfm-rubygem-pulp_ansible_client-0.8.0-1.el7sat.noarch
+python3-pulp-certguard-1.4.0-1.el7pc.noarch
+python3-pulpcore-3.14.3-1.el7pc.noarch
+python3-pulp-container-2.7.1-1.el7pc.noarch
+tfm-rubygem-smart_proxy_pulp-3.0.0-1.el7sat.noarch
+tfm-rubygem-pulp_file_client-1.8.1-1.el7sat.noarch
+tfm-rubygem-pulp_deb_client-2.13.0-1.el7sat.noarch
+[root@sat-r220-09 ~]#
+
+hammer content-view publish --name CV_RHEL7_yes_include_2021-05-01 --organization-id=1 --async
+Content view is being published with task 13c7ec98-17f8-4908-a1f0-84612ae6de36.
+[root@sat-r220-09 ~]# sudo su - postgres
+-bash-4.2$ psql pulpcore
+psql (12.7)
+Type "help" for help.
+
+HORRIBLE SQL:
+===
+2021-08-10 11:56:11 EDT LOG:  duration: 9899.888 ms  statement: SELECT (1) AS "a" FROM "rpm_package" WHERE ("rpm_package"."
+name" = 'systemtap-runtime' AND "rpm_package"."content_ptr_id" IN (SELECT V0."pulp_id" FROM "core_content" V0 INNER JOIN "c
+ore_repositorycontent" V1 ON (V0."pulp_id" = V1."content_id") WHERE (V1."pulp_id" IN (SELECT U0."pulp_id" FROM "core_reposi
+torycontent" U0 INNER JOIN "core_repositoryversion" U2 ON (U0."version_added_id" = U2."pulp_id") LEFT OUTER JOIN "core_repo
+sitoryversion" U3 ON (U0."version_removed_id" = U3."pulp_id") WHERE (U0."repository_id" = '6f5676f1-5699-4e5f-b6fe-e7514a97
+2cb7'::uuid AND U2."number" <= 2 AND NOT (U3."number" <= 2 AND U3."number" IS NOT NULL))) AND V0."pulp_id" IN
+===
+
+===
+2021-08-10 11:56:01 EDT LOG:  duration: 31153.501 ms  statement: SELECT "core_content"."pulp_id", "core_content"."pulp_crea
+ted", "core_content"."pulp_last_updated", "core_content"."pulp_type", "core_content"."upstream_id", "core_content"."timesta
+mp_of_interest", "rpm_package"."content_ptr_id", "rpm_package"."name", "rpm_package"."epoch", "rpm_package"."version", "rpm
+_package"."release", "rpm_package"."arch", "rpm_package"."evr", "rpm_package"."pkgId", "rpm_package"."checksum_type", "rpm_
+package"."summary", "rpm_package"."description", "rpm_package"."url", "rpm_package"."changelogs", "rpm_package"."files", "r
+pm_package"."requires", "rpm_package"."provides", "rpm_package"."conflicts", "rpm_package"."obsoletes", "rpm_package"."sugg
+ests", "rpm_package"."enhances", "rpm_package"."recommends", "rpm_package"."supplements", "rpm_package"."location_base", "r
+pm_package"."location_href", "rpm_package"."rpm_buildhost", "rpm_package"."rpm_group", "rpm_package"."rpm_license", "rpm_pa
+ckage"."rpm_packager", "rpm_package"."rpm_sourcerpm", "rpm_package"."rpm_vendor", "rpm_package"."rpm_header_start", "rpm_pa
+ckage"."rpm_header_end", "rpm_package"."size_archive", "rpm_package"."size_installed", "rpm_package"."size_package", "rpm_p
+ackage"."time_build", "rpm_package"."time_file", "rpm_package"."is_modular" FROM "rpm_package" INNER JOIN "core_content" ON
+ ("rpm_package"."content_ptr_id" = "core_content"."pulp_id") WHERE ("rpm_package"."name" = 'strace' AND "rpm_package"."cont
+ent_ptr_id" IN (SELECT V0."pulp_id" FROM "core_content" V0 INNER JOIN "core_repositorycontent" V1 ON (V0."pulp_id" = V1."co
+ntent_id") WHERE (V1."pulp_id" IN (SELECT U0."pulp_id" FROM "core_repositorycontent" U0 INNER JOIN "core_repositoryversion"
+ U2 ON (U0."version_added_id" = U2."pulp_id") LEFT OUTER JOIN "core_repositoryversion" U3 ON (U0."version_removed_id" = U3.
+"pulp_id") WHERE (U0."repository_id" = '6f5676f1-5699-4e5f-b6fe-e7514a972cb7'::uuid AND U2."number" <= 2 AND NOT (U3."numbe
+r" <= 2 AND U3."number" IS NOT NULL))) AND V0."pulp_id" IN (
+===
+
+===
+2021-08-10 11:55:30 EDT LOG:  duration: 31177.492 ms  statement: SELECT (1) AS "a" FROM "rpm_package" WHERE ("rpm_package".
+"name" = 'strace' AND "rpm_package"."content_ptr_id" IN (SELECT V0."pulp_id" FROM "core_content" V0 INNER JOIN "core_reposi
+torycontent" V1 ON (V0."pulp_id" = V1."content_id") WHERE (V1."pulp_id" IN (SELECT U0."pulp_id" FROM "core_repositoryconten
+t" U0 INNER JOIN "core_repositoryversion" U2 ON (U0."version_added_id" = U2."pulp_id") LEFT OUTER JOIN "core_repositoryvers
+ion" U3 ON (U0."version_removed_id" = U3."pulp_id") WHERE (U0."repository_id" = '6f5676f1-5699-4e5f-b6fe-e7514a972cb7'::uui
+d AND U2."number" <= 2 AND NOT (U3."number" <= 2 AND U3."number" IS NOT NULL))) AND V0."pulp_id" IN
+===
+
+"find the package(s) named libreport-cli that are in the specified repo-version and whose content_ptr_id is in the requested content" -- ie
+===
+021-08-10 11:54:58 EDT LOG:  duration: 31150.001 ms  statement: SELECT "core_content"."pulp_id", "core_content"."pulp_created", "core_content"."pulp_last_updated", "core_content"."pulp_type", "core_content"."upstream_id", "core_content"."timestamp_of_interest", "rpm_package"."content_ptr_id", "rpm_package"."name", "rpm_package"."epoch", "rpm_package"."version", "rpm_package"."release", "rpm_package"."arch", "rpm_package"."evr", "rpm_package"."pkgId", "rpm_package"."checksum_type", "rpm_package"."summary", "rpm_package"."description", "rpm_package"."url", "rpm_package"."changelogs", "rpm_package"."files", "rpm_package"."requires", "rpm_package"."provides", "rpm_package"."conflicts", "rpm_package"."obsoletes", "rpm_package"."suggests", "rpm_package"."enhances", "rpm_package"."recommends", "rpm_package"."supplements", "rpm_package"."location_base", "rpm_package"."location_href", "rpm_package"."rpm_buildhost", "rpm_package"."rpm_group", "rpm_package"."rpm_license", "rpm_package"."rpm_packager", "rpm_package"."rpm_sourcerpm", "rpm_package"."rpm_vendor", "rpm_package"."rpm_header_start", "rpm_package"."rpm_header_end", "rpm_package"."size_archive", "rpm_package"."size_installed", "rpm_package"."size_package", "rpm_package"."time_build", "rpm_package"."time_file", "rpm_package"."is_modular" FROM "rpm_package" INNER JOIN "core_content" ON ("rpm_package"."content_ptr_id" = "core_content"."pulp_id") WHERE ("rpm_package"."name" = 'libreport-cli' AND "rpm_package"."content_ptr_id" IN (SELECT V0."pulp_id" FROM "core_content" V0 INNER JOIN "core_repositorycontent" V1 ON (V0."pulp_id" = V1."content_id") WHERE (V1."pulp_id" IN (SELECT U0."pulp_id" FROM "core_repositorycontent" U0 INNER JOIN "core_repositoryversion" U2 ON (U0."version_added_id" = U2."pulp_id") LEFT OUTER JOIN "core_repositoryversion" U3 ON (U0."version_removed_id" = U3."pulp_id") WHERE (U0."repository_id" = '6f5676f1-5699-4e5f-b6fe-e7514a972cb7'::uuid AND U2."number" <= 2 AND NOT (U3."number" <= 2 AND U3."number" IS NOT NULL))) AND V0."pulp_id" IN ('004a24da-0741-42b5-ad69-ce89840248e5'::uuid, '02104de5-341c-4caf-9be1-3fe6c8f12b94'::uuid, '07df36fe-70a4-4e0a-849d-fbeb25b3f079'::uuid, '1cb4d6fb-275b-4947-ae60-b2a313ac53d4'::uuid, '1d4d312b-a11d-4e2d-9809-7f8bd01fb54c'::uuid, '208ebfd6-07ca-476e-be88-90b1b3185183'::uuid, '2cf971ea-5e30-4549-9eb2-16a9b8b1a46b'::uuid, '396b7240-3bf2-4be3-8fbe-7a6650213e0b'::uuid, '3b26846c-b01d-43f5-b2b2-402ced871743'::uuid, '3c52dce2-15d6-492a-b699-9c8efe91aaad'::uuid, '44e64cde-b4ce-4478-b6b3-04a95cc3f05e'::uuid, '52439138-96ea-41e1-bfa2-9e7a0679f91b'::uuid, '5c4bcce1-5c97-442d-b543-628020b92e19'::uuid, '6f00aa71-6277-494d-9098-352768982bd3'::uuid, '6ff9bdc3-a5d3-42f7-af14-40a443fcb92b'::uuid, '74991ffe-d9e2-46d0-a2f6-8b1ea2bbc673'::uuid, '791faddd-9ac5-4cf4-b556-2a85a7ba42c6'::uuid, '82510dca-32fc-49b5-be55-ad3c1f5f1d9c'::uuid, '84bce88b-8d47-4b5c-907b-061a704e9928'::uuid, '880d8f4f-fc48-4008-927d-b834858e82c5'::uuid, '8c031928-e49b-443c-94f9-41a334775705'::uuid, '905df18f-de97-46e3-8443-9983664bd182'::uuid, '9971f3d0-2d9e-4c80-9f33-451e9719c300'::uuid, '9c7fc671-416d-498f-8ce0-bbbbd74b8d0e'::uuid, '9cd86c87-7936-48c9-8a51-0c19e491572f'::uuid, 'a7d6dd38-efba-45c7-a8dc-e58664aeebe9'::uuid, 'b05495ba-e064-47ed-a909-369d1644b90c'::uuid, 'b3d8709a-14a6-4631-a119-b452c94e2df3'::uuid, 'b44392ba-0ef9-4ad7-854e-b8654504dd80'::uuid, 'c96f3f6b-aa42-4180-bc9e-08cf9304ee2c'::uuid, 'ccdb623d-581c-4a87-9c23-5ec51c163259'::uuid, 'd1bbaa37-406e-40eb-ae16-2740b755860e'::uuid, 'd3a2d1bf-5eac-44f9-97f0-3970ab33ad5e'::uuid, 'd85615d1-15f8-48af-9bf8-46fbc579ae98'::uuid, 'dabe59ec-542d-49ad-8d52-c58749a9c254'::uuid, 'e1468dc9-e9ee-4301-a0db-838bff399b43'::uuid, 'e94b4b92-dfb3-47f0-990b-fd4a54360ee9'::uuid, 'edc11c0e-e474-4297-ab03-ce1869cc90b0'::uuid, 'f58c2185-503c-4675-b31e-874b8058c037'::uuid, 'f7138128-e028-40a2-bef1-9f5c5880ab3a'::uuid, 'fb0296bc-2dc9-4cef-b29b-500e97421d69'::uuid,'fd5ab080-68fa-49e8-a5f1-37262c3b6a3c'::uuid, '0006f51c-e2c2-4f03-a893-d4dd6614f08b'::uuid, '00092bee-cb00-4b82-87db-c7b2c13ad25d'::uuid, '000eb3ad-ef8a-4857-a93e-fa50287b3ad7'::uuid, '00233ddc-7c0a-46b7-83b1-1a4ba1cab402'::uuid, '0037628f-a7ff-479a-947b-0cb476a735d6'::uuid, '0037790e-d4be-4cc1-aaf6-ec7579c7e33c'::uuid, '003863aa-b43f-4d84-8f43-a780d89ab64e'::uuid, '003cbb62-f52a-4473-9c11-5fdc659b40d1'::uuid, '00424e37-79f1-4ff3-bfba-bee7a491ca56'::uuid, '0044e9a7-5eae-48d0-9787-76ae8aea33de'::uuid, '006af1a2-6218-4d03-8f9d-e9c28ff54e32'::uuid, '006c49d8-9ba5-4d47-bf1c-ab7a04f911e7'::uuid, '00ae4c85-d5fe-4401-918d-ef48f3b630b4'::uuid, '00b0cca2-8c0f-4aec-9b94-d6000aa31f4c'::uuid, '00baaa43-2174-4924-b8c1-c0023b068af9'::uuid, '01062e47-a59e-437a-af97-135fa612763b'::uuid, '01166bb1-de14-4b0a-a0f5-eb673356baa1'::uuid, '012e21fd-72a5-420f-8f75-b24ae0c79d63'::uuid, '013a16e0-ec8a-442e-bcdb-d641b35758cf'::uuid, '0140a320-9133-47c8-9aa9-a2059b3a5ec2'::uuid, '0143ac68-fc43-40d3-a69e-c0d321f55ed6'::uuid, '014a5d04-3588-4aa7-9c28-766c5e180104'::uuid, '014a7c35-d575-47ee-9420-48916518f2ae'::uuid, '015b8edb-9c63-4d9d-b50a-65da7bba0dd9'::uuid, '0168f2d9-ba21-4c57-ba8d-e41ba528a8f7'::uuid, '016f9e24-b691-4f26-8753-0657812cd235'::uuid, '0171e11d-d140-464c-83af-4435008b79b7'::uuid, '017ac2f6-a26f-4022-b780-323d8556d514'::uuid, '018a168d-119f-4412-83a6-c735f96330cf'::uuid, '018cd626-acc1-4b98-9672-6a7a82c74b89'::uuid, '018d9bf9-b63e-4693-a269-c7645ddab4c9'::uuid, '019039c2-4cae-489a-bb55-48bda8141e2d'::uuid, '01979875-71f0-46ae-9d4a-3ca11a101740'::uuid, '019ce302-c4cd-4a16-a693-b7cbfe7cffb7'::uuid, '01aa446b-d18b-4e29-8dc3-ac76f3219d4a'::uuid, '01acf67c-b2f9-4271-9e00-bc46db822d3d'::uuid, '01ce99dc-d146-425c-b3b2-1328443b759a'::uuid, '01e95525-e6da-4340-a49d-9024111e1982'::uuid, '01f3d41b-6e88-4ac3-a160-620910fbe176'::uuid, '01fa704d-2347-4334-b71b-20512651481d'::uuid, '021fe6e8-2b5c-4b5a-8642-df669ca0e3c2'::uuid, '02215369-bd24-445e-97ed-cdf569e06ec9'::uuid, '022e9596-a6c4-46a3-9842-091993dcf936'::uuid, '024eadec-bd1d-4fe7-a2d4-87822a8d42a4'::uuid, '024efd55-8b83-4e27-88b6-ae97a639c886'::uuid, '0261907d-d440-4788-a5a6-bdd9c47f8522'::uuid, '02622e79-4ca3-436d-ba0b-421d22b4e4cc'::uuid, '0264dac9-3942-4331-9055-c9a79471429a'::uuid, '02659211-0ad5-4d45-9d09-c250a48af80c'::uuid, '02681890-ff0e-4e7d-9b3e-2b2ba88893a3'::uuid, '0289ba71-3018-4a50-86fb-d38cc877cafe'::uuid, '02b6d844-169e-4879-92c9-7d94b482f618'::uuid, '02b70009-d713-45b5-aad8-59f03e781ceb'::uuid, '02ba7556-cc4c-4686-b0a1-b7bee0db8fa3'::uuid, '02c8e948-87a7-4564-b2bd-1dbf790d397d'::uuid, '02cbe40a-16b2-45ee-b03d-90a3ef43e2c9'::uuid, '02f0151d-3af7-434a-b956-13b663abd9b8'::uuid, '030401e1-f9bb-4e30-9b13-02c43dddc6f7'::uuid, '03407fd2-6a7d-4286-a8d6-b0c17880cb6b'::uuid, '0349c27b-1834-49af-aedc-a8e902ef56c4'::uuid, '034a0b25-1d95-436a-a4de-d5295e60d0eb'::uuid, '034b614b-ea7f-400b-bdbc-dea71a7cca64'::uuid, '034db4c5-3011-400a-b3d1-7d26074c6c9d'::uuid, '0367bac7-4127-46fd-b74d-85aa561f4b74'::uuid, '03709223-0b23-4aac-a7f7-cb77ff7a4117'::uuid, '0399fa2b-376e-4aad-8635-471a92fd1c79'::uuid, '03b1f9be-ed63-485e-a74d-85a1e5b79f1a'::uuid, '03c4fc34-0742-40bc-9fde-3083388cde9b'::uuid, '03e44621-3c52-46f5-8828-92bae17128a5'::uuid, '03e5421f-c8dd-43c6-a102-71190716ca69'::uuid, '03e65c02-75ea-4fb0-b840-fc607d6556af'::uuid, '03e8c9b7-9f87-4ae6-9534-252a8533b6bc'::uuid, '03ed737f-ec04-422d-bd5b-a9153bd2bae4'::uuid, '040431a3-4f41-448e-b69d-8f4ae0fe7cff'::uuid, '040b6bed-d510-4218-b57a-0772f1b8f559'::uuid, '04193cd3-c473-4a42-ab5a-8adc78bcf5d0'::uuid, '0425aaa0-7269-4960-ac94-f447dbfa3a48'::uuid, '04281cda-66e3-4d02-afd5-0019816ed104'::uuid, '045e2076-24da-41cf-aaec-fb240830676a'::uuid, '046f15bb-ee12-45b2-93b1-7e5ee6d4e3ff'::uuid, '047eb6e3-5c31-4b94-8cfd-2956db4557b8'::uuid, '0482f5a9-ddbb-4ffa-8d3c-dbee506fe442'::uuid, '049b340b-68c0-4f95-9381-9b2431cc87fa'::uuid, '049f3fa7-44b6-40d2-aec2-b413fa9a18b5'::uuid, '04a76422-c3da-4384-8de5-eabc8482b978'::uuid, '04b7b771-0be2-4178-9bf6-c50de0208759'::uuid, '04d116d2-de1c-4115-a475-216178153a9d'::uuid, '056971e7-7246-4e81-aa5d-2fbc26238258'::uuid, '056d3009-6b39-42d3-9c61-cbdb13184357'::uuid, '0571e133-c5b8-43f3-ab53-58c1bac39617'::uuid, '057d6617-5151-41ef-a40d-1510af4d8083'::uuid, '05839188-bacf-4b4e-9dff-e44fbaecab4d'::uuid, '058c436b-7e9b-45ef-922d-5c910e9e4fae'::uuid, '059180de-4316-4264-992b-8d7a5353c7f8'::uuid, '05924fcf-5c1b-49ec-825a-b784c9d03d42'::uuid, '05a57d75-40e6-4ec0-8934-175fe26519f7'::uuid, '05aa39d3-d75d-4866-9103-c02f3746b467'::uuid, '05b26332-95a9-44ba-a2ff-27a804cc388a'::uuid, '05c4989b-b605-4b89-a3e2-bd9dbc86e14d'::uuid, '06043d1b-e14e-4991-bcfc-f9ea3dca4c31'::uuid, '0606b6ca-0dbb-42ac-bf32-f6835da8c20b'::uuid, '06126edc-4beb-49a3-8c8b-a360a4102f2c'::uuid, '06202c46-a403-4f3e-90c2-2143214ee065'::uuid, '062078b5-73e1-4a0b-9688-bde51283faee'::uuid, '06456515-1dc0-4932-ab11-c754d7e6c080'::uuid, '064c42bd-23cb-4b40-a163-2d37468a899f'::uuid, '064cad79-8421-47c4-a351-f34cd55f44e8'::uuid, '06558fcb-5ec0-4b0e-8a75-28dd54c09585'::uuid, '066c1f35-0309-4962-8027-188ad4f20fe7'::uuid, '06803a41-54d6-4ab5-9d1c-c0e49d3efd6f'::uuid, '069b0995-6b3f-4e96-97a1-5cbc36706ec6'::uuid, '06a1a429-bd99-4006-872a-bc4b87110519'::uuid, '06a4aabd-38a7-4e11-9fae-38e612d5b404'::uuid, '06ada0be-76d3-4425-b57f-5b4854bfbf7b'::uuid, '06b0a3d2-21e3-4839-9b1b-debbd94c6fdc'::uuid, '06b33e5d-5763-4b11-bc38-6ca9c98806f7'::uuid, '06d314ce-93d8-4261-bfca-8be369a4abd6'::uuid, '06d4e033-5716-4c2c-a847-12c8a26bc153'::uuid, '0702fd7b-31d6-4cb4-a76b-638bd2b93155'::uuid, '07087e2c-332a-4962-86d3-f29b087b247c'::uuid, '0721fa57-a6e8-449c-9435-f0417d4c3a02'::uuid, '072acef8-3118-4411-aa07-59574a170d0e'::uuid, '0748dbc1-016a-4f1a-83da-4eef90bd0e6a'::uuid, '07569274-3c90-4b3d-a6c9-ebe9f1f43cb0'::uuid))));
+===
+
+pulpcore=# \dt rpm*
+                  List of relations
+ Schema |            Name             | Type  | Owner
+--------+-----------------------------+-------+-------
+ public | rpm_addon                   | table | pulp
+ public | rpm_checksum                | table | pulp
+ public | rpm_distributiontree        | table | pulp
+ public | rpm_image                   | table | pulp
+ public | rpm_modulemd                | table | pulp
+ public | rpm_modulemd_packages       | table | pulp
+ public | rpm_modulemddefaults        | table | pulp
+ public | rpm_package                 | table | pulp
+ public | rpm_packagecategory         | table | pulp
+ public | rpm_packageenvironment      | table | pulp
+ public | rpm_packagegroup            | table | pulp
+ public | rpm_packagelangpacks        | table | pulp
+ public | rpm_repometadatafile        | table | pulp
+ public | rpm_rpmdistribution         | table | pulp
+ public | rpm_rpmpublication          | table | pulp
+ public | rpm_rpmremote               | table | pulp
+ public | rpm_rpmrepository           | table | pulp
+ public | rpm_ulnremote               | table | pulp
+ public | rpm_updatecollection        | table | pulp
+ public | rpm_updatecollectionpackage | table | pulp
+ public | rpm_updaterecord            | table | pulp
+ public | rpm_updatereference         | table | pulp
+ public | rpm_variant                 | table | pulp
+(23 rows)
+
+pulpcore=# \d rpm_updatecollectionpackage
+                    Table "public.rpm_updatecollectionpackage"
+        Column        |           Type           | Collation | Nullable | Default
+----------------------+--------------------------+-----------+----------+---------
+ pulp_id              | uuid                     |           | not null |
+ pulp_created         | timestamp with time zone |           | not null |
+ pulp_last_updated    | timestamp with time zone |           |          |
+ arch                 | text                     |           | not null |
+ epoch                | text                     |           | not null |
+ filename             | text                     |           | not null |
+ name                 | text                     |           | not null |
+ reboot_suggested     | boolean                  |           | not null |
+ release              | text                     |           | not null |
+ src                  | text                     |           | not null |
+ sum                  | text                     |           | not null |
+ version              | text                     |           | not null |
+ update_collection_id | uuid                     |           | not null |
+ relogin_suggested    | boolean                  |           | not null |
+ restart_suggested    | boolean                  |           | not null |
+ sum_type             | integer                  |           |          |
+Indexes:
+    "rpm_updatecollectionpackage_pkey" PRIMARY KEY, btree (pulp_id)
+    "rpm_updatecollectionpackage_update_collection_id_192b5aed" btree (update_collection_id)
+Check constraints:
+    "rpm_updatecollectionpackage_sum_type_3d0f9605_check" CHECK (sum_type >= 0)
+Foreign-key constraints:
+    "rpm_updatecollection_update_collection_id_192b5aed_fk_rpm_updat" FOREIGN KEY (update_collection_id) REFERENCES rpm_updatecollection(pulp_id) DEFERRABLE INITIALLY DEFERRED
+
+pulpcore=# select * from rpm_updatecollectionpackage where filename = 'boost-system-1.53.0-28.el7.x86_64.rpm';
+               pulp_id                |         pulp_created          |       pulp_last_updated       |  arch  | epoch |               filename                |     name     | reboot_suggested | release |
+             src             |                               sum                                | version |         update_collection_id         | relogin_suggested | restart_suggested | sum_type
+--------------------------------------+-------------------------------+-------------------------------+--------+-------+---------------------------------------+--------------+------------------+---------+
+-----------------------------+------------------------------------------------------------------+---------+--------------------------------------+-------------------+-------------------+----------
+ 85176136-7892-4785-aa36-c000b4693ac8 | 2021-07-07 14:24:06.793196-04 | 2021-07-07 14:24:06.793202-04 | x86_64 | 0     | boost-system-1.53.0-28.el7.x86_64.rpm | boost-system | f                | 28.el7  |
+ boost-1.53.0-28.el7.src.rpm | d170c9cedf284d8936229e9b87a375419020b3b12879281e90d2cd9c50b8b848 | 1.53.0  | dcc2a6e2-f67d-459a-89a7-5f83e7e37d6b | f                 | f                 |        5
+(1 row)
+
+pulpcore=# \d rpm_updatecollection
+                      Table "public.rpm_updatecollection"
+      Column       |           Type           | Collation | Nullable | Default
+-------------------+--------------------------+-----------+----------+---------
+ pulp_id           | uuid                     |           | not null |
+ pulp_created      | timestamp with time zone |           | not null |
+ pulp_last_updated | timestamp with time zone |           |          |
+ name              | text                     |           |          |
+ shortname         | text                     |           |          |
+ module            | jsonb                    |           |          |
+ update_record_id  | uuid                     |           | not null |
+Indexes:
+    "rpm_updatecollection_pkey" PRIMARY KEY, btree (pulp_id)
+    "rpm_updatecollection_name_update_record_id_6ef33bed_uniq" UNIQUE CONSTRAINT, btree (name, update_record_id)
+    "rpm_updatecollection__update_record_id_edbba4b5" btree (update_record_id)
+Foreign-key constraints:
+    "rpm_updatecollection_update_record_id_3ce66ccc_fk_rpm_updat" FOREIGN KEY (update_record_id) REFERENCES rpm_updaterecord(content_ptr_id) DEFERRABLE INITIALLY DEFERRED
+Referenced by:
+    TABLE "rpm_updatecollectionpackage" CONSTRAINT "rpm_updatecollection_update_collection_id_192b5aed_fk_rpm_updat" FOREIGN KEY (update_collection_id) REFERENCES rpm_updatecollection(pulp_id) DEFERRABLE INITIALLY DEFERRED
+
+pulpcore=# select name, shortname, modulename, update_record_id from rpm_updatecollection where pulp_id = 'dcc2a6e2-f67d-459a-89a7-5f83e7e37d6b';
+ERROR:  column "modulename" does not exist
+LINE 1: select name, shortname, modulename, update_record_id from rp...
+                                ^
+pulpcore=# select name, shortname, update_record_id from rpm_updatecollection where pulp_id = 'dcc2a6e2-f67d-459a-89a7-5f83e7e37d6b';
+                     name                      |                   shortname                   |           update_record_id
+-----------------------------------------------+-----------------------------------------------+--------------------------------------
+ rhel-7-server-rpms__7Server__x86_64_0_default | rhel-7-server-rpms__7Server__x86_64_0_default | 1b767afa-5bc5-441b-a19f-677462af3751
+(1 row)
+
+pulpcore=# \d rpm_updaterecord
+                      Table "public.rpm_updaterecord"
+      Column      |          Type          | Collation | Nullable | Default
+------------------+------------------------+-----------+----------+---------
+ content_ptr_id   | uuid                   |           | not null |
+ id               | character varying(255) |           | not null |
+ updated_date     | text                   |           |          |
+ description      | text                   |           | not null |
+ issued_date      | text                   |           | not null |
+ fromstr          | text                   |           | not null |
+ status           | text                   |           | not null |
+ title            | text                   |           | not null |
+ summary          | text                   |           | not null |
+ version          | text                   |           | not null |
+ type             | text                   |           | not null |
+ severity         | text                   |           | not null |
+ solution         | text                   |           | not null |
+ release          | text                   |           | not null |
+ rights           | text                   |           | not null |
+ pushcount        | text                   |           | not null |
+ digest           | character varying(64)  |           | not null |
+ reboot_suggested | boolean                |           | not null |
+Indexes:
+    "rpm_updaterecord_pkey" PRIMARY KEY, btree (content_ptr_id)
+    "rpm_updaterecord_digest_key" UNIQUE CONSTRAINT, btree (digest)
+    "rpm_updaterecord_digest_9ec7e61c_like" btree (digest varchar_pattern_ops)
+    "rpm_updaterecord_id_bea7af1c" btree (id)
+    "rpm_updaterecord_id_bea7af1c_like" btree (id varchar_pattern_ops)
+Foreign-key constraints:
+    "rpm_updaterecord_content_ptr_id_82a63cd9_fk_core_cont" FOREIGN KEY (content_ptr_id) REFERENCES core_content(pulp_id) DEFERRABLE INITIALLY DEFERRED
+Referenced by:
+    TABLE "rpm_updatecollection" CONSTRAINT "rpm_updatecollection_update_record_id_3ce66ccc_fk_rpm_updat" FOREIGN KEY (update_record_id) REFERENCES rpm_updaterecord(content_ptr_id) DEFERRABLE INITIALLY DEFERRED
+    TABLE "rpm_updatereference" CONSTRAINT "rpm_updatereference_update_record_id_81a73892_fk_rpm_updat" FOREIGN KEY (update_record_id) REFERENCES rpm_updaterecord(content_ptr_id) DEFERRABLE INITIALLY DEFERRED
+
+pulpcore=# select id, updated_date, issued_date from rpm_updaterecord where content_ptr_id = '1b767afa-5bc5-441b-a19f-677462af3751';
+       id       |    updated_date     |     issued_date
+----------------+---------------------+---------------------
+ RHBA-2020:1072 | 2020-03-31 09:15:11 | 2020-03-31 09:15:16
+(1 row)
+
+pulpcore=#
+pulpcore=# select pulp_id, name, state from core_task where pulp_created >= '2021-08-05'::date
+;
+               pulp_id                |                     name                     |   state
+--------------------------------------+----------------------------------------------+-----------
+ 50549c11-0dcf-4a08-b3d4-bbf2a72efb1f | pulp_rpm.app.tasks.copy.copy_content         | completed
+ 4f960785-876e-4762-910f-f5b4f8459e80 | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ b31431a6-be73-436b-8af1-2c439ed97c3e | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ b4d6e7ec-bcff-4663-9ef5-599bd3bce24b | pulp_rpm.app.tasks.copy.copy_content         | running
+ e74e2452-344d-41dc-a0e5-2779281e9a13 | pulpcore.app.tasks.repository.add_and_remove | completed
+ 41fb93e5-e1cf-4de8-b300-04a77f5eee9d | pulpcore.app.tasks.repository.add_and_remove | completed
+(6 rows)
+
+pulpcore=# select pulp_created, pulp_id, name, state from core_task where pulp_created >= '2021-08-05'::date
+;
+         pulp_created          |               pulp_id                |                     name                     |   state
+-------------------------------+--------------------------------------+----------------------------------------------+-----------
+ 2021-08-06 13:47:08.941753-04 | 50549c11-0dcf-4a08-b3d4-bbf2a72efb1f | pulp_rpm.app.tasks.copy.copy_content         | completed
+ 2021-08-06 13:47:11.92401-04  | 4f960785-876e-4762-910f-f5b4f8459e80 | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ 2021-08-06 13:47:13.124365-04 | b31431a6-be73-436b-8af1-2c439ed97c3e | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ 2021-08-06 13:47:10.384378-04 | b4d6e7ec-bcff-4663-9ef5-599bd3bce24b | pulp_rpm.app.tasks.copy.copy_content         | running
+ 2021-08-06 13:47:07.384401-04 | e74e2452-344d-41dc-a0e5-2779281e9a13 | pulpcore.app.tasks.repository.add_and_remove | completed
+ 2021-08-06 13:47:07.518008-04 | 41fb93e5-e1cf-4de8-b300-04a77f5eee9d | pulpcore.app.tasks.repository.add_and_remove | completed
+(6 rows)
+
+pulpcore=# select pulp_created, pulp_id, name, state from core_task where pulp_created >= '2021-08-05'::date order by pulp_created;
+         pulp_created          |               pulp_id                |                     name                     |   state
+-------------------------------+--------------------------------------+----------------------------------------------+-----------
+ 2021-08-06 13:47:07.384401-04 | e74e2452-344d-41dc-a0e5-2779281e9a13 | pulpcore.app.tasks.repository.add_and_remove | completed
+ 2021-08-06 13:47:07.518008-04 | 41fb93e5-e1cf-4de8-b300-04a77f5eee9d | pulpcore.app.tasks.repository.add_and_remove | completed
+ 2021-08-06 13:47:08.941753-04 | 50549c11-0dcf-4a08-b3d4-bbf2a72efb1f | pulp_rpm.app.tasks.copy.copy_content         | completed
+ 2021-08-06 13:47:10.384378-04 | b4d6e7ec-bcff-4663-9ef5-599bd3bce24b | pulp_rpm.app.tasks.copy.copy_content         | running
+ 2021-08-06 13:47:11.92401-04  | 4f960785-876e-4762-910f-f5b4f8459e80 | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ 2021-08-06 13:47:13.124365-04 | b31431a6-be73-436b-8af1-2c439ed97c3e | pulp_rpm.app.tasks.copy.copy_content         | waiting
+(6 rows)
+
+pulpcore=# select pulp_created, pulp_id, name, state from core_task where pulp_created >= '2021-08-05'::date order by pulp_created;
+         pulp_created          |               pulp_id                |                     name                     |   state
+-------------------------------+--------------------------------------+----------------------------------------------+-----------
+ 2021-08-06 13:47:07.384401-04 | e74e2452-344d-41dc-a0e5-2779281e9a13 | pulpcore.app.tasks.repository.add_and_remove | completed
+ 2021-08-06 13:47:07.518008-04 | 41fb93e5-e1cf-4de8-b300-04a77f5eee9d | pulpcore.app.tasks.repository.add_and_remove | completed
+ 2021-08-06 13:47:08.941753-04 | 50549c11-0dcf-4a08-b3d4-bbf2a72efb1f | pulp_rpm.app.tasks.copy.copy_content         | completed
+ 2021-08-06 13:47:10.384378-04 | b4d6e7ec-bcff-4663-9ef5-599bd3bce24b | pulp_rpm.app.tasks.copy.copy_content         | running
+ 2021-08-06 13:47:11.92401-04  | 4f960785-876e-4762-910f-f5b4f8459e80 | pulp_rpm.app.tasks.copy.copy_content         | waiting
+ 2021-08-06 13:47:13.124365-04 | b31431a6-be73-436b-8af1-2c439ed97c3e | pulp_rpm.app.tasks.copy.copy_content         | waiting
+(6 rows)
+
+
