@@ -1,7 +1,24 @@
+   54  foreman-maintain service restart
+   96  ls -alht /var/opt/rh/rh-postgresql12/lib/pgsql/data/postgresql.conf
+  124  satellite-maintain service restart
+  324  vi /var/opt/rh/rh-postgresql12/lib/pgsql/data/log/postgresql-Tue.log
+  352  curl --cert=/etc/pki/katello/certs/pulp-client.crt --key=/etc/pki/katello/private/pulp-client.key -k https://localhost/pulp/api/v3/status/
+  353  sudo -u postgres psql -d pulpcore
+
+
 curl -X PATCH -d state=canceled --cert /etc/pki/katello/certs/pulp-client.crt --key /etc/pki/katello/private/pulp-client.key https://$(hostname -f)/pulp/api/v3/tasks/4d90955f-82a3-40ee-b7fd-d80a4fe55a22/
 
 [root@sat-r220-09 ~]# sudo su - postgres
 -bash-4.2$ psql pulpcore
+
+
+http POST :/pulp/api/v3/rpm/copy/ dependency_solving=True config:=@./base_packages
+   85  http POST :/pulp/api/v3/rpm/copy/ dependency_solving=True config:=@./base_packages
+  128  http POST :/pulp/api/v3/rpm/copy/   dependency_solving=True   config:=@./base_packages_8
+  191  http :/pulp/api/v3/content/rpm/packagegroups/?repository_version=/pulp/api/v3/repositories/rpm/rpm/a9411bbc-a592-44cb-a322-3e951f8f75c2/versions/1/ | jq '.results | .[].pulp_href' >> base_packages_8
+  319  http :/pulp/api/v3/content/rpm/advisories/?repository_version=/pulp/api/v3/repositories/rpm/rpm/a534c985-4add-46f3-8ef1-49de3bbcff8b/versions/1/\&fields='pulp_href,updated_date'\&limit=5000 | jq '.results[] | select(.updated_date < "2016-03-17")' | jq .pulp_href > errata_config
+  327  http POST :/pulp/api/v3/rpm/copy/   dependency_solving=True   config:=@./errata_config_7
+
 
 
 [root@sat-r220-09 ~]# df -h
