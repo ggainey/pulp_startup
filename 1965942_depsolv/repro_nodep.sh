@@ -4,7 +4,7 @@ REPO="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os"
 NAME="rhel7-1"
 
 sync=
-repeat=9
+repeat=16
 create_dest="yes"
 create_cfgs="yes"
 issue_copy="yes"
@@ -83,14 +83,16 @@ fi
 if [ -n "$issue_copy" ]; then
     echo ">>> ISSUING COPY COMMANDS FOR ALL cfg_* FOUND"
     # Issue first copy
-    TASK=$(http POST :/pulp/api/v3/rpm/copy/ dependency_solving=True config:=@./cfg_01 | jq -r .task)
+    TASK=$(http POST :/pulp/api/v3/rpm/copy/ dependency_solving=False config:=@./cfg_01 | jq -r .task)
     echo ">>> FIRST TASK ${TASK}"
     pulp task show --href ${TASK} --wait
 
     for f in $(ls cfg_??)
     do
         # Issue copy-cmd
-        TASK=$(http POST :/pulp/api/v3/rpm/copy/ dependency_solving=True config:=@./$f | jq -r .task)
+        TASK=$(http POST :/pulp/api/v3/rpm/copy/ dependency_solving=False config:=@./$f | jq -r .task)
         echo ">>> $f TASK ${TASK}"
+        pulp task show --href ${TASK} --wait
+        pulp rpm repository show --name "dest-${NAME}-${repeat}"
     done
 fi
