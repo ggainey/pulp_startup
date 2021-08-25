@@ -3,8 +3,8 @@
 REPO="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os"
 NAME="rhel7-1"
 
-sync=
-repeat=9
+sync="yes"
+repeat=1
 create_dest="yes"
 create_cfgs="yes"
 issue_copy="yes"
@@ -15,11 +15,11 @@ if [ -n "$sync" ]; then
     echo ">>> SETUP SOURCE AND REMOTES"
     pulp rpm remote create --name ${NAME} --url ${REPO} --policy on_demand \
         --ca-cert "${CDN_CA_CERT}" \
-        --client-key "${CDN_CLIENT_KEY}"
+        --client-key "${CDN_CLIENT_KEY}" \
         --client-cert "${CDN_CLIENT_CERT}" | jq .pulp_href
     pulp rpm repository create \
         --name ${NAME} \
-        --remote ${NAME}
+        --remote ${NAME} \
         --autopublish | jq .pulp_href
     pulp rpm repository sync --name ${NAME}
 fi
@@ -37,7 +37,7 @@ echo ">>> DEST_REPO ${DEST_REPO}"
 
 
 # Create the configs
-MAX_UNITS_PER=10000
+MAX_UNITS_PER=5000
 if [ -n "$create_cfgs" ]; then
     echo ">>> CREATING CONFIGS"
     echo ">>> ...BASE RPMS"
