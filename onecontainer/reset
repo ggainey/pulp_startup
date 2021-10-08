@@ -1,0 +1,4 @@
+#!/bin/bash
+podman container stop -a
+podman container prune
+sudo rm -rf settings_*

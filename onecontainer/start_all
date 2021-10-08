@@ -1,0 +1,32 @@
+#!/bin/bash
+VERSIONS=(3.7 3.14 latest)
+PORTS=(8037 8314 8080)
+PROFILES=(3_7 3_14 latest)
+for i in "${!VERSIONS[@]}"
+do
+  PORT="${PORTS[$i]}"
+  NAME="pulp_${VERSIONS[$i]}"
+  VERS_DIR="settings_${VERSIONS[$i]}"
+  mkdir "${VERS_DIR}"
+  cd "${VERS_DIR}"
+  mkdir settings pulp_storage pgsql containers
+  echo "CONTENT_ORIGIN='http://$(hostname):${PORT}'" > settings/settings.py
+  echo "ANSIBLE_API_HOSTNAME='http://$(hostname):${PORT}'" >> settings/settings.py
+  echo "ANSIBLE_CONTENT_HOSTNAME='http://$(hostname):${PORT}/pulp/content'" >> settings/settings.py
+  echo "TOKEN_AUTH_DISABLED=True" >> settings/settings.py
+  podman run --detach \
+             --publish "${PORT}":80 \
+             --name "${NAME}" \
+             --volume "$(pwd)/settings":/etc/pulp:Z \
+             --volume "$(pwd)/pulp_storage":/var/lib/pulp:Z \
+             --volume "$(pwd)/pgsql":/var/lib/pgsql:Z \
+             --volume "$(pwd)/containers":/var/lib/containers:Z \
+             --device /dev/fuse \
+             pulp/pulp:"${VERSIONS[$i]}"
+  sleep 60
+  podman exec -it "${NAME}" bash -c 'pulpcore-manager reset-admin-password -p admin'
+  curl localhost:"${PORT}"/pulp/api/v3/status/
+  cd ..
+done
+podman container list -a
+
