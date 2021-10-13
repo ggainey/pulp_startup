@@ -1,0 +1,24 @@
+SELECT "core_content"."pulp_id", "core_content"."pulp_created", "core_content"."pulp_last_updated", "core_content"."pulp_type", "core_content"."upstream_id", "core_content"."timestamp_of_interest", "rpm_package"."content_ptr_id", "rpm_package"."name", "rpm_package"."epoch", "rpm_package"."version", "rpm_package"."release", "rpm_package"."arch", "rpm_package"."evr", "rpm_package"."pkgId", "rpm_package"."checksum_type", "rpm_package"."summary", "rpm_package"."description", "rpm_package"."url", "rpm_package"."changelogs", "rpm_package"."files", "rpm_package"."requires", "rpm_package"."provides", "rpm_package"."conflicts", "rpm_package"."obsoletes", "rpm_package"."suggests", "rpm_package"."enhances", "rpm_package"."recommends", "rpm_package"."supplements", "rpm_package"."location_base", "rpm_package"."location_href", "rpm_package"."rpm_buildhost", "rpm_package"."rpm_group", "rpm_package"."rpm_license", "rpm_package"."rpm_packager", "rpm_package"."rpm_sourcerpm", "rpm_package"."rpm_vendor", "rpm_package"."rpm_header_start", "rpm_package"."rpm_header_end", "rpm_package"."size_archive", "rpm_package"."size_installed", "rpm_package"."size_package", "rpm_package"."time_build", "rpm_package"."time_file", "rpm_package"."is_modular" 
+ FROM "rpm_package" 
+      INNER JOIN "core_content" ON ("rpm_package"."content_ptr_id" = "core_content"."pulp_id") 
+WHERE (
+  "rpm_package"."name" = 'gcc-objc' AND 
+  "rpm_package"."content_ptr_id" IN (
+    SELECT CC0."pulp_id" FROM "core_content" CC0 
+           INNER JOIN "core_repositorycontent" CRC1 ON (CC0."pulp_id" = CRC1."content_id") 
+     WHERE (
+       CRC1."pulp_id" IN (
+          SELECT CRC0."pulp_id" 
+            FROM "core_repositorycontent" CRC0 
+                 INNER JOIN "core_repositoryversion" CRV2 ON (CRC0."version_added_id" = CRV2."pulp_id") 
+                 LEFT OUTER JOIN "core_repositoryversion" CRV3 ON (CRC0."version_removed_id" = CRV3."pulp_id") 
+           WHERE (
+             CRC0."repository_id" = '57de3423-d519-407b-aeea-5a807d8795d1'::uuid AND 
+             CRV2."number" <= 1 AND 
+             NOT (
+               CRV3."number" <= 1 AND 
+               CRV3."number" IS NOT NULL
+             )
+           )
+        ) AND 
+        CC0."pulp_id" IN ('001955cb-b57d-4f12-bf56-0bb44f9d423a'::uuid,....(huge_list)

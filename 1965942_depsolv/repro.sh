@@ -3,8 +3,8 @@
 REPO="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os"
 NAME="rhel7-1"
 
-sync="yes"
-repeat=1
+sync=
+repeat=27
 create_dest="yes"
 create_cfgs="yes"
 issue_copy="yes"
@@ -37,7 +37,7 @@ echo ">>> DEST_REPO ${DEST_REPO}"
 
 
 # Create the configs
-MAX_UNITS_PER=5000
+MAX_UNITS_PER=10000
 if [ -n "$create_cfgs" ]; then
     echo ">>> CREATING CONFIGS"
     echo ">>> ...BASE RPMS"
