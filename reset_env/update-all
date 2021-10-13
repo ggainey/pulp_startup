@@ -7,5 +7,5 @@ cd $ROOT/pulp_installer; git checkout master; git fetch upstream; git rebase ups
 cd $ROOT/pulp-certguard; git checkout master; git fetch upstream; git rebase upstream/master; git push origin master
 cd $ROOT/pulp_deb; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
 cd $ROOT/pulp-2to3-migration; git checkout master; git fetch upstream; git rebase upstream/master; git push origin master
-cd $ROOT/pulp-cli; git checkout develop; git fetch upstream; git rebase upstream/develop; git push origin develop
+cd $ROOT/pulp-cli; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
 
