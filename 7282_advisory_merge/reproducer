@@ -1,0 +1,15 @@
+#!/bin/bash
+pulp rpm repository destroy --name zoo
+pulp rpm remote destroy --name zoo
+pulp orphans delete
+REPO=`pulp rpm repository create --name zoo | jq -r '.pulp_href'`
+echo "REPO HREF $REPO"
+pulp rpm remote create --name zoo --url https://fixtures.pulpproject.org/rpm-updated-updateinfo/
+pulp rpm repository sync --name zoo --remote zoo
+TASK=`http -f POST :/pulp/api/v3/content/rpm/advisories/ file@/home/vagrant/devel/pulp_startup/7282_advisory_merge/bear_advisory repository=$REPO | jq -r '.task'`
+echo "TASK $TASK"
+http :$TASK
+
+echo "DO THIS :"
+echo "http -f POST :/pulp/api/v3/content/rpm/advisories/ file@/home/vagrant/devel/pulp_startup/7282_advisory_merge/camel_advisory repository=$REPO | jq -r '.task'"
+

@@ -1,0 +1,22 @@
+#!/bin/bash -v
+BASE='rhel8-baseos'
+STREAM='rhel8-appstream'
+KS='rhel8-ks'
+REMOTE1='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os/'
+REMOTE2='https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/kickstart/'
+DEST='destination'
+pulp-admin rpm repo create --repo-id=$BASE --relative-url=$BASE --feed=$REMOTE1 \
+        --download-policy on_demand \
+        --generate-sqlite false --repoview false \
+        --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem \
+        --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+        --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$BASE
+pulp-admin rpm repo create --repo-id=$KS --relative-url=$KS --feed=$REMOTE2 \
+        --download-policy on_demand \
+        --generate-sqlite false --repoview false \
+        --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem \
+        --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+        --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$KS
+pulp-admin repo list
