@@ -1,12 +1,24 @@
 #!/bin/bash
 REPOS=(\
-    http://localhost:8000/file-dl-forward/PULP_MANIFEST \
-    http://localhost:8000/file-dl-reverse/PULP_MANIFEST \
+    https://fixtures.pulpproject.org/file-dl-forward/PULP_MANIFEST \
+    https://fixtures.pulpproject.org/file-dl-reverse/PULP_MANIFEST \
 )
 NAMES=(\
     file-dl-forward \
     file-dl-reverse \
 )
+
+# Make sure we're concurent-enough
+num_workers=`sudo systemctl status pulpcore-worker* | grep "service - Pulp Worker" | wc -l`
+echo "Current num-workers ${num_workers}"
+if [ ${num_workers} -lt 10 ]
+then
+    for (( i=${num_workers}+1; i<=10; i++ ))
+    do
+        echo "Starting worker ${i}"
+        sudo systemctl start pulpcore-worker@${i}
+    done
+fi
 
 NUM_dups=5
 NUM_CYCLES=2

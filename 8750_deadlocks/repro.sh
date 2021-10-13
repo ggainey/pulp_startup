@@ -1,19 +1,21 @@
 #!/bin/bash
+# https://cdn.redhat.com/content/eus/rhel/server/7/7.7/x86_64/os
 REPOS=(\
-https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/sat-maintenance/6/os/ \
-https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/ansible/2.9/os/ \
+https://cdn.redhat.com/content/dist/rhel/server/7/7.7/x86_64/kickstart \
+https://cdn.redhat.com/content/dist/rhel/server/7/7.7/x86_64/os
 )
+# rhel77-eus
 NAMES=(\
-sat-maint \
-ansible-2.9 \
+rhel77-kickstart \
+rhel77
 )
 
-NUM_dups=2
-NUM_CYCLES=6
+NUM_dups=3
+NUM_CYCLES=4
 echo "CLEANUP"
 for n in ${!NAMES[@]}
 do
-    for i in {1..2}
+    for i in {1..3}
     do
         pulp rpm remote destroy --name ${NAMES[$n]}-${i}
         pulp rpm repository destroy --name ${NAMES[$n]}-${i}
@@ -23,22 +25,23 @@ pulp orphans delete
 
 
 echo "CYCLE-START"
-for c in {1..6}
+for c in {1..4}
 do
     echo "SETUP REPOS AND REMOTES"
     for n in ${!NAMES[@]}
     do
-        for i in {1..2}
+        for i in {1..3}
         do
             pulp rpm remote create --name ${NAMES[$n]}-${i} --url ${REPOS[$n]} --policy on_demand \
             --ca-cert "${CDN_CA_CERT}" --client-key "${CDN_CLIENT_KEY}" --client-cert "${CDN_CLIENT_CERT}" | jq .pulp_href
             pulp rpm repository create --name ${NAMES[$n]}-${i} --remote ${NAMES[$n]}-${i} --autopublish | jq .pulp_href
         done
     done
+    starting_failed=`pulp task list --state failed | jq length`
     echo "SYNCING..."
     for n in ${!NAMES[@]}
     do
-        for i in {1..2}
+        for i in {1..3}
         do
             pulp -b rpm repository sync --name ${NAMES[$n]}-${i}
         done
@@ -58,14 +61,15 @@ do
     done
     failed=`pulp task list --state failed | jq length`
     echo "FAILURES : ${failed}"
-    if [ ${failed} -gt 0 ]
+    if [ ${failed} -gt ${starting_failed} ]
     then
+      echo "FAILED: " ${failed} - ${starting_failed}
       exit
     fi
     echo "CLEANUP FOR NEXT"
     for n in ${!NAMES[@]}
     do
-        for i in {1..2}
+        for i in {1..3}
         do
             pulp rpm remote destroy --name ${NAMES[$n]}-${i}
             pulp rpm repository destroy --name ${NAMES[$n]}-${i}
