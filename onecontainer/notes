@@ -1,0 +1,9 @@
+# start pulp-ui
+sudo dnf install npm
+npm install
+npm run start:dev >> out.txt &
+
+# ssh-passthru of pulp-ui UI to host machine
+vagrant ssh fedora34 -- -L 9000:fedora34.padre-fedora.example.com:9000
+
+
