@@ -36,12 +36,42 @@ rhel_9_beta_x86_64_baseos_kickstart \
 rhel_9_beta_x86_64_appstream_kickstart \
 )
 
-for r in ${!R9_REMOTES[@]}; do                                                                  
-  echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];                                
-  pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
-      --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
-      --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
-      --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
-  pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}" 
-  pulp rpm repository sync --name "${R9_NAMES[$r]}"
-done
+R9=
+R8=1
+R7=
+
+if [ "${R9}" ]; then
+    for r in ${!R9_REMOTES[@]}; do
+      echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];
+      pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
+          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
+          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+      pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}"
+      pulp rpm repository sync --name "${R9_NAMES[$r]}"
+    done
+fi
+
+if [ "${R8}" ]; then
+    for r in ${!R8_REMOTES[@]}; do
+      echo ">>>>> "[${R8_REMOTES[$r]}] INTO [${R8_NAMES[$r]}];
+      pulp rpm remote create --name "${R8_NAMES[$r]}" --url "${R8_REMOTES[$r]}" --policy on_demand \
+          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
+          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+      pulp rpm repository create --name "${R8_NAMES[$r]}" --remote "${R8_NAMES[$r]}"
+      pulp rpm repository sync --name "${R8_NAMES[$r]}"
+    done
+fi
+
+if [ "${R7}" ]; then
+    for r in ${!R7_REMOTES[@]}; do
+      echo ">>>>> "[${R7_REMOTES[$r]}] INTO [${R7_NAMES[$r]}];
+      pulp rpm remote create --name "${R7_NAMES[$r]}" --url "${R7_REMOTES[$r]}" --policy on_demand \
+          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
+          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+      pulp rpm repository create --name "${R7_NAMES[$r]}" --remote "${R7_NAMES[$r]}"
+      pulp rpm repository sync --name "${R7_NAMES[$r]}"
+    done
+fi
