@@ -1,0 +1,47 @@
+#!/bin/bash
+
+R7_REMOTES=(\
+https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os \
+https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/kickstart \
+)
+R8_REMOTES=(\
+https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os/ \
+https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/ \
+https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/kickstart/ \
+https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/kickstart \
+)
+R9_REMOTES=(\
+https://cdn.redhat.com/content/beta/rhel9/9/x86_64/baseos/os/ \
+https://cdn.redhat.com/content/beta/rhel9/9/x86_64/appstream/os/ \
+https://cdn.redhat.com/content/beta/rhel9/9/x86_64/baseos/kickstart/ \
+https://cdn.redhat.com/content/beta/rhel9/9/x86_64/appstream/kickstart/ \
+)
+
+R7_NAMES=(\
+rhel_7_x86_64_server \
+rhel_7_x86_64_server_kickstart \
+)
+
+R8_NAMES=(\
+rhel_8_x86_64_baseos \
+rhel_8_x86_64_appstream \
+rhel_8_x86_64_baseos_kickstart \
+rhel_8_x86_64_appstream_kickstart \
+)
+
+R9_NAMES=(\
+rhel_9_beta_x86_64_baseos \
+rhel_9_beta_x86_64_appstream \
+rhel_9_beta_x86_64_baseos_kickstart \
+rhel_9_beta_x86_64_appstream_kickstart \
+)
+
+for r in ${!R9_REMOTES[@]}; do                                                                  
+  echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];                                
+  pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
+      --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
+      --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
+      --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+  pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}" 
+  pulp rpm repository sync --name "${R9_NAMES[$r]}"
+done
