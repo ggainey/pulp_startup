@@ -31,6 +31,7 @@ EXPORTER_URL="/pulp/api/v3/exporters/core/pulp/"
 
 # get an RPM repo UUID
 RPM_HREF=$(http GET http://localhost:24817/pulp/api/v3/repositories/rpm/rpm/ | jq -r ".results[0] | .pulp_href")
+RPM_HREF="/pulp/api/v3/repositories/rpm/rpm/b2040c17-2d77-41e2-abdc-6f1ff0bc6734/"
 
 # create exporter
 EXPORTER_NAME="test-rpm-1"

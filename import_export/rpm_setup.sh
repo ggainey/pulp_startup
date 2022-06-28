@@ -60,8 +60,8 @@ BASE_ADDR=":"
 #rpm-with-sha-512
 #rpm-with-vendor
 #rpm-with-md5
-#ZOO_URL="https://fixtures.pulpproject.org/rpm-with-modules/"
-ZOO_URL="https://fixtures.pulpproject.org/rpm-with-md5/"
+ZOO_URL="https://fixtures.pulpproject.org/rpm-with-modules/"
+#ZOO_URL="https://fixtures.pulpproject.org/rpm-with-md5/"
 ZOO_NAME="zoo"
 # FOR ZOO
 # create repos
