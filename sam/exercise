@@ -1,4 +1,4 @@
-echo !/bin/bash
+#!/bin/bash
 echo  create 2 repos and a remote
 FIRST_REPO_HREF=$(pulp rpm repository create --name rpm | jq -r .pulp_href)
 echo First-repo ${FIRST_REPO_HREF}
@@ -41,5 +41,3 @@ http -b POST :${SAM_HREF}remove/ entity_href=${FIRST_REPO_HREF}
 http -b :${SAM_HREF} | jq -r .managed_entities
 echo  delete SAM
 http -b DELETE :${SAM_HREF}
-
-
