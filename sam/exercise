@@ -7,20 +7,20 @@ echo Second-repo ${FIRST_REPO_HREF}
 REMOTE_HREF=$(pulp rpm remote create --name rpm --url "https://THIS-CANT-WORK" | jq -r .pulp_href)
 echo Remote ${FIRST_REPO_HREF}
 echo list sams
-http -b :/pulp/api/v3/sams/
+http -b :/pulp/api/v3/shared-attribute-managers/
 echo  Create a SAM
-SAM_HREF=$(http -b POST :/pulp/api/v3/sams/ name="SAM" | jq -r '.pulp_href')
+SAM_HREF=$(http -b POST :/pulp/api/v3/shared-attribute-managers/ name="SAM" | jq -r '.pulp_href')
 echo  Read the SAM
 http -b :${SAM_HREF}
 echo  Update the SAM
 echo  ...set its attributes
-http -b --json PATCH :${SAM_HREF} managed_attributes:='{"bar": "blech", "description": "This is a description", "reatin_repo_versions": 66, "retain_package_versions": 5, "sqlite_metadata": true, "url": "http://THIS-ONE-WORKS"}'
+http -b --json PATCH :${SAM_HREF} managed_attributes:='{"bar": "blech", "description": "This is a description", "retain_repo_versions":111, "reatin_repo_versions": 66, "retain_package_versions": 5, "sqlite_metadata": true, "url": "http://THIS-ONE-WORKS", "policy": "on_demand"}'
 http -b :${SAM_HREF} | jq -r .managed_attributes
 echo  ...set first repo and remote
 http -b --json PATCH :${SAM_HREF} managed_entities:="[\"${FIRST_REPO_HREF}\", \"${REMOTE_HREF}\"]"
 http -b :${SAM_HREF} | jq -r .managed_entities
 echo  List all SAMs
-http -b :/pulp/api/v3/sams/
+http -b :/pulp/api/v3/shared-attribute-managers/
 echo  /apply/ attributes
 http -b POST :${SAM_HREF}apply/
 echo  Show state of first-repo., remote
@@ -40,4 +40,4 @@ echo  /remove/ first repo, look at results
 http -b POST :${SAM_HREF}remove/ entity_href=${FIRST_REPO_HREF}
 http -b :${SAM_HREF} | jq -r .managed_entities
 echo  delete SAM
-http -b DELETE :${SAM_HREF}
+#http -b DELETE :${SAM_HREF}
