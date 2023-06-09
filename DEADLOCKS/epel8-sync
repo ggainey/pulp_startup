@@ -1,0 +1,37 @@
+#!/bin/bash
+
+EPEL8_REMOTE=https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+EPEL8_NAMES=(\
+epel_8_x86_64_appstream-1 \
+epel_8_x86_64_appstream-2 \
+epel_8_x86_64_appstream-3 \
+epel_8_x86_64_appstream-4 \
+epel_8_x86_64_appstream-5 \
+epel_8_x86_64_appstream-6 \
+epel_8_x86_64_appstream-7 \
+epel_8_x86_64_appstream-8 \
+)
+
+pulp rpm repository show --name "${EPEL8_NAMES[1]}"
+if [ $? -eq 1 ]
+then
+    echo ">>>> CREATING..."
+    for r in ${!EPEL8_NAMES[@]}; do
+      echo ">>>>> "[${EPEL8_NAMES[$r]}];
+      pulp rpm remote create --name "${EPEL8_NAMES[$r]}" --url "${EPEL8_REMOTE}" --policy on_demand
+      pulp rpm repository create --name "${EPEL8_NAMES[$r]}" --remote "${EPEL8_NAMES[$r]}" --autopublish
+    done
+fi
+# pulp rpm repository sync --name "${EPEL8_NAMES[0]}" --no-optimize --skip-type srpm
+for n in {1..3}; do
+    echo ">>>> STARTING SYNC-PASS..."
+    for r in ${!EPEL8_NAMES[@]}; do
+      echo ">>>>> "SYNC INTO [${EPEL8_NAMES[$r]}];
+      LAST_TASK=$(pulp -b rpm repository sync --name "${EPEL8_NAMES[$r]}" --no-optimize --skip-type srpm |& grep /pulp/api | cut -d " " -f 4)
+    done
+    echo ">>>>> WAITING FOR ${LAST_TASK}..."
+    pulp task show -w --href ${LAST_TASK}
+    echo ">>>> TRIMMING..."
+    pushd /home/ggainey/github/Pulp3/oci_env; oci-env exec pulpcore-manager rpm-trim-changelogs --changelog-limit 1; popd
+    echo ">>>> DONE SYNC-PASS..."
+done

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+R8_REMOTE=https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/
+R8_NAMES=(\
+rhel_8_x86_64_appstream-1 \
+rhel_8_x86_64_appstream-2 \
+rhel_8_x86_64_appstream-3 \
+rhel_8_x86_64_appstream-4 \
+rhel_8_x86_64_appstream-5 \
+rhel_8_x86_64_appstream-6 \
+rhel_8_x86_64_appstream-7 \
+rhel_8_x86_64_appstream-8 \
+)
+
+for r in ${!R8_NAMES[@]}; do
+  echo ">>>>> "[${R8_NAMES[$r]}];
+  pulp rpm remote create --name "${R8_NAMES[$r]}" --url "${R8_REMOTE}" --policy on_demand \
+      --client-cert=@/home/ggainey/github/Pulp3/pulp_startup/CDN_cert/cdn_11012023.pem \
+      --client-key=@/home/ggainey/github/Pulp3/pulp_startup/CDN_cert/cdn_11012023.pem\
+      --ca-cert=@/home/ggainey/github/Pulp3/pulp_startup/CDN_cert/redhat-uep.pem
+  pulp rpm repository create --name "${R8_NAMES[$r]}" --remote "${R8_NAMES[$r]}"
+done
+for r in ${!R8_NAMES[@]}; do
+  echo ">>>>> "SYNC INTO [${R8_NAMES[$r]}];
+  pulp -b rpm repository sync --name "${R8_NAMES[$r]}" --no-optimize
+done
