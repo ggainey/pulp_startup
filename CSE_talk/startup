@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# zoo remote
+pulp rpm remote create --name zoo --policy immediate --url https://fixtures.pulpproject.org/rpm-signed/
+#
+# Create zoo1 repo
+pulp rpm repository create --name zoo1 --remote zoo
+pulp rpm distribution create --name zoo1 --repository rpm:rpm:zoo1 --base-path zoo1
+pulp rpm repository sync --name zoo1
+pulp rpm publication create --repository rpm:rpm:zoo1
+
+# Create zoo2 repo
+pulp rpm repository create --name zoo2 --remote zoo --autopublish
+pulp rpm distribution create --name zoo2 --repository rpm:rpm:zoo2 --base-path zoo2
+pulp rpm repository sync --name zoo2
+pulp rpm publication create --repository rpm:rpm:zoo2
+
+# Create alternate zoo1 base-path Distribution
+pulp rpm distribution create --name zoo1-new-path --repository rpm:rpm:zoo1 --base-path new-path
+
+# Create remote with bogus auth-info
+pulp rpm remote create --name foo --url https://fixtures.pulpproject.org/rpm-signed/ \
+  --proxy-username proxy_foo --proxy-password proxy_bar --proxy-url https://not.a.proxy \
+  --username client_foo --password client_bar \
+
+# Create some file content
+pulp file remote create --name file-zoo --policy immediate --url https://fixtures.pulpproject.org/file/PULP_MANIFEST
+pulp file repository create --name file-zoo --remote file-zoo --autopublish
+pulp file distribution create --name file-zoo --repository file:file:file-zoo --base-path file-zoo
+pulp file repository sync --name file-zoo
+
+# Get EPEL into three Repositories
+EPEL8_REMOTE=https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+EPEL8_NAMES=(\
+epel_8_x86_64_appstream-1 \
+epel_8_x86_64_appstream-2 \
+epel_8_x86_64_appstream-3 \
+)
+
+pulp rpm repository show --name "${EPEL8_NAMES[1]}"
+if [ $? -eq 1 ]
+then
+    echo ">>>> CREATING..."
+    for r in ${!EPEL8_NAMES[@]}; do
+      echo ">>>>> "[${EPEL8_NAMES[$r]}];
+      pulp rpm remote create --name "${EPEL8_NAMES[$r]}" --url "${EPEL8_REMOTE}" --policy on_demand
+      pulp rpm repository create --name "${EPEL8_NAMES[$r]}" --remote "${EPEL8_NAMES[$r]}" --autopublish
+    done
+fi
+for r in ${!EPEL8_NAMES[@]}; do
+  echo ">>>>> "SYNC INTO [${EPEL8_NAMES[$r]}];
+  LAST_TASK=$(pulp -b rpm repository sync --name "${EPEL8_NAMES[$r]}" --skip-type srpm |& grep /pulp/api | cut -d " " -f 4)
+done
+echo ">>>>> WAITING FOR ${LAST_TASK}..."
+pulp task show -w --href ${LAST_TASK}
