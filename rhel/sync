@@ -4,11 +4,15 @@ R7_REMOTES=(\
 https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os \
 https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/kickstart \
 )
+#R8_REMOTES=(\
+#https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os/ \
+#https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/ \
+#https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/kickstart/ \
+#https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/kickstart \
+#)
 R8_REMOTES=(\
-https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os/ \
-https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/ \
-https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/kickstart/ \
-https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/kickstart \
+    https://cdn.redhat.com/content/dist/rhel8/8.0/x86_64/baseos \
+    https://cdn.redhat.com/content/dist/rhel8/8.0/x86_64/baseos/kickstart \
 )
 R9_REMOTES=(\
 https://cdn.redhat.com/content/beta/rhel9/9/x86_64/baseos/os/ \
@@ -23,11 +27,15 @@ rhel_7_x86_64_server_kickstart \
 )
 
 R8_NAMES=(\
-rhel_8_x86_64_baseos \
-rhel_8_x86_64_appstream \
-rhel_8_x86_64_baseos_kickstart \
-rhel_8_x86_64_appstream_kickstart \
+    rhel8_base \
+    rhel8_base_ks \
 )
+#R8_NAMES=(\
+#rhel_8_x86_64_baseos \
+#rhel_8_x86_64_appstream \
+#rhel_8_x86_64_baseos_kickstart \
+#rhel_8_x86_64_appstream_kickstart \
+#)
 
 R9_NAMES=(\
 rhel_9_beta_x86_64_baseos \
@@ -40,13 +48,15 @@ R9=
 R8=1
 R7=
 
+BASE=/home/ggainey/github/Pulp3/
+
 if [ "${R9}" ]; then
     for r in ${!R9_REMOTES[@]}; do
       echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];
       pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
-          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
-          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
-          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+          --client-cert=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --client-key=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
       pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}"
       pulp rpm repository sync --name "${R9_NAMES[$r]}"
     done
@@ -56,11 +66,11 @@ if [ "${R8}" ]; then
     for r in ${!R8_REMOTES[@]}; do
       echo ">>>>> "[${R8_REMOTES[$r]}] INTO [${R8_NAMES[$r]}];
       pulp rpm remote create --name "${R8_NAMES[$r]}" --url "${R8_REMOTES[$r]}" --policy on_demand \
-          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
-          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
-          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+          --client-cert=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --client-key=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
       pulp rpm repository create --name "${R8_NAMES[$r]}" --remote "${R8_NAMES[$r]}"
-      pulp rpm repository sync --name "${R8_NAMES[$r]}"
+      pulp -b rpm repository sync --name "${R8_NAMES[$r]}"
     done
 fi
 
@@ -68,9 +78,9 @@ if [ "${R7}" ]; then
     for r in ${!R7_REMOTES[@]}; do
       echo ">>>>> "[${R7_REMOTES[$r]}] INTO [${R7_NAMES[$r]}];
       pulp rpm remote create --name "${R7_NAMES[$r]}" --url "${R7_REMOTES[$r]}" --policy on_demand \
-          --client-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt \
-          --client-key=@/home/vagrant/devel/pulp_startup/CDN_cert/cdn.key \
-          --ca-cert=@/home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+          --client-cert=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --client-key=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
       pulp rpm repository create --name "${R7_NAMES[$r]}" --remote "${R7_NAMES[$r]}"
       pulp rpm repository sync --name "${R7_NAMES[$r]}"
     done

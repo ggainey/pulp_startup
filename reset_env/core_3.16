@@ -1,0 +1,12 @@
+ROOT=/home/ggainey/github/Pulp3
+update-all
+echo core; cd $ROOT/pulpcore; git checkout 3.16; git rebase upstream/3.16; echo
+echo file; cd $ROOT/pulp_file; git checkout 1.10; git rebase upstream/1.10; echo
+echo rpm; cd $ROOT/pulp_rpm; git checkout 3.17; git rebase upstream/3.17; echo
+echo container; cd $ROOT/pulp_container; git checkout 2.9; git rebase upstream/2.9; echo
+echo deb; cd $ROOT/pulp_deb; git checkout 2.16; git rebase upstream/2.16; echo
+echo installer; cd $ROOT/pulp_installer; git checkout main; git rebase upstream/main; echo
+echo certguard; cd $ROOT/pulp-certguard; git checkout 1.5; git rebase upstream/1.5; echo
+echo 2to3; cd $ROOT/pulp-2to3-migration; git checkout 0.14; git rebase upstream/0.14; echo
+echo pulp-smash; cd $ROOT/pulp-smash; git checkout main
+

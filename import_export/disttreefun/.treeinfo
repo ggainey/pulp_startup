@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+    Solid State by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>LDAP Tool Box - Welcome</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <meta name="description" content="LDAP Tool Box project provides tools for LDAP administrators">
+        <meta name="keywords" content="LDAP,OpenLDAP,packages,scripts,monitoring,self service,password">
+
+        <meta property="og:title" content="LDAP Tool Box - Welcome" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://ltb-project.org/images/ltb-opengraph.png" />
+        
+        <meta property="og:description" content="LDAP Tool Box project provides tools for LDAP administrators" />
+        
+    </head>
+    <body class="is-preload">
+
+        <!-- Page Wrapper -->
+            <div id="page-wrapper">
+
+                <!-- Header -->
+                    <header id="header" class="alt">
+                        <h1><a href="index.html">LDAP Tool Box</a></h1>
+                        <nav>
+                            <a href="#menu">Menu</a>
+                        </nav>
+                    </header>
+
+                <!-- Menu -->
+                    <nav id="menu">
+                        <div class="inner">
+                            <h2>Menu</h2>
+                            <ul class="links">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="documentation/" target="_blank">Documentation</a></li>
+                                <li><a href="download.html">Download</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <a href="#" class="close">Close</a>
+                        </div>
+                    </nav>
+            </div>
+
+        
+                <!-- Banner -->
+                    <section id="banner">
+                        <div class="inner">
+                            <div class="logo"><img src="images/ltb-logo.png" alt="LTB logo" /></div>
+                            <h2>LDAP Tool Box project</h2>
+                            <p>Because even LDAP administrators need help</p>
+                        </div>
+                    </section>
+
+                <!-- Wrapper -->
+                    <section id="wrapper">
+
+                        <!-- One -->
+                            <section id="one" class="wrapper spotlight style1">
+                                <div class="inner">
+                                    <a href="#" class="image"><img src="images/ssp.png" alt="Self Service Password screenshot" /></a>
+                                    <div class="content">
+                                        <h2 class="major">Compilation of tools for LDAP administrators</h2>
+                                        <ul class="alt">
+                                            <li>OpenLDAP packages and extensions</li>
+                                            <li>Monitoring plugins</li>
+                                            <li>Web interfaces for password and account management</li>
+                                            <li>Howtos and scripts</li>
+                                        </ul>
+                                        <a href="documentation/" target="_blank" class="special">Read documentation</a>
+                                    </div>
+                                </div>
+                            </section>
+
+                        <!-- Two -->
+                            <section id="two" class="wrapper alt spotlight style2">
+                                <div class="inner">
+                                    <a href="#" class="image"><img src="images/help.jpg" alt="Help" /></a>
+                                    <div class="content">
+                                        <ul class="actions">
+                                            <li><a href="download.html" class="button primary icon solid fa-download">Download</a></li>
+                                            <li><a href="contact.html" class="button icon solid fa-envelope">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+
+                        <!-- Three -->
+                            <section id="three" class="wrapper spotlight style3">
+                                <div class="inner">
+                                    <a href="#" class="image"><img src="images/community.jpg" alt="Community" /></a>
+                                    <div class="content">
+                                        <h2 class="major">Community</h2>
+                                        <p><strong>Core team</strong> David COUTADEUR, Clément OUDOT</p>
+                                        <p><strong>Past contributors</strong> Thomas CHEMINEAU, Jonathan CLARKE, Raphaël OUAZANA</p>
+                                        <p>LTB project won <a href="https://www.ow2con.org/view/2021/Awards_Results" target="_blank">OW2Con'21 Community Award</a></p>
+                                        <ul class="actions">
+                                            <li><a href="https://projects.ow2.org/view/ldaptoolbox/" target="_blank" class="button icon solid fa-info-circle">View project on OW2</a></li>
+                                            <li><a href="https://github.com/ltb-project/" target="_blank" class="button primary icon solid fa-github">Contribute on Github</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+
+                    </section>
+
+
+                <!-- Footer -->
+                    <section id="footer">
+                        <div class="inner">
+                            <ul class="copyright">
+                                <li>&copy; LDAP Tool Box project</li>
+                                <li>Hosted by <a href="https://www.worteks.com"target="_blank">Worteks</a></li>
+                                <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.scrollex.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+        <!-- Matomo -->
+            <script type="text/javascript">
+                var _paq = window._paq = window._paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(["setCookieDomain", "*.ltb-project.org"]);
+                _paq.push(["setDomains", ["*.ltb-project.org","*.www.ltb-project.org"]]);
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                    var u="//piwik.worteks.com/";
+                    _paq.push(['setTrackerUrl', u+'matomo.php']);
+                    _paq.push(['setSiteId', '4']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script>
+            <noscript><p><img src="//piwik.worteks.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Matomo Code -->
+
+    </body>                             
+</html>

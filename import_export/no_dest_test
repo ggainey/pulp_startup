@@ -1,0 +1,11 @@
+pulp rpm remote create --name t1 --policy immediate --url https://fixtures.pulpproject.org/rpm-signed/
+pulp rpm remote create --name t2 --policy immediate --url https://fixtures.pulpproject.org/rpm-modular/
+pulp rpm remote create --name t3 --policy immediate --url https://fixtures.pulpproject.org/rpm-distribution-tree/
+pulp rpm repository create --name t1 --remote t1
+pulp rpm repository create --name t2 --remote t2
+pulp rpm repository create --name t3 --remote t3
+pulp rpm repository sync --name t1
+pulp rpm repository sync --name t2
+pulp rpm repository sync --name t3
+pulp exporter pulp create --name foo --path /tmp/exports/ --repository rpm:rpm:t1 --repository rpm:rpm:t2 --repository rpm:rpm:t3
+pulp export pulp run --exporter foo

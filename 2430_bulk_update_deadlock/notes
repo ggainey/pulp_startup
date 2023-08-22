@@ -1,0 +1,92 @@
+pulpcore.tasking.pulpcore_worker:INFO: Task 01370352-5e23-454c-b44c-cf6c59f738fa failed (deadlock detected
+DETAIL:  Process 13970 waits for ShareLock on transaction 3618061; blocked by process 13969.
+Process 13969 waits for ShareLock on transaction 3618064; blocked by process 13970.
+HINT:  See server log for query details.
+CONTEXT:  while rechecking updated tuple (314,15) in relation "core_contentartifact"
+)
+pulpcore.tasking.pulpcore_worker:INFO:   File "/usr/lib/python3.6/site-packages/pulpcore/tasking/pulpcore_worker.py", line 339, in _perform_task
+result = func(*args, **kwargs)
+File "/usr/lib/python3.6/site-packages/pulp_rpm/app/tasks/synchronizing.py", line 491, in synchronize
+version = dv.create()
+File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/declarative_version.py", line 151, in create
+loop.run_until_complete(pipeline)
+File "/usr/lib64/python3.6/asyncio/base_events.py", line 484, in run_until_complete
+return future.result()
+File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/api.py", line 225, in create_pipeline
+await asyncio.gather(*futures)
+File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/api.py", line 43, in __call__
+await self.run()
+File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/content_stages.py", line 160, in run
+ContentArtifact.objects.bulk_update(to_update_ca_bulk, ["artifact"])
+File "/usr/lib/python3.6/site-packages/django/db/models/manager.py", line 82, in manager_method
+return getattr(self.get_queryset(), name)(*args, **kwargs)
+File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 525, in bulk_update
+self.filter(pk__in=pks).update(**update_kwargs)
+File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 741, in update
+rows = query.get_compiler(self.db).execute_sql(CURSOR)
+File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1471, in execute_sql
+cursor = super().execute_sql(result_type)
+File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1142, in execute_sql
+cursor.execute(sql, params)
+File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 67, in execute
+return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+return executor(sql, params, many, context)
+File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+return self.cursor.execute(sql, params)
+File "/usr/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+raise dj_exc_value.with_traceback(traceback) from exc_value
+File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+return self.cursor.execute(sql, params)
+
+
+sudo systemctl start pulpcore-worker@1 pulpcore-worker@2 pulpcore-worker@3 pulpcore-worker@4 pulpcore-worker@5 pulpcore-worker@6 pulpcore-worker@7 pulpcore-worker@8 pulpcore-worker@9 pulpcore-worker@10
+
+
+
+
+
+from pulpcore.app.models.content import Artifact, ContentArtifact
+from pulp_file.app.models import FileContent
+from hashlib import sha256
+import _thread
+
+artifacts = {}  # filename: Artifact
+content = {}  # filename: FileContent
+print(">>>BUILDING CONTENT/CA/ARTIFACTS...")
+for i in range(10000):
+  path = f'/tmp/{i:06d}.txt'
+  content_path = f'{i:06d}.txt'
+  with open(path, "w") as f:
+    f.write(path)
+  with open(path, "rb") as f:
+    sum256 = sha256(f.read()).hexdigest()
+  attrs = {"relative_path": content_path, "digest": sum256}
+  fc = FileContent(**attrs)
+  fc.save()
+  content[path] = fc
+
+  attrs = {"file": path, "sha256": sum256, "size": i}
+  a = Artifact(**attrs)
+  a.save()
+  artifacts[path] = a
+
+ca_lists = [[], [], [], [], [], [], [], [], [], []]
+for k in content.keys():
+  for i in range(7):
+    attrs = {"content": fc, "relative_path": f'{i}/{content[k].relative_path}'}
+    ca = ContentArtifact(**attrs)
+    ca.save()
+    ca.artifact = artifacts[k]
+    ca_lists[i].append(ca)
+
+def bulk_doit(ca_list):
+  print(">>> ENTER...")
+  ContentArtifact.objects.bulk_update(ca_list, ["artifact"])
+  print(">>> EXIT...")
+
+print(">>> STARTING LOOP...")
+for i in range(4):
+  for j in range(10):
+    _thread.start_new_thread(bulk_doit, (ca_lists[j],))
+

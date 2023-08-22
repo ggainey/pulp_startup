@@ -1,5 +1,6 @@
 pushd $HOME/devel
-for d in pulpcore/ pulp_file/ pulp_rpm/ pulp_container/ pulp_deb/ pulp-certguard/ pulp-2to3-migration/
+#for d in pulpcore/ pulp_file/ pulp_rpm/ pulp_container/ pulp_deb/ pulp-certguard/ pulp-2to3-migration/
+for d in pulpcore/ pulp_file/ pulp_rpm/ pulp-certguard/
 do
   echo $d
   pip install -e $d

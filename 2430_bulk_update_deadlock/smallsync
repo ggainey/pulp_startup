@@ -1,0 +1,10 @@
+for i in {1..10}
+do
+  pulp rpm remote create --name "test-${i}" --url "https://fixtures.pulpproject.org/rpm-signed/" --policy on_demand
+  pulp rpm repository create --name "test-${i}" --remote "test-${i}"
+done
+
+for i in {1..10}
+do
+  pulp -b rpm repository sync --name "test-${i}"
+done

@@ -1,0 +1,47 @@
+PULP_SETTINGS=/etc/pulp/settings.py pulpcore-manager shell
+import _thread
+from django.db import transaction
+from pulpcore.plugin.models import Content, RepositoryVersion
+from django.utils.timezone import now
+
+def update_timestamp(index):
+   print(">>>in update_timedstamp index {}".format(index))
+   Content.objects.select_for_update(skip_locked=True).filter().update(timestamp_of_interest=now())
+   print(">>>done {}".format(index))
+
+for i in range(8):
+   _thread.start_new_thread(update_timestamp, (i,))
+
+
+
+import _thread
+from django.db import transaction
+from pulpcore.plugin.models import Content, RepositoryVersion
+from django.utils.timezone import now
+
+def update_timestamp(index):
+   print(">>>in update_timedstamp index {}".format(index))
+   Content.objects.filter().order_by("pulp_id").update(timestamp_of_interest=now())
+   print(">>>done {}".format(index))
+
+for i in range(8):
+   _thread.start_new_thread(update_timestamp, (i,))
+
+
+                                                                                                                      
+import _thread
+from django.db import transaction
+from pulpcore.plugin.models import Content, RepositoryVersion
+from django.utils.timezone import now
+from django.db import connection
+def update_timestamp(index):
+   print(">>>in update_timedstamp index {}".format(index))
+   cursor = connection.cursor()
+   with transaction.atomic():
+     cursor.execute("LOCK TABLE core_content IN EXCLUSIVE MODE")
+     Content.objects.filter().order_by("pulp_id").update(timestamp_of_interest=now())
+   print(">>>done {}".format(index))
+
+for i in range(8):
+   _thread.start_new_thread(update_timestamp, (i,))
+

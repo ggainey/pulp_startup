@@ -1,0 +1,4 @@
+status
+rpm remote create --name dell --url https://linux.dell.com/repo/hardware/dsu/os_independent --policy immediate
+rpm repository create --name dell --remote dell
+rpm repository sync --name dell

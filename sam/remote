@@ -1,0 +1,26 @@
+#!/bin/bash
+echo  create a remote
+#REMOTE_HREF=$(pulp rpm remote create --name rpm --url "https://THIS-CANT-WORK" --proxy-url "http://proxy.not" --proxy-username "foo" --proxy-password "bar" | jq -r .pulp_href)
+REMOTE_HREF=$(pulp rpm remote create --name rpm --url "https://THIS-CANT-WORK" | jq -r .pulp_href)
+echo Remote ${FIRST_REPO_HREF}
+echo list sams
+http -b :/pulp/api/v3/shared-attribute-managers/
+echo  Create a SAM
+SAM_HREF=$(http -b POST :/pulp/api/v3/shared-attribute-managers/ name="SAM" | jq -r '.pulp_href')
+echo  Read the SAM
+http -b :${SAM_HREF}
+echo  Update the SAM
+echo  ...set its attributes
+http -b --json PATCH :${SAM_HREF} managed_attributes:='{"proxy_password": "blech", "download_concurrency": 3}'
+http -b :${SAM_HREF} | jq -r .managed_attributes
+echo  ...set emote
+http -b --json PATCH :${SAM_HREF} managed_entities:="[\"${REMOTE_HREF}\"]"
+http -b :${SAM_HREF} | jq -r .managed_entities
+echo  List all SAMs
+http -b :/pulp/api/v3/shared-attribute-managers/
+echo  /apply/ attributes
+http -b POST :${SAM_HREF}apply/
+echo  Show state of remote
+http -b :${REMOTE_HREF}
+echo  delete SAM
+#http -b DELETE :${SAM_HREF}

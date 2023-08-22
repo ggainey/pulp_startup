@@ -40,4 +40,4 @@ echo  /remove/ first repo, look at results
 http -b POST :${SAM_HREF}remove/ entity_href=${FIRST_REPO_HREF}
 http -b :${SAM_HREF} | jq -r .managed_entities
 echo  delete SAM
-http -b DELETE :${SAM_HREF}
+#http -b DELETE :${SAM_HREF}

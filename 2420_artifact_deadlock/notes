@@ -1,0 +1,78 @@
+Process 24680: INSERT INTO "core_artifact" (
+  "pulp_id", "pulp_created", "pulp_last_updated",
+  "file", "size",
+  "md5", "sha1", "sha224", "sha256", "sha384", "sha512", "timestamp_of_interest")
+VALUES (
+  'fc1621f8-dce2-4ff9-b0f6-590af82a609d'::uuid,
+  '2022-03-14T10:10:23.458319+00:00'::timestamptz,
+  '2022-03-14T10:10:23.458388+00:00'::timestamptz,
+  'artifact/04/e69fee288db61a77bc71512c573a97d4d57be3fee5335fdba38b92d4a75d16',
+  93712,
+  '1f84f08e6e3c605994c144036d237787',
+  'f7c701d5280d09b2e988dcaabe6823b561255c35',
+  '6ed8480a9c89a673baf58150366bfd08326004c33ade2152c9548ab7',
+  '04e69fee288db61a77bc71512c573a97d4d57be3fee5335fdba38b92d4a75d16',
+  '5dde72af5557855a1483aafdee29d33da6daa66428267e95b15c7ddb99abe469c4430c45e4e927d5526bc04b2480da68',
+  'dbbbb267bb9a913e0996e73a6697da898e3dae47e24d63ef49641509a99ed7ce2835e567b8fcc1dcae5497d2a9b7783916a45fd135cb81ee1a9d903f97e07207',
+  '2022-03-14T10:10:23.465319+00:00'::timestamptz),
+      (
+  'b8b49a74-7a79-4812-b86d-72114529cdb0'::uuid,
+  '2022-03-14T10:10:23.465392+00:00'::timestamptz,
+  '2022-03-14T10:10:23.465421
+Process 24652: INSERT INTO "core_artifact" ("pulp_id", "pulp_created", "pulp_last_updated", "file", "size", "md5", "sha1", "sha224", "sha256", "sha384", "sha512", "timestamp_of_interest") VALUES (
+  '3c2a12a5-139f-4a1b-afb3-116c04fd24d2'::uuid,
+  '2022-03-14T10:10:22.808572+00:00'::timestamptz,
+  '2022-03-14T10:10:22.808631+00:00'::timestamptz,
+  'artifact/50/7a394ae75878e2bc87a65fa68604f903b2c3c3dcf2690aec5ce31cdb8caf46',
+   201448,
+  '31e0e7891c42e1d65531369ebae5fce3',
+  '87ddb611dcc983eb5e51a8b9e8ec3b52471b9aa7',
+  'b26f083064b4739fd2a51a2820be2cab931c8f42e5ee7c63a1924ce0',
+  '507a394ae75878e2bc87a65fa68604f903b2c3c3dcf2690aec5ce31cdb8caf46',
+  'cb245087311bd0a0a2e73b41cbf7d6d3723d102ef5a1f906839bdf80f95a11919c48f2b64b41d358c684035f12572848',
+  '6d8ef5a2f13601174147acb0c3b8ce69052a9a155e36586a596cb88822cf84a8cec814bbcdae6c359b2d74669e2f265aeb83f86c0172c23468015ea3f55a9a31',
+  '2022-03-14T10:10:22.814954+00:00'::timestamptz),
+  (
+  'c798aee7-7152-4205-ac7c-1b639a4e3abe'::uuid, '2022-03-14T10:10:22.815036+00:00'::timestamptz, '2022-03-14T10:10:22.81506
+
+sudo systemctl start pulpcore-worker@1 pulpcore-worker@2 pulpcore-worker@3 pulpcore-worker@4 pulpcore-worker@5 pulpcore-worker@6 pulpcore-worker@7 pulpcore-worker@8 pulpcore-worker@9 pulpcore-worker@10
+
+
+
+
+
+from pulpcore.app.models.content import Artifact
+from hashlib import sha256
+import _thread
+artifacts = []
+print(">>>BUILDING ARTIFACTS...")
+for i in range(9999):
+  filename = f'/tmp/{i:06d}.txt'
+  with open(filename, "w") as f:
+    f.write(filename)
+  with open(filename, "rb") as f:
+    sum256 = sha256(f.read()).hexdigest()
+  attrs = {"file": filename, "sha256": sum256, "size": i}
+  artifacts.append(Artifact (**attrs))
+
+print(">>> SORT ASC...")
+artifacts_asc = sorted(artifacts, key=lambda a: a.sha256)
+print(">>> SORT DSC...")
+artifacts_dsc = sorted(artifacts, key=lambda a: a.sha256, reverse=True)
+print(">>> SHUFFLE...")
+artifacts_mix = []
+for i in range(9999):
+  artifacts_mix.append(artifacts_asc[i])
+  artifacts_mix.append(artifacts_dsc[i])
+
+def bulk_doit(art_list):
+  print(">>> ENTER...")
+  Artifact.objects.bulk_get_or_create(art_list)
+  print(">>> EXIT...")
+
+print(">>> STARTING LOOP...")
+for i in range(5):
+  _thread.start_new_thread(bulk_doit, (artifacts_asc,))
+  _thread.start_new_thread(bulk_doit, (artifacts_dsc,))
+  _thread.start_new_thread(bulk_doit, (artifacts_mix,))
+

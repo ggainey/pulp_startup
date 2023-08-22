@@ -1,0 +1,16 @@
+# get a directory full of just-rpms
+wget -r -np -R "index.html*" https://fixtures.pulpproject.org/rpm-unsigned/
+cd fixtures.pulpproject.org/rpm-unsigned
+rm -rf repodata/
+export DIR=rpm-unsigned
+# create a repo
+pulp rpm repository create --name $DIR --retain-repo-versions 1
+# upload all the RPMs
+for f in *; do echo $f ; pulp rpm content -t package upload --file $f --repository $DIR ; done
+pulp rpm repository version show --repository $DIR
+# publish the repo
+pulp rpm publication create --repository $DIR
+# distribute the repo
+pulp rpm distribution create --name $DIR --repository $DIR --base-path $DIR
+# get file from the repo
+http :5001/pulp/content/default/$DIR/repodata/repomd.xml

@@ -5,7 +5,8 @@ echo file; cd $ROOT/pulp_file; git checkout 1.6; git rebase upstream/1.6; echo
 echo rpm; cd $ROOT/pulp_rpm; git checkout 3.10; git rebase upstream/3.10; echo
 echo container; cd $ROOT/pulp_container; git checkout 2.5; git rebase upstream/2.5; echo
 echo deb; cd $ROOT/pulp_deb; git checkout 2.11; git rebase upstream/2.11; echo
-echo installer; cd $ROOT/pulp_installer; git checkout 3.11; git rebase upstream/3.11; echo
+#echo installer; cd $ROOT/pulp_installer; git checkout 3.11; git rebase upstream/3.11; echo
+echo installer; cd $ROOT/pulp_installer; git checkout main; git rebase upstream/main; echo
 echo certguard; cd $ROOT/pulp-certguard; git checkout 1.2; git rebase upstream/1.2; echo
 echo 2to3; cd $ROOT/pulp-2to3-migration; git checkout 0.11; git rebase upstream/0.11; echo
 echo pulp-smash; cd $ROOT/pulp-smash; git checkout 98639d3b1cdbc471d54f974ff60193ec7100c605

@@ -5,8 +5,8 @@ echo file; cd $ROOT/pulp_file; git checkout main; echo
 echo rpm; cd $ROOT/pulp_rpm; git checkout main; echo
 echo container; cd $ROOT/pulp_container; git checkout main; echo
 echo deb; cd $ROOT/pulp_deb; git checkout main; echo
-echo installer; cd $ROOT/pulp_installer; git checkout main; echo
+#echo installer; cd $ROOT/pulp_installer; git checkout main; echo
 echo certguard; cd $ROOT/pulp-certguard; git checkout main; echo
-echo 2to3; cd $ROOT/pulp-2to3-migration; git checkout main; echo
-echo smash; cd $ROOT/pulp-smash; git checkout master
+#echo 2to3; cd $ROOT/pulp-2to3-migration; git checkout main; echo
+#echo smash; cd $ROOT/pulp-smash; git checkout main
 
