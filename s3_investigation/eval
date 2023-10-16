@@ -1,4 +1,7 @@
 #! /bin/bash
+# create s3.log by 1) failed run, 2) turn on timestamps, 3) copy from start-of-tests
+# to "error run canceled", 4) paste into s3.log.
+# Then run this script against it. output will be "tests that started and never finished"
 # starts
 grep " usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/a
 pi" s3.log | grep -v -E 'PASSED|SKIPPED' | awk -F" " '{print $7}' | sort > starts.txt
