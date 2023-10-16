@@ -1,0 +1,94 @@
+
+2022-08-10 15:51:29 EDT ERROR:  deadlock detected
+2022-08-10 15:51:29 EDT DETAIL:  Process 55740 waits for ShareLock on transaction 61803; blocked by process 55746.
+        Process 55746 waits for ShareLock on transaction 61805; blocked by process 55740.
+        Process 55740: SELECT "core_contentartifact"."pulp_id", "core_contentartifact"."pulp_created", "core_contentartifact"."pulp_last_updated", "core_contentartifact"."artifact_id", "core_contentartifact"."content_id", "core_contentartifact"."relative_path" FROM "core_contentartifact" WHERE "core_contentartifact"."pulp_id" IN ('f15490fe-ad94-4ef8-9ac7-7f358b208860'::uuid, '477f002e-df91-4f6f-b83a-490eb53fe7ed'::uuid, 'efdb5284-b0a3-4703-9b9b-20c8015418d2'::uuid, '109061f4-4ac4-493d-9ea2-501431c02a41'::uuid, '97589ce9-3eaf-47ef-a9b3-828440c6c900'::uuid, '22c0518d-575f-455a-a2ae-7732c38dd22f'::uuid, 'b046e41f-9190-46cc-b639-9bd988f87403'::uuid, '81a46c31-b554-4ce7-be51-1ce8deb31af2'::uuid, '4597409a-756a-4681-844c-eeda1c0a2321'::uuid, '26b13ea9-48c9-470b-a81b-a24258a410ad'::uuid, '2d300733-cf56-4795-b90a-cb03a1f5f3b8'::uuid, '730740a6-77d9-40ec-a5df-e7bfc7fffcb9'::uuid, '33bef6d1-dab8-443a-952d-5d2e65503e35'::uuid, 'ab56f86d-26b9-4108-83cb-8267e89f6c30'::uuid, '80b45822-9f42-4aa9-a91f-4cd6d7980245'::uuid, '112fe0c4-7ffe-4118-9551
+        Process 55746: COMMIT
+2022-08-10 15:51:29 EDT HINT:  See server log for query details.
+2022-08-10 15:51:29 EDT CONTEXT:  while locking tuple (209,51) in relation "core_contentartifact"
+
+
+Aug 10 15:51:24 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-api[54517]: pulp [88649f1c-3393-4693-aab7-d73b62eeda62]:  - - [10/Aug/2022:19:51:24 +0000] "GET /pulp/api/v3/tasks/06d88a9c-2048-4aad-9967-f5012aafbf3f/ HTTP/1.1" 200 578 "-" "OpenAPI-Generator/3.14.15/ruby"
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: pulp [88649f1c-3393-4693-aab7-d73b62eeda62]: pulpcore.tasking.pulpcore_worker:INFO: Task 407bb67b-65d0-4d65-b9c8-b1aa1f2c87fd failed (deadlock detected
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: DETAIL:  Process 55740 waits for ShareLock on transaction 61803; blocked by process 55746.
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: Process 55746 waits for ShareLock on transaction 61805; blocked by process 55740.
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: HINT:  See server log for query details.
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: CONTEXT:  while locking tuple (209,51) in relation "core_contentartifact"
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: )
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: pulp [88649f1c-3393-4693-aab7-d73b62eeda62]: pulpcore.tasking.pulpcore_worker:INFO:   File "/usr/lib/python3.6/site-packages/pulpcore/tasking/pulpcore_worker.py", line 342, in _perform_task
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: result = func(*args, **kwargs)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/pulp_rpm/app/tasks/synchronizing.py", line 494, in synchronize
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: version = dv.create()
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/declarative_version.py", line 151, in create
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: loop.run_until_complete(pipeline)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib64/python3.6/asyncio/base_events.py", line 484, in run_until_complete
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return future.result()
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/api.py", line 225, in create_pipeline
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: await asyncio.gather(*futures)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/api.py", line 43, in __call__
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: await self.run()
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/content_stages.py", line 178, in run
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: .order_by("pulp_id")
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 256, in __len__
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: self._fetch_all()
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 1242, in _fetch_all
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: self._result_cache = list(self._iterable_class(self))
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/models/query.py", line 144, in __iter__
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return compiler.results_iter(tuple_expected=True, chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1094, in results_iter
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: results = self.execute_sql(MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1142, in execute_sql
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: cursor.execute(sql, params)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 67, in execute
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return executor(sql, params, many, context)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return self.cursor.execute(sql, params)
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: raise dj_exc_value.with_traceback(traceback) from exc_value
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: File "/usr/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+Aug 10 15:51:30 dhcp-3-210.vms.sat.rdu2.redhat.com pulpcore-worker-5[54158]: return self.cursor.execute(sql, params)
+
+python3-pulpcore-3.14.16-1.el7pc.noarch
+
+/usr/lib/python3.6/site-packages/pulpcore/plugin/stages/content_stages.py
+
+# sudo vi /var/opt/rh/rh-postgresql10/lib/pgsql/data/postgresql.conf
+log_statement = 'all'
+
+# sudo systemctl restart rh-postgresql10-postgresql
+# DJANGO_SETTINGS_MODULE=pulpcore.app.settings PULP_SETTINGS=/etc/pulp/settings.py pulpcore-manager shell
+
+from django.db import transaction
+from pulpcore.app.models.content import ContentArtifact
+to_update_ca_bulk = ContentArtifact.objects.all()
+ids = [x.pulp_id for x in to_update_ca_bulk]
+
+#bad
+with transaction.atomic():
+    len(
+        ContentArtifact.objects.filter(pulp_id__in=ids)
+        .only("pulp_id")
+        .order_by("pulp_id")
+        .select_for_update()
+        .values_list()
+    )
+
+#good (?)
+with transaction.atomic():
+    subq =  ContentArtifact.objects.filter(pulp_id__in=ids).only("pulp_id").order_by("pulp_id").select_for_update()
+    len(
+        ContentArtifact.objects.filter(pk__in=subq)
+        .values_list()
+    )
+    ContentArtifact.objects.bulk_update(to_update_ca_bulk, ["artifact"])
+
+
+
+                    #sub_q = self.order_by("pk").select_for_update(skip_locked=True)
+                    #self.filter(pk__in=sub_q).update(timestamp_of_interest=now())
+
+
+# sudo ls -ltr /var/opt/rh/rh-postgresql10/lib/pgsql/data/log/
+

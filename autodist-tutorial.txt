@@ -1,0 +1,31 @@
+  205  pulp rpm remote create --name test --url https://fixtures.pulpproject.org/rpm-signed/ --policy on_demand
+  206  pulp rpm repository create --name test --remote test --autopublish
+  209  pulp rpm distribution create --repository test --base-path test --name test
+  210  http :/pulp/content/test/
+404: Not Found
+# Never sync'd - so no publication to be distributed yet
+  212  pulp rpm publication create --repository test
+  213  http :/pulp/content/test/
+        <!DOCTYPE html>
+        <html>
+            <body>
+                <ul>
+                    <li><a href="config.repo">config.repo</a></li>
+                    <li><a href="repodata/">repodata/</a></li>
+                </ul>
+            </body>
+        </html>
+# Publication created by hand, distribution picks it up, no Packages
+  214  pulp rpm repository sync --name test
+  215  http :/pulp/content/test/
+        <!DOCTYPE html>
+        <html>
+            <body>
+                <ul>
+                    <li><a href="Packages/">Packages/</a></li>
+                    <li><a href="config.repo">config.repo</a></li>
+                    <li><a href="repodata/">repodata/</a></li>
+                </ul>
+            </body>
+        </html>
+# Sync got packages, publication happened automatically, distribution found them
