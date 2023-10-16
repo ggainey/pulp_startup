@@ -1,0 +1,196 @@
+ usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_can_update_remote_policy
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_cannot_create_repo_version_with_two_relative_paths_the_same
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_same_relative_path_repo_specified
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_bad_sync.py::test_bad_response_retry_multiple_files
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_serving_acs_content
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_validation_and_update
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_remote_crud_workflow
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_default_remote_policy_immediate
+[gw6] [  1%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_default_remote_policy_immediate
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_specify_remote_policy_streamed
+[gw7] [  2%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_can_update_remote_policy
+[gw6] [  3%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_specify_remote_policy_streamed
+[gw2] [  4%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_bad_sync.py::test_bad_response_retry_multiple_files
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_object_creation
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_specify_remote_policy_on_demand
+[gw6] [  5%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_specify_remote_policy_on_demand
+[gw5] [  6%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_remote_crud_workflow
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_content_upload
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_crud_content_unit
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_create_file_remote_with_invalid_parameter
+[gw5] [  7%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_create_file_remote_with_invalid_parameter
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_create_file_remote_without_url
+[gw5] [  8%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_remotes.py::test_create_file_remote_without_url
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[immediate]
+[gw4] [  9%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_cannot_create_repo_version_with_two_relative_paths_the_same
+[gw7] [ 10%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_object_creation
+[gw1] [ 11%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_serving_acs_content
+[gw0] [ 12%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_validation_and_update
+[gw2] [ 13%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_crud_content_unit
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_same_relative_path_no_repo
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_bad_inputs_to_modify_endpoint
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_artifact_upload
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_sync
+[gw6] [ 14%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_content_upload
+[gw3] [ 15%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_same_relative_path_repo_specified
+[gw4] [ 16%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_bad_inputs_to_modify_endpoint
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_content_promotion
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_create_file_content_from_chunked_upload
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_auto_publish.py::test_auto_publish_and_distribution
+[gw2] [ 17%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_same_relative_path_no_repo
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_repos_generic
+[gw2] [ 18%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_repos_generic
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_diff_relative_path
+[gw0] [ 19%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_sync
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_content_generic
+[gw7] [ 20%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_artifact_upload
+[gw5] [ 21%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[immediate]
+[gw2] [ 22%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_content_generic
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_content_guards_generic
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_master_model_remotes_generic
+[gw3] [ 23%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_same_sha256_diff_relative_path
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_sync_with_paths
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_second_content_unit_with_same_rel_path_replaces_the_first
+[gw2] [ 24%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_content_guards_generic
+[gw6] [ 25%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_content_promotion
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_model_partial_update
+[gw7] [ 26%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_generic_list.py::test_read_all_master_model_remotes_generic
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[on_demand]
+[gw2] [ 27%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_model_partial_update
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_create_repo_with_labels
+[gw7] [ 28%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_create_repo_with_labels
+[gw0] [ 29%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_acs.py::test_acs_sync_with_paths
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_domain_rbac
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_label_type
+[gw4] [ 30%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_create_file_content_from_chunked_upload
+[gw2] [ 31%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_label_type
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_role_management
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_set_unset_all_labels
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_add_remove_label_keys
+[gw1] [ 32%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_auto_publish.py::test_auto_publish_and_distribution
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_labels
+[gw3] [ 33%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_crud_content_unit.py::test_second_content_unit_with_same_rel_path_replaces_the_first
+[gw7] [ 34%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_set_unset_all_labels
+[gw0] [ 35%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_labels
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_label_select
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_repository_version_repair
+[gw4] [ 36%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_add_remove_label_keys
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_empty_blank_filter
+[gw6] [ 37%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_domains.py::test_domain_rbac
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_bad_sync.py::test_bad_response_retry
+[gw3] [ 38%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_empty_blank_filter
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_update_existing_label_value
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_label_select
+[gw2] [ 39%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_role_management
+[gw4] [ 40%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_update_existing_label_value
+[gw0] [ 41%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_label_select
+[gw1] [ 42%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_bad_sync.py::test_bad_response_retry
+[gw3] [ 43%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_labels.py::test_invalid_label_select
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_defaults_to_on
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_on
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_mime_types.py::test_content_types
+[gw7] [ 44%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_repository_version_repair
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_repository_apis
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_off
+[gw3] [ 45%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_defaults_to_on
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_object_creation
+[gw4] [ 46%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_on
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_acs_apis
+[gw1] [ 47%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_tls_validation_off
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_with_client_cert_req
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_ondemand_to_immediate_sync
+[gw5] [ 48%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[on_demand]
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_mirrored_sync
+[gw3] [ 49%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_ssl_with_client_cert_req
+[gw1] [ 50%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_mirrored_sync
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_invalid_file
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[streamed]
+[gw4] [ 51%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_ondemand_to_immediate_sync
+[gw2] [ 52%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_repository_apis
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_filepath_includes_commas
+[gw7] [ 53%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_acs_apis
+[gw3] [ 54%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_invalid_file
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_duplicate_file_sync
+[gw1] [ 55%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_filepath_includes_commas
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_invalid_url
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_header_for_sync
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_cache.py::test_full_workflow
+[gw0] [ 56%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_rbac.py::test_object_creation
+[gw3] [ 57%] SKIPPED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_cache.py::test_full_workflow
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_delivery.py::test_remote_artifact_url_update
+[gw7] [ 58%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_invalid_url
+[gw2] [ 59%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_header_for_sync
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_no_ssl
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_path.py::test_content_directory_listing
+[gw4] [ 60%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_sync.py::test_duplicate_file_sync
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_promotion.py::test_content_promotion
+[gw0] [ 61%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_remote_settings.py::test_http_sync_no_ssl
+[gw1] [ 62%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_delivery.py::test_remote_artifact_url_update
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_guard.py::test_rbac_content_guard_full_workflow
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_remote_pulp_labels
+[gw0] [ 63%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_remote_pulp_labels
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_distribution_base_path
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_crud_remotes_full_workflow
+[gw7] [ 64%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_path.py::test_content_directory_listing
+[gw6] [ 65%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_mime_types.py::test_content_types
+[gw2] [ 66%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_promotion.py::test_content_promotion
+[gw5] [ 67%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_download_policies.py::test_download_policy[streamed]
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_publish.py::test_crd_publications
+[gw0] [ 68%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_distribution_base_path
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_file_remote_url_validation
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_distribution_filtering
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_delivery.py::test_delete_remote_on_demand
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_repository_remote_filter
+[gw7] [ 69%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_file_remote_url_validation
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy
+[gw4] [ 70%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_guard.py::test_rbac_content_guard_full_workflow
+[gw7] [ 71%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy
+[gw5] [ 72%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_delivery.py::test_delete_remote_on_demand
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_reclaim_immediate_content
+[gw2] [ 73%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_repository_remote_filter
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_crud_publication_distribution
+[gw1] [ 74%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_crud_repos.py::test_crud_remotes_full_workflow
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy_with_auth_but_auth_not_configured
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_pagination.py::test_repo_version_pagination
+[gw5] [ 75%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy_with_auth_but_auth_not_configured
+[gw7] [ 76%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_reclaim_immediate_content
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_http_through_https_proxy
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_add_remove_content
+[gw6] [ 77%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/test_publish.py::test_crd_publications
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_reclaim_on_demand_content
+[gw2] [ 78%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_http_through_https_proxy
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_http_through_http_proxy
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_squash_repo_version
+[gw6] [ 79%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_http_through_http_proxy
+[gw7] [ 80%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_reclaim_on_demand_content
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_create_repo_base_version
+[gw5] [ 81%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_add_remove_content
+[gw0] [ 82%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_distribution_filtering
+[gw4] [ 83%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_distributions.py::test_crud_publication_distribution
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_filter_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_content_immutable_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_immediate_reclaim_becomes_on_demand
+[gw5] [ 84%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_content_immutable_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_repo_version_retention
+[gw4] [ 85%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_reclaim_disk_space.py::test_immediate_reclaim_becomes_on_demand
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy_with_auth
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_content_in_repository_version_view
+[gw0] [ 86%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_proxy.py::test_sync_https_through_http_proxy_with_auth
+[gw6] [ 87%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_create_repo_base_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_unlinking_repo.py::test_shared_remote_usage
+[gw0] [ 88%] SKIPPED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_unlinking_repo.py::test_shared_remote_usage
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_delete_repo_version_resources
+[gw4] [ 89%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_content_in_repository_version_view
+[gw2] [ 90%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_squash_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_filter_artifacts
+[gw6] [ 91%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_delete_repo_version_resources
+[gw2] [ 92%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_filter_artifacts
+[gw5] [ 93%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_repo_version_retention
+[gw7] [ 94%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_filter_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_clear_all_units_repo_version
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_tasks.py::test_retrieve_task_with_fields_created_resources_only
+[gw1] [ 95%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_pagination.py::test_repo_version_pagination
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_add_remove_repo_version
+[gw5] [ 96%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_tasks.py::test_retrieve_task_with_fields_created_resources_only
+[gw7] [ 97%] PASSED usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_repo_versions.py::test_clear_all_units_repo_version
+Error: The operation was canceled.

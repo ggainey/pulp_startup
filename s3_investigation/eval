@@ -1,0 +1,12 @@
+#! /bin/bash
+# starts
+grep " usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/a
+pi" s3.log | grep -v -E 'PASSED|SKIPPED' | awk -F" " '{print $7}' | sort > starts.txt
+# skips
+grep " usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/a
+pi" s3.log | grep SKIPPED | awk -F" " '{print $11}' | sort  > skipped.txt
+# ends
+grep " usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/a
+pi" s3.log | grep -E 'PASSED|SKIPPED' | awk -F" " '{print $11}' | sort > ends.txt
+# started-but-didn't-end
+comm -23 starts.txt ends.txt

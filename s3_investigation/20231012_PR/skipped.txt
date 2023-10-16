@@ -1,0 +1,1 @@
+usr/local/lib/python3.8/site-packages/pulp_file/tests/functional/api/from_pulpcore/test_content_cache.py::test_full_workflow
