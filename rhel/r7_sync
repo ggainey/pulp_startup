@@ -3,14 +3,12 @@
 #https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os
 #https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os/
 R7_REMOTES=(\
-https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/optional/os/ \
 https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os \
 )
 
 #rhel_7_x86_64_server
 #rhel_7_x86_64_server_optional
 R7_NAMES=(\
-rhel_7_x86_64_server_optional \
 rhel_7_x86_64_server \
 )
 
