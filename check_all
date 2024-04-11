@@ -1,0 +1,19 @@
+#!/bin/bash
+PULP_DIR="/home/ggainey/github/Pulp3"
+for r in pulpcore pulp_rpm pulp-certguard pulp_container pulp_python \
+         pulp_maven pulp_gem pulp_ansible pulp_deb pulp_npm pulp_ostree
+do
+  echo ">>>>>>>>"
+  echo "REPO ${r}:"
+  if [ -d "${PULP_DIR}/${r}" ]
+  then
+      pushd "${PULP_DIR}/${r}" > /dev/null
+      .ci/scripts/check_release.py
+      popd > /dev/null
+  else
+      echo "...not cloned."
+  fi
+  echo ">>>>>>>>"
+  echo ""
+done
+

@@ -1,0 +1,23 @@
+from django.db import migrations, models
+from django.db.models import Max, Count, F
+
+from pulp_2to3_migration.app.models.content import Pulp2Content
+
+p2content = Pulp2Content.objects.values('pulp2_id', 'pulp2_content_type_id', 'pulp2_repo_id', 'pulp2_subid').order_by('pulp2_id')
+p2content = p2content.annotate(max_id=models.Max("pulp2_id"), count_id=models.Count("pulp2_id"))
+p2content = p2content.annotate(max_id=models.Max("pulp2_id"), count_id=models.Count("pulp2_id")).filter(count_id__gt=1)
+for dup in p2content:
+    to_delete = Pulp2Content.objects.filter(**{x: dup[x] for x in ['pulp2_id', 'pulp2_content_type_id', 'pulp2_repo_id', 'pulp2_subid']}).order_by('pulp2_last_updated')
+    to_delete = to_delete.exclude(pk=to_delete[0].pk)
+    to_delete.delete()
+
+errata = Pulp2Content.objects.filter(pulp2_content_type_id='erratum').update(pulp2_subid=F('pulp2_repo_id'))
+
+
+a = Pulp2Content.objects.all().filter(pulp2_id='04fbe01f-8345-4f09-abaf-0ea6d2c2a5c8', pulp2_content_type_id='rpm', pulp2_repo_id=None, pulp2_subid='').order_by('pulp2_last_updated') # skip first-in, delete the rest
+a = a.exclude(pk=a[0].pk)
+a.delete()
+
+
+
+

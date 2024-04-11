@@ -1,9 +1,29 @@
-ROOT=/home/ggainey/github/Pulp3
-update-all
-echo core; cd $ROOT/pulpcore; git checkout 3.18; git rebase upstream/3.18; echo
-echo file; cd $ROOT/pulp_file; git checkout 1.10; git rebase upstream/1.10; echo
-echo rpm; cd $ROOT/pulp_rpm; git checkout 3.18; git rebase upstream/3.18; echo
-echo container; cd $ROOT/pulp_container; git checkout 2.10; git rebase upstream/2.10; echo
-echo deb; cd $ROOT/pulp_deb; git checkout 2.18; git rebase upstream/2.18; echo
-echo certguard; cd $ROOT/pulp-certguard; git checkout 1.5; git rebase upstream/1.5; echo
-
+export ROOT=/home/ggainey/github/sat6-12
+REPO_LIST="pulpcore,3.18 pulp_file,1.10 pulp_rpm,3.18 pulp_container,2.10 pulp-certguard,1.5 pulp-smash,main"
+if [ ! -d $ROOT ]
+then
+  mkdir -p $ROOT
+  cd $ROOT
+  for rv in $REPO_LIST
+  do
+    OLDIFS=$IFS
+    IFS=","
+    set -- $rv
+    echo SETTING UP REPO $1
+    git clone git@github.com:ggainey/$1.git
+    cd $1
+    git remote add upstream https://github.com/pulp/$1.git
+    cd ..
+    IFS=$OLDIFS
+  done
+fi
+for rv in $REPO_LIST
+do
+  OLDIFS=$IFS
+  IFS=","
+  set -- $rv
+  echo REPO $1 VERSION $2
+  update-all $1
+  echo $1; cd $ROOT/$1; git checkout --track origin/$2; git rebase upstream/$2; echo
+  IFS=$OLDIFS
+done

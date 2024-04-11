@@ -45,8 +45,8 @@ rhel_9_beta_x86_64_appstream_kickstart \
 )
 
 R9=
-R8=1
-R7=
+R8=
+R7=1
 
 BASE=/home/ggainey/github/Pulp3/
 

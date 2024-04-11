@@ -1,0 +1,1834 @@
+virtualenvwrapper.user_scripts creating /usr/local/lib/initialize
+virtualenvwrapper.user_scripts creating /usr/local/lib/premkproject
+virtualenvwrapper.user_scripts creating /usr/local/lib/initialize
+virtualenvwrapper.user_scripts creating /usr/local/lib/premkproject
+pfixtures
+phelp
+pbindings pulpcore python
+#!/bin/bash -v
+STREAM='rhel8-appstream'
+REMOTE2='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/'
+pulp-admin rpm repo create --repo-id=$STREAM --relative-url=$STREAM --feed=$REMOTE2         --retain-old-count 2         --download-policy on_demand         --generate-sqlite false --repoview false         --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem         --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt         --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$STREAM
+pulp-admin repo listpulp-admin login -u admin -p admin
+set -o vi
+pulp-admin  login -u admin -p admin
+#!/bin/bash -v
+STREAM='rhel8-appstream'
+REMOTE2='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/'
+pulp-admin rpm repo create --repo-id=$STREAM --relative-url=$STREAM --feed=$REMOTE2         --retain-old-count 2         --download-policy on_demand         --generate-sqlite false --repoview false         --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem         --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt         --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$STREAM
+pulp-admin tasks
+pulp-admin tasks list
+df -h
+pulp-admin tasks list
+pulp-admin tasks details --help
+pulp-admin tasks details --help --task-id af8e90a2-bcec-4ef1-b046-1746599d52b1
+pulp-admin tasks details --task-id af8e90a2-bcec-4ef1-b046-1746599d52b1
+history | 25
+df -h
+set -o vi
+journalctl -f
+sudo journalctl -f
+htop
+pfixtures
+phelp
+pbindings pulpcore python
+#!/bin/bash -v
+STREAM='rhel8-appstream'
+REMOTE2='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/'
+pulp-admin rpm repo create --repo-id=$STREAM --relative-url=$STREAM --feed=$REMOTE2         --retain-old-count 2         --download-policy on_demand         --generate-sqlite false --repoview false         --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem         --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt         --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$STREAM
+pulp-admin repo listpulp-admin login -u admin -p admin
+set -o vi
+pulp-admin  login -u admin -p admin
+#!/bin/bash -v
+STREAM='rhel8-appstream'
+REMOTE2='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/'
+pulp-admin rpm repo create --repo-id=$STREAM --relative-url=$STREAM --feed=$REMOTE2         --retain-old-count 2         --download-policy on_demand         --generate-sqlite false --repoview false         --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem         --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt         --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$STREAM
+pulp-admin tasks
+pulp-admin tasks list
+df -h
+pulp-admin tasks list
+pulp-admin tasks details --help
+pulp-admin tasks details --help --task-id af8e90a2-bcec-4ef1-b046-1746599d52b1
+pulp-admin tasks details --task-id af8e90a2-bcec-4ef1-b046-1746599d52b1
+history | 25
+history  25
+pulp-admin rpm repo list
+pulp admin rpm repo delete
+pulp admin rpm repo delete --repo-id rhel8-appstream
+pulp-admin rpm repo delete --repo-id rhel8-appstream
+pulp-admin orphan delte --all
+pulp-admin orphan delete --all
+pulp-admin orphan remove --all
+#!/bin/bash -v
+STREAM='rhel8-appstream'
+REMOTE2='http://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/'
+pulp-admin rpm repo create --repo-id=$STREAM --relative-url=$STREAM --feed=$REMOTE2         --retain-old-count 2         --download-policy on_demand         --generate-sqlite false --repoview false         --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem         --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn.crt         --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn.key
+pulp-admin rpm repo sync run --repo-id=$STREAM
+pulp-admin repo list
+pulp-admin rpm repo delete --repo-id rhel8-appstream
+pulp-admin orphan remove --all
+pstatus
+pulp status
+workon pulp
+pulp status
+pulp rpm repository create --name nvidia --url https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64
+pulp rpm remote create --name nvidia --url https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64 --policy on_demand
+set -o vi
+pulp rpm repository create --name nvidia --remote nvidia
+pulp rpm repository sync
+pulp rpm repository sync --name nvidia
+http :/pulp/api/v3/tasks/eee8c95c-dd91-4a43-90ef-4dde9e6f4648/
+http :/pulp/v3/api/
+http :/pulp/api/v3/
+rpm -qa | grep libmodulemd
+sudo dnf update libmodulemd
+workon pulp
+set -o vi
+sudo yum update libmodulemd
+cd
+pip list | less
+workon pulp
+pip list | less
+pip install -U django
+set -o vi
+pip install -U django==2.2.24
+pclean
+prestart
+cd devel/pulpcore/
+pulpcore-manager test -t /home/vagrant/devel/pulpcore pulpcore.tests.functional
+cd ../pulp_rpm/
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm pulp_rpm.tests.functional
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm pulp_rpm.tests.functional.api.test_pulpimport.PulpImportTestCase
+psql -U pulp -d pulp --host 127.0.0.1
+cd
+cd devel/pulp-cli/
+pip install -e .
+pulp shell
+(sleep 5; pulp rpm repository sync now --name repo-1 & )
+bg
+fg
+pulp rpm repository sync --help
+(sleep 5; pulp rpm repository sync --name repo-1 ) &
+pulp rpm repository sync --name repo-2
+pclean
+pulp shell
+prestart
+pulp shell
+(sleep 5; pulp rpm repository sync --name ol-base ) &
+pulp rpm repository sync --name ol-opt
+fg
+pclean
+sudo vi /etc/pulp/settings.py
+prestart
+pulp shall
+pulp shell
+history 25
+(sleep 5; pulp rpm repository sync --name ol-base ) &
+pulp rpm repository sync --name ol-opt
+pulp tasks
+pulp task
+pulp task list
+pulp task show --href /pulp/api/v3/tasks/269bdec7-c0ef-43ad-93ee-3202d4bd24d7/
+sudo journactl -u pulp\* --since today | less
+set -o vi
+sudo journalctl -u pulp\* --since today | less
+sudo journalctl -u pulp\* -f
+sudo journalctl --since today | less
+htop
+top
+htop
+pclean
+prestart
+pulp
+pulp shell
+pstatus
+pulp shell
+workon pulp
+pulp status
+pulp shell
+history | grep sleep
+history | grep sync
+(sleep 5; pulp rpm repository sync --name ol-base ) &
+pulp rpm repository sync --name ol-opt
+fg
+sudo vi /etc/pulp/settings.py
+pclean
+prestart
+pulp shell
+history | grep sync
+(sleep 5; pulp rpm repository sync --name ol-base ) &
+pulp rpm repository sync --name ol-opt
+pulp task list --state failed
+set -o vi
+pulp task list --state completed
+pclean
+prestart
+cd devel/pulp_startup/
+cd lero_tests/tmp/bla
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+pclean
+prestart
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+journalctl
+set -o vi
+sudo journalctl -u pulp\* -f
+sudo journalctl -u pulp\* -f | grep ReservedResource.DoesNotExist
+pulpcore-manager makemigrations
+cd devel/pulp-2to3-migration/
+set -o vi
+workon pulp
+pulpcore-manager makemigrations
+psql -U pulp -d pulp --host 127.0.0.1
+workon pulp
+makemi
+set -o vi
+pulpcore-manager makemigrations
+pclean
+pstart
+vi /etc/pulp/settings.py
+sudo vi /etc/pulp/settings.py
+pclean
+prestart
+cd devel/pulp-2to3-migration/
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+pstatus
+pulpcore-manager shell
+pulp-admin login -u admin -p admin
+pulp-admin status
+pulp-admin rpm repo list
+ls /tmp
+pstatus
+ls /tmp
+cp pulp_2to3_migration/tests/functional/scripts/set_pulp2.sh /tmp
+vi /tmp/set_pulp2.sh
+ls -l /tmp/set_pulp2.sh
+chmod +x /tmp/set_pulp2.sh
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+pulp-admin rpm repo create --repo-id zoo --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy immediate
+pulp-admin login -u admin -p admin
+phelp
+reset_pulp2
+pstatus
+pulp-admin status
+pulp-admin rpm repo create --repo-id zoo --download-policy immediate --feed The ansible plugin is released, the migration plugin is not (yet) but I'll let you know once it is.
+pulp-admin rpm repo create --repo-id zoo --download-policy immediate --feed https://fixtures.pulpproject.org/rpm-with-modules/
+pulp-admin rpm repo sync run --repo-id zoo
+pulp shell
+psql -U pulp -d pulp --host 127.0.0.1
+cd /var/lib/pulp/published/yum/master/yum_distributor/zoo/
+ls
+cd 1622737012.33/
+ls
+cd repodata/
+sudo ls -lR
+date
+cd
+cd devel/pulp-2to3-migration/
+ls -ltr
+cd pulp_2to3_migration
+ls
+cd tests/
+ls
+cd functional/
+ls
+cd scripts/
+ls
+vi set_pulp2.sh
+git log set_pulp2.sh
+cd ..
+ls
+git log .
+grep -R set_
+vi util.py
+cd
+cd .config/
+ls
+cd pulp_smash/
+ls
+vi settings.json
+cd ..
+cd
+cd devel/pulp-2to3-migration/
+rm /tmp/set_pulp2.sh
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+/home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/scripts/set_pulp2.sh localhost rpm_base_4repos
+bash /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/scripts/set_pulp2.sh localhost rpm_base_4repos
+ls
+phelp
+reset_pulp2
+pstatus
+systemctl status --all | less
+sudo systemctl stop pulp_\*
+systemctl status pulp_\*
+systemctl status pulp_*
+systemctl status --help
+systemctl status "pulp_*"
+systemctl status "pulpcore*"
+systemctl status "pulp-*"
+systemctl status "pulp-worker*\"
+systemctl status "pulp-worker*"
+systemctl status --all | less
+date
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+phelp
+reset_pulp2
+pclean
+prestart
+history 5
+sudo systemctl stop httpd pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+http GET :/pulp/api/v3/migration-plans/
+pstatus
+sudo systemctl start httpd
+http GET :/pulp/api/v3/migration-plans/
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+http GET :/pulp/api/v3/migration-plans/
+cd
+uname -a
+vi .config/pulp_smash/settings.json
+cd devel/pulp-2to3-migration/
+pulp status
+pulp-admin status
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+ls
+cd pulp_2to3_migration
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration pulp_2to3_migration.tests.functional
+cd tests/
+ls
+cd functional/
+ls
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/ pulp_2to3_migration.tests.functional
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional
+cd ..
+ls
+cd functional/
+cp scripts/set_pulp2.sh /tmp
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional
+pulp-admin status
+pulp status
+http :/pulp/api/v3/status/
+grep -R "/pulp/api/v3/migration-plans/"
+ls
+vi test_migration_plan_changes.py
+vi rpm_base.py
+vi constants.py
+uname -a
+vi constants.py
+pclean
+reset_pulp2
+pclean
+prestart
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional
+vi constants.py
+vi /home/vagrant/.config/pulp/settings.toml
+vi constants.py
+reset_pulp2
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional
+journalctl -u pulpcore-work
+journalctl -u pulpcore-work\*
+journalctl -u pulpcore-worker@\*
+man journalctl
+journalctl -u pulpcore-worker@1
+journalctl -u pulpcore-worker@2
+journalctl -u "pulpcore-worker@*"
+journalctl -u "pulpcore*"
+journalctl -b -u django | less
+journalctl -b -u django\* | less
+cd /var/log
+ls
+cd pulp/
+ls
+cd ..
+ls
+grep django *
+cd httpd/
+sudo su -
+workon pulp
+set -o vi
+cd devel/pulp-2to3-migration/
+black --diff .
+flake8 --config  flake8.cfg
+pclean
+pulpcore-manager makemigrations --help
+pulpcore-manager makemigrations -n distribution_change
+pclean
+prestart
+vi pulp_2to3_migration/app/viewsets.py
+git show
+pclean
+vi template_config.yml
+workon pulp
+pclean
+prestart
+pstatus
+clear
+pip list
+prestart
+pstatus
+prestart
+pstatus
+pclean
+prestart
+pstart
+pstatus
+sudo journalctl -u pulpcore\* --since today | less
+pip install Django==2.2.19
+workon pulp
+set -o vi
+pip install Django==2.2.19
+pip install drf-spectacular==0.13.2
+sudo journalctl -u pulpcore\* --since today | less
+workon pulp
+sudo journalctl --since today | less
+sudo journalctl -f
+pstop
+pclean
+pstart
+pstop
+vi devel/pulp-2to3-migration/requirements.txt
+set -o vi
+vi devel/pulp-2to3-migration/template_config.yml
+vi devel/pulp-2to3-migration/template_config.yml
+pstatus
+workon pulp
+pulp-admin login -u admin -p admin
+prestart
+set -o vi
+pulp-admin login -u admin -p admin
+phelp
+sudo systemctl start pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulp-admin login -u admin -p admin
+pclean
+prestart
+pulp-admin login -u admin -p admin
+phelp
+reset_pulp2
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo create --name rpm --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy immediate
+pulp-admin rpm repo create --repo-id rpm --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy immediate
+pulp-admin rpm repo sync run --repo-id rpm
+pulp migrate --help
+pulp migration --help
+pulp migration plan --help
+pulp migration plan create --help
+pulp migration plan create --plan --help
+pulp migration plan create --plan '{"plugins": [{"type": "rpm"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/1ee8e74c-466a-4862-9913-57d1f909c7f7/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+vi devel/pulp_rpm/pulp_rpm/app/migrations/0033_new_distribution_model.py
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pulp migration plan run --href /pulp/api/v3/migration-plans/1ee8e74c-466a-4862-9913-57d1f909c7f7/
+prestart
+pstatus
+pulp migration plan run --href /pulp/api/v3/migration-plans/1ee8e74c-466a-4862-9913-57d1f909c7f7/
+psql -U pulp -d pulp --host 127.0.0.1
+pulp migration plan run --href /pulp/api/v3/migration-plans/1ee8e74c-466a-4862-9913-57d1f909c7f7/
+cd devel/pulpcore/pulpcore/app/migrations/
+grep print *
+vi 0054_add_public_key.py
+grep warning *
+grep info *
+cd ../../..
+cd ../pulp_deb/pulp_deb/app/migrations/
+grep print *
+grep warning *
+grep info *
+cd ../../..
+cd ../pulp_rpm/pulp_rpm/app/migrations/
+grep warning *
+cd ../..
+cd ..
+ls
+vi pulpcore/pulpcore/app/migrations/0054_add_public_key.py
+pclean
+vi pulpcore/pulpcore/app/migrations/0054_add_public_key.py
+grep log pulpcore/pulpcore/app/migrations/*
+vi pulpcore/pulpcore/app/migrations/0061_call_handle_artifact_checksums_command.py
+pclean
+cd pulpcore/
+cd ..
+ls */CHANGES/*.doc
+
+vi */CHANGES/*.doc
+cd pulp-2to3-migration/
+git checkout 0.11
+vi requirements.txt
+vi template_config.yml
+journalctl -f
+prestart
+pclean
+prestart
+pstatus
+cd devel/
+pclean
+prestart
+pstatus
+workon pulp
+pulp status
+pip list | less
+#Django~=2.2.16
+t -o vi
+pip install Django~=2.2.16
+pip install drf-spectacular==0.9.13
+pip install Django==2.2.19
+prestart
+pstatus
+http :/pulp/api/v3/status/
+sudo systemctl start pulpcore-api
+sudo systemctl status pulpcore-api
+sudo vi /etc/pulp/settings.py
+pclean
+
+pclean
+pulpcore-manager
+set -o vi
+vi devel/pulp-2to3-migration/requirements.txt
+vi devel/pulp-2to3-migration/template_config.yml
+workon pulp
+pip list
+pstatus
+pclean
+sudo journalctl -b
+ls -l /var/lib/pulp/assets/rest_framework/js/jquery-3.4.1.min.js
+sudo rm /var/lib/pulp/assets/rest_framework/js/jquery-3.4.1.min.js
+prestart
+pstatus
+journalctl -f
+workon pulp
+pstatus
+pip list | grep jquery
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo list
+pclean
+prestart
+pulp migration create --map '{"plugins": [{"type": "rpm"}]}'
+pip list
+pip install PyYAML==5.4.1
+set -o vi
+pulp migration create --map '{"plugins": [{"type": "rpm"}]}'
+pulp migration --help
+pulp migration plan create --map '{"plugins": [{"type": "rpm"}]}'
+pulp migration plan create --plan '{"plugins": [{"type": "rpm"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/3e92b1ec-d7c0-474a-930f-cb09f4477e6e/
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+prestart
+pulp migration plan run --href /pulp/api/v3/migration-plans/3e92b1ec-d7c0-474a-930f-cb09f4477e6e/
+psql -U pulp -d pulp --host 127.0.0.1
+pclean
+prestart
+pclean
+prestart
+pstatus
+workon pulp
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo list
+pulp-admin file repo create --repo-id iso --feed https://fixtures.pulpproject.org/file/PULP_MANIFEST --download-policy immediate
+set -o vi
+pulp-admin iso repo create --repo-id iso --feed https://fixtures.pulpproject.org/file/PULP_MANIFEST --download-policy immediate
+pulp-admin iso repo sync run  --repo-id iso
+pulp-admin iso repo update --repo-id iso --feed https://fixtures.pulpproject.org/file/
+pulp-admin iso repo sync run  --repo-id iso
+pulp migration plan create --plan '{"plugins": [{"type": "rpm"},{"type":"iso"}]}'
+pip install PyYAML==5.4.1
+pulp migration plan create --plan '{"plugins": [{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/b1c7a4d3-18fc-4ac0-b436-9349f6503ed7/
+psql -U pulp -d pulp --host 127.0.0.1
+journal
+set -o vi
+sudo journalctl -b
+sudo journalctl -f
+df -h
+workon pulp
+http :/pulp/api/v3/tasks/581769d7-7b65-4e3b-bc2e-3a25a0537b77/
+http :/pulp/api/v3/tasks/93c08b9e-5dc4-4e82-a2c6-e4b3bd15ae75/
+http :/pulp/api/v3/tasks/56f00b16-ebe9-432e-82e0-0c5eaac58443/
+set -o vi
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pulp migration plan run --href /pulp/api/v3/migration-plans/b1c7a4d3-18fc-4ac0-b436-9349f6503ed7/
+workon pulp
+pulp migration plan run --href /pulp/api/v3/migration-plans/b1c7a4d3-18fc-4ac0-b436-9349f6503ed7/
+prestart
+pulp migration plan run --href /pulp/api/v3/migration-plans/b1c7a4d3-18fc-4ac0-b436-9349f6503ed7/
+psql -U pulp -d pulp --host 127.0.0.1
+ cat .config/pulp/settings.toml
+cd devel/pulp-cli/
+pip install -e .
+pulp help
+pulp --help
+vi Makefile
+pytest -v tests
+git checkout
+cd
+pulp-admin rpm repo create --repo-id alma-applic --feed https://repo.almalinux.org/almalinux/8/AppStream/x86_64/os/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id alma-applic
+pulp-admin rpm repo sync --help
+pulp-admin rpm repo sync run --help
+pulp-admin rpm repo --help
+pulp-admin rpm repo publish --help
+pulp-admin rpm repo publish run --help
+cd devel/pulp-cli/
+pulp shell
+pulp-admin rpm repo create --repo-id alma-base --feed https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id alma-base
+pulp-admin rpm repo create --repo-id alma-ks --feed https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/kickstart/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id alma-ks
+history 100 | grep create
+cd ../pulp_startup/
+ls -ltr
+ls 1795444/
+vi 1795444//rhel8*
+1795444/rhel8_setup.bsh
+grep -R CERT
+grep -R cat
+grep -R "cat "
+history 25
+cd *fips
+vi r7.sh
+./r7.sh
+set -o vi
+sudo journalctl -f
+sudo journalctl --since today
+workon pulp
+http :/pulp/api/v3/tasks/0d2f86fc-6c10-4b51-875b-7415d649b483/
+http :/pulp/api/v3/tasks/300b3087-89f4-4d76-b9f5-2567fb8eb0f3/
+http :/pulp/api/v3/tasks/b56ff4c9-120e-45cd-b25a-b9e2e622bb0c/
+http :Task url :  /pulp/api/v3/tasks/300b3087-(pulp) [vagrant@pulp2-nightly-pulp3-source-centos7 7537_
+http :/pulp/api/v3/tasks/0d2f86fc-6c10-4b51-875b-7415d649b483/
+http :/pulp/api/v3/tasks/b56ff4c9-120e-45cd-b25a-b9e2e622bb0c/
+cd devel/pulp_startup/*(fips
+set -o vi
+cd devel/pulp_startup/*fips
+ls -ltr
+cp r7.sh r7_concurrent.sh
+vi r7_concurrent.sh
+pclean
+prestart
+./r7_concurrent.sh
+sudo systemctl status pulp-*
+sudo systemctl status pulp-\*
+sudo systemctl status pulp_\*
+sudo systemctl stop pulp_\*
+stop
+set -o vi
+sudo systemctl stop pulp_\*
+workon pulp
+#./r7_concurrent.sh
+pstatus
+pclean
+prestart
+#./r7_concurrent.sh
+sudo systemctl stop pulp_\*
+./r7_concurrent.sh
+/home/vagrant/devel/pulp_startup/7537_fips/r7_concurrent.sh
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/r7_multi_concurrent.sh
+http DELETE /pulp/api/v3/tasks/80c02d2f-5387-4fdc-b951-91149d96e447/
+http DELETE :/pulp/api/v3/tasks/80c02d2f-5387-4fdc-b951-91149d96e447/
+http DELETE :/pulp/api/v3/tasks/80c02d2f-5387-4fdc-b951-91149d96e447/cancel/
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/r7_multi_concurrent.sh
+sudo systemctl stop mongod
+pclean
+prestart
+pclean
+prestart
+set -o vi
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+systemctl status mongod
+sudo systemctl stop pulp_\*
+sudo systemctl stop mongod
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+df -h
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+clear
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+df -h
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+vi /home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+pclean
+prestart
+/home/vagrant/devel/pulp_startup/7537_fips/multiconcurrent.sh
+http :/pulp/api/v3/tasks/496531be-e8fe-4140-b01e-492aa1291eb0/
+http :/pulp/api/v3/tasks/63184332-1913-49cf-936a-e1a08586e4d7/
+pclean
+prestart
+workon pulp
+pulp-admin login -u admin -p admin
+phelp
+reset_pulp2
+phelpo
+phelp
+populate_pulp2_rpm
+populate_pulp2_iso
+populate_pulp2_docker
+psql
+set -o vi
+psql -U pulp -d pulp --host 127.0.0.1
+pulp migration plan create --plan '{"plugins": [{"type":"container"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/07fc66ac-df53-4b2d-b42d-6c5cbcda76c9/
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/ce81d08d-3bb2-4b79-bad4-eba46ce6ae55/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pclean
+prestart
+phelp
+populate_pulp2_rpm
+populate_pulp2_docker
+populate_pulp2_iso
+history 10
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/25d4ebe5-bd9a-4f9d-afe8-44e139fe4aa5/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager shell
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pclean
+prestart
+pclean
+prestart
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/08294f64-2e9c-4c65-a14a-0fa03ce6a9e5/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager shell
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/14810b5b-7d59-4a6b-8c21-c77f9839b205/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager shell
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/6f9c2f22-7c33-40fd-849d-5852326517e3/
+psql -U pulp -d pulp --host 127.0.0.1
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pclean
+prestart
+pulp-admin rpm repo create --name rpm2 --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy immediate
+pulp-admin rpm repo create --repo-id rpm2 --feed https://fixtures.pulpproject.org/rpm-with-modules/ --download-policy immediate
+pulp-admin rpm repo sync run --repo-id rpm2
+pulp-admin rpm repo create --repo-id pulp3 --feed https://fixtures.pulpproject.org/rpm-alt-layout/ --download-policy immediate
+pulp-admin rpm repo sync run --repo-id rpm3
+pulp-admin rpm repo sync run --repo-id pulp3
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/b886532a-f11a-432b-a6a4-a77000b968c8/
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pclean
+cd devel/
+ls
+for d in pulpcore/ pulp_rpm/ pulp_file/ pulp_container/ pulp-2to3-migration/ pulp_deb/ pulp-certguard/; do echo $d; done
+for d in pulpcore/ pulp_rpm/ pulp_file/ pulp_container/ pulp-2to3-migration/ pulp_deb/ pulp-certguard/; do echo $d; pip install -e $d; done
+vi pulp_startup/reload
+chmod +x pulp_startup/reload
+pulp_startup/reload
+vi pulp_startup/reload
+pulp_startup/reload
+pclean
+prestart
+pclean
+pulp_startup/reload
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/eab20d5e-581d-420c-a59b-1338b47bfd16/
+pulp_startup/reload
+pulpcore-manager migrate
+pclean
+pulp_startup/reload
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/4ddf37e7-c227-4d68-a9a2-3cef4bf01083/
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+pulp_startup/reload
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/66619b72-4932-4d1c-a93a-297253bfe383/
+pulp_startup/reload
+pulpcore-manager migrate
+pulp_startup/reload
+pclean
+prestart
+pclean
+prestart
+pulp migration plan create --plan '{"plugins": [{"type":"docker"},{"type": "rpm"},{"type":"iso"}]}'
+pulp migration plan run --href /pulp/api/v3/migration-plans/968eaa0b-d7b8-45a0-9058-bfc575f89183/
+pulp_startup/reload
+pulpcore-manager migrate
+psql -U pulp -d pulp --host 127.0.0.1
+prestart
+pulp migration plan run --href /pulp/api/v3/migration-plans/968eaa0b-d7b8-45a0-9058-bfc575f89183/
+psql -U pulp -d pulp --host 127.0.0.1
+pulp-admin rpm repo create --repo-id nvidia --feed  0dcaf4a4-cb6a-46d4-bb7a-36653156d643 | docker_web_distributor_name_cli | f           |                       |
+pulp-admin rpm repo create --repo-id nvidia --feed  https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id nvidia
+pulp shell
+rpm -qa | grep pulp
+rpm -q pulp-server
+yum update pulp-server
+sudo yum update pulp-server
+pclean
+http https://api.github.com/repos/ggainey/pulp_rpm/pulls
+cd pulp_rpm/
+pip install -e .
+pclean
+prestart
+i# pulp_rpm.tests.functional.api.test_consume_content.ConsumeSignedRepomdTestCase testMethod=test_publish_signed_repo_metadata
+#pulp_rpm.tests.functional.api.test_consume_content.ConsumeSignedRepomdTestCase testMethod=test_publish_signed_repo_metadata
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ ulp_rpm.tests.functional.api.test_consume_content.ConsumeSignedRemdTestCase
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_consume_content.ConsumeSignedRemdTestCase
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_consume_content
+vi /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/functional/api/test_consume_content.py
+black --diff .
+K
+black --diff .
+cd
+pclean
+prestart
+cd devel/pulp_startup/lero_tests/tmp/bla/
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+pclean
+prestart
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository destroy --name bar
+pulp orphans delete
+http :/pulp/api/v3/tasks/f610797c-91cc-45eb-9ec3-1a4560fd36ee/
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+\
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+pulp rpm repository destroy --name bar
+pulp orphans delete
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+pulp rpm repository destroy --name bar
+pulp orphans delete
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+pclean
+prestart
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+cd
+/home/vagrant/devel/pulp_startup/reload
+cd devel/
+/home/vagrant/devel/pulp_startup/reload
+prestart
+pclean
+prestart
+REPO_HREF=`pulp rpm repository create --name bar | jq -r '.pulp_href'`
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+cd pulp_startup/lero_tests/tmp/bla/
+for x in *; do http --form POST :/pulp/api/v3/content/rpm/advisories/ file@./$x repository=$REPO_HREF; done
+pulp rpm repository version show --repository bar | jq '.content_summary.present."rpm.advisory".count'
+cat /home/vagrant/devel/pulp_startup/reload
+psql -U pulp -d pulp --host 127.0.0.1
+cd
+cd devel/pulp_file/
+cd ../pulp-2to3-migration/
+git branch
+vi requirements.txt
+git checkout 0.11
+vi requirements.txt
+vi template_config.yml
+cd ../pulp_file
+git log requirements.txt
+git show 9b9351ccf094f0374bf9f3dfa573357db14a5931
+vi requirements.txt
+git branch
+git checkout 1.6
+vi requirements.txt
+git branch
+journ
+set -o vi
+sudo journalctl -f
+workon pulp
+http :/pulp/api/v3/tasks/a7ab29cc-98a7-49b9-8d5a-104cbc3f1dcd/
+sudo journalctl -f
+http :/pulp/api/v3/tasks/8aaf3804-b43a-4f8c-9020-e87eb8dcb09a/
+http :/pulp/api/v3/tasks/c81eb5d3-a77a-4454-a559-644812017a11/
+sudo journalctl -f
+http :/pulp/api/v3/tasks/75931bb0-8f44-463e-adda-89c6a82d64cb/
+http :/pulp/api/v3/tasks/10492e8e-9623-4f77-881b-1e818bc33ca3/
+sudo journalctl -f
+http :/pulp/api/v3/tasks/10492e8e-9623-4f77-881b-1e818bc33ca3/
+sudo journalctl -f
+psql -U pulp -d pulp --host 127.0.0.1
+sudo journalctl -u pulp\* -f | grep ReservedResource.DoesNotExist
+sudo journalctl -u pulp\* -f
+http :/pulp/api/v3/tasks/35b7ea62-2c73-4897-9b90-0bcdc9231da2/
+workon pulp
+set -o vi
+http :/pulp/api/v3/tasks/35b7ea62-2c73-4897-9b90-0bcdc9231da2/
+http :/pulp/api/v3/tasks/84c81d1f-66df-427e-b149-41b6d7357080/
+http :/pulp/api/v3/tasks/f60242b9-c066-448f-aee5-4146a11b4326/
+http :/pulp/api/v3/tasks/35b7ea62-2c73-4897-9b90-0bcdc9231da2/
+htop
+http :/pulp/api/v3/tasks/c81d1d48-0e9d-41d1-aead-85e73ab3c4d5/
+http :/pulp/api/v3/tasks/36b2f78a-d3e2-44c0-8dfb-fbc22efbf5e5/
+http :/pulp/api/v3/tasks/b4d5afa4-5841-4d58-9d14-1c7a3d8f8709/
+http :/pulp/api/v3/tasks/af49042b-8b1f-4cdb-95e7-083b75ec0242/
+http :/pulp/api/v3/tasks/3efcafb8-1099-4a1a-ba39-b6cac446a7ea/
+htop
+cd devel/
+pulp_startup/reload
+workon pulp
+set -o vi
+pulp_startup/reload
+pclean
+prestart
+pstatus
+pulp_startup/reload
+pclean
+prestart
+pstatus
+prestart
+rm /var/lib/pulp/assets/rest_framework/js/jquery-3.4.1.min.js
+prestart
+pstatus
+pulp_startup/reload
+pclean
+prestart
+pstatus
+pulp rpm remote create --name ol7 --url http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64 --policy on_demand
+pulp rpm remote create --name ol7-app --feed http://yum.oracle.com/repo/OracleLinux/OL7/optional/latest/x86_64 --policy on_demand
+pulp rpm remote create --name ol7-app --url http://yum.oracle.com/repo/OracleLinux/OL7/optional/latest/x86_64 --policy on_demand
+pulp rpm repository create --name ol7 --remote ol7
+pulp rpm repository create ol7-app --remote ol7-app
+pulp rpm repository create --name ol7-app --remote ol7-app
+pulp rpm repository sync run --name ol7 & ; pulp rpm repository sync run --name ol7-app &
+pulp rpm repository sync --help
+pulp rpm repository sync --name ol7 & ; pulp rpm repository sync --name ol7-app &
+pulp rpm repository sync --name ol7 &
+pulp rpm repository sync --name ol7-app &
+http :/pulp/api/v3/tasks/4bb12739-81eb-4d57-ba33-73644fc07515/
+http :/pulp/api/v3/tasks/f01d269e-467e-4cd3-8c26-550a26d65680/
+pulp_startup/reload
+pclean
+pstatus
+rm /var/lib/pulp/assets/rest_framework/js/jquery-3.4.1.min.js
+prestart
+pstatus
+history 30
+pulp rpm remote create --name ol7 --url http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64 --policy on_demand
+prestart
+pulp rpm remote create --name ol7 --url http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64 --policy on_demand
+ls -l /var/lib/pulp/assets/rest_framework/js/jquery-3.5.1.min.js
+sudo rm /var/lib/pulp/assets/rest_framework/js/jquery-3.5.1.min.js
+prestart
+pulp rpm remote create --name ol7 --url http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64 --policy on_demand
+pulp rpm remote create --name ol7-app --url http://yum.oracle.com/repo/OracleLinux/OL7/optional/latest/x86_64 --policy on_demand
+pulp rpm repository create --name ol7 --remote ol7
+pulp rpm repository create --name ol7-app --remote ol7-app
+pulp rpm repository sync --name ol7 &
+pulp rpm repository sync --name ol7-app &
+pclean
+pulp_startup/reload
+cd pulp-cli/
+pip install -e .
+make test
+cd ..
+pulp_startup/reload
+pclean
+prestart
+cd pulp-cli/
+pip install -e .
+make test
+vi README.md
+ls
+vi Makefile
+vi docs/contributing.md
+pytest -m pulp_file -k test_sync
+cd
+cd devel/
+pulp_startup/reload
+pclean
+prestart
+pulp rpm remote create --name dell --feed http://linux.dell.com/repo/hardware/dsu/os_independant/ --policy on_demand
+pulp rpm remote create --name dell --url http://linux.dell.com/repo/hardware/dsu/os_independant/ --policy on_demand
+pulp rpm repository create --name dell --remote dell
+pulp rpm repository sync --name dell
+pulp rpm remote update --name dell --url https://linux.dell.com/repo/hardware/dsu/os_independent/
+pulp rpm repository sync --name dell
+vi t
+vi tb
+pulp rpm remote create --help
+pulp rpm remote update --name dell --download-concurrency 20
+pulp rpm remote update --name dell --download-concurrency 20 --policy immediate
+pulp rpm repository destroy --name dell
+pulp orphans delete
+pulp rpm repository create --name dell --remote dell
+#pulp rpm repository sync --name dell
+df -h
+pulp rpm repository sync --name dell
+http :/pulp/api/v3/tasks/7d7e7a90-2dba-4ffb-b075-f2da700b00c6/
+df -h
+http :/pulp/api/v3/tasks/7d7e7a90-2dba-4ffb-b075-f2da700b00c6/
+pulp rpm repository destroy --name dell
+df -h
+pulp orphans delete
+df -h
+pulp rpm remote update --name dell --download-concurrency 5 --policy immediate
+pulp rpm repository create --name dell --remote dell
+pulp rpm repository sync --name dell
+http :/pulp/api/v3/tasks/49143507-1da2-406b-beb3-5b2eaba7b75e/
+history 30
+history | grep pulp
+pclean
+prestart
+history | grep dell
+pulp rpm remote create --name dell --url http://linux.dell.com/repo/hardware/dsu/os_independant/ --policy on_demand
+pulp rpm repository create --name dell --remote dell
+pulp rpm repository sync --name dell
+pulp rpm remote update --name dell --url https://linux.dell.com/repo/hardware/dsu/os_independent/
+pulp rpm repository sync --name dell
+pulp rpm remote update --name dell --download-concurrency 5 --policy immediate
+pulp rpm repository sync --name dell
+history 20
+pulp task --href /pulp/api/v3/tasks/395fec3f-1a2e-4965-baa0-9fad2d09afb6/
+pulp task details --href /pulp/api/v3/tasks/395fec3f-1a2e-4965-baa0-9fad2d09afb6/
+pulp task show --href /pulp/api/v3/tasks/395fec3f-1a2e-4965-baa0-9fad2d09afb6/
+cd devel/pulp_rpm/
+functional
+set -o vi
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api
+pclean
+prestart
+cd ../pulp_startup/
+vi reload
+pushd /tmp
+popd
+vi reload
+dcd
+cd
+$HOME/vagrant/devel/pulp_startup/reload
+$HOME/devel/pulp_startup/reload
+vi devel/pulp_startup/reload
+cd
+$HOME/devel/pulp_startup/reload
+cd
+cd devel/pulp-2to3-migration/
+git checkout 0.11
+vi requirements.txt
+ls
+cd CHANGES/
+ls
+cd ..
+ls -ltr
+git checkout 0.12
+ls
+pclean
+prestart
+man curl
+pwd
+git checkout 0.12
+cd .github/
+grep -R pulp-2to3-migration
+http https://pypi.org/pypi/pulp-2to3-migration/json | jq -r '.info.version'
+grep -R pulp_2to3_migration
+cd
+pclean
+prestart
+cd devel/pulp_rpm/
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_pulpimport
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_pulpimport
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_pulpimport
+cd ..
+./pulp_startup/reload
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_pulpimport
+./pulp_startup/reload
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api
+./pulp_startup/reload
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api@daviddavis The problem is probably that addCleanup just doesn't wait for the task to finish.
+
+#api/test_crud_content_unit
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_crud_content_unit
+bg
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_crud_content_unit &
+pclean
+prestart
+for i in {1..10}; do pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests/ pulp_rpm.tests.functional.api.test_crud_content_unit; done
+./pulp_startup/CDN_cert/set_env.sh
+pulp rpm remote create --name rhel7 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert $CDN_CA_CERT --client-key $CDN_CLIENT_KEY --client-cert $CDN_CLIENT_CERT
+pulp rpm remote create --name rhel7 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert=$CDN_CA_CERT --client-key=$CDN_CLIENT_KEY --client-cert=$CDN_CLIENT_CERT
+env
+source ./pulp_startup/CDN_cert/set_env.sh
+env
+pulp rpm remote create --name rhel7 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert $CDN_CA_CERT --client-key $CDN_CLIENT_KEY --client-cert $CDN_CLIENT_CERT
+pulp rpm remote create --name rhel7 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm remote create --name rhel7-1 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm repository create --name rhel7 --remote rhel7-1
+pulp rpm repository sync --name rhel7
+history
+pulp rpm remote show --name rhel7
+pulp rpm remote show --name rhel7-1
+cd pulp_startup/CDN_cert/
+ls
+sah256sum redhat-uep.pem
+sha256sum redhat-uep.pem
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=foo url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy on_demand ca-cert "$CDN_CA_CERT" client-key "$CDN_CLIENT_KEY" client-cert "$CDN_CLIENT_CERT"
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=foo url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy=on_demand ca-cert="$CDN_CA_CERT" client-key="$CDN_CLIENT_KEY" client-cert="$CDN_CLIENT_CERT"
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=foo url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy=on_demand ca_cert="$CDN_CA_CERT" client_key="$CDN_CLIENT_KEY" client_cert="$CDN_CLIENT_CERT"
+pulp rpm repository sync --name rhel7 --remote foo
+http :/pulp/api/v3/tasks/4702de6a-ecf2-4206-9c96-1cb0ead1d02c/
+history 10
+pulp rpm repository create --name foo --remote foo
+pulp rpm repository sync
+pulp rpm repository sync --name foo
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=bar url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy=on_demand ca_cert="$CDN_CA_CERT" client_key=@./test/combined.pem client_cert=@./test/combined.pem
+pulp rpm repository create --name bar --remote bar
+pulp rpm repository sync --name bar
+http :/pulp/api/v3/tasks/7d52bd09-7f06-4db8-a926-823ada4d295a/
+pulp task list state=running
+pulp task list --state=running
+history 10
+sha256sum redhat-uep.pem
+vi redhat-uep.pem
+history 100 | grep "http "
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=r7 url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy=on_demand ca_cert=@./redhat-uep.pem client_key=@./test/combined.pem client_cert=@./test/combined.pem
+http POST :/pulp/api/v3/repositories/rpm/rpm/ name=r7
+http POST :/pulp/api/v3/repositories/rpm/rpm/b8fa1943-2914-4fa3-8578-36e117650635/sync/ remote=/pulp/api/v3/remotes/rpm/rpm/54ba31f3-6d3f-4f19-9ac2-0b5ce46d6bbf/
+http :/pulp/api/v3/tasks/85b16388-6e6c-481d-9000-f1481b3bf5b5/
+history 10 | grep "http "
+http :/pulp/api/v3/tasks/85b16388-6e6c-481d-9000-f1481b3bf5b5/
+cd
+# now 1623953602309
+# then 1623951163288
+dc 1623953602309 - 1623951163288
+bc
+mkdir dist
+touch pulp_2to3_migration-client-0.12.0.tar.gz
+ls dist | sed -rn 's/pulp-2to3-migration-client-(.*)\.tar.gz/\1/p'
+ls dist | sed -rn 's/pulp_2to3_migration-client-(.*)\.tar.gz/\1/p'
+export VERSION=$(ls dist | sed -rn 's/pulp-2to3-migration-client-(.*)\.tar.gz/\1/p')
+echo $VERSION
+export VERSION=$(ls dist | sed -rn 's/pulp_2to3_migration-client-(.*)\.tar.gz/\1/p')
+echo $VERSION
+ls dist
+ls
+mv pulp_2to3_migration-client-0.12.0.tar.gz dist
+export VERSION=$(ls dist | sed -rn 's/pulp-2to3-migration-client-(.*)\.tar.gz/\1/p')
+echo $VERSION
+export VERSION=$(ls dist | sed -rn 's/pulp_2to3_migration-client-(.*)\.tar.gz/\1/p')
+echo $VERSION
+cd
+cd devel/plugin_template/
+grep -R VERSION=
+wow
+set -o vi
+journalctl -f
+journalctl --since today
+pulp rpm remote create --help
+workon pulp
+pulp rpm remote create --help
+http :/pulp/api/v3/tasks/63b3a6aa-db68-49d1-9fd7-0ba844c14973/
+journalctl --since today
+workon pulp
+test
+set -o vi
+http --form POST :/pulp/api/v3/remotes/rpm/rpm/ name=r7 url=https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os policy=on_demand ca_cert=@./redhat-uep.pem client_key=@./test/combined.pem client_cert=@./test/combined.pem
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+clear
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+cd devel/pulp_startup/CDN_cert/
+vi redhat-uep.pem
+sudo yum install nano
+nano redhat-uep.pem
+ls
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+ls
+vi cdn.pem
+vi cdn.crt
+md5 cdn.crt cdn.pem
+md5sum cdn.crt cdn.pem
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+cd
+cd devel/pulp-certguard/
+black --diff .
+flake8 --config  flake8.cfg
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+git diff
+cd pulp_certguard/tests/functional/artifacts/
+ls
+python
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+git status
+prestart
+git status
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+cd ..
+flake8 --config  flake8.cfg
+cd ..
+flake8 --config  flake8.cfg
+black --diff .
+git log
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3CertGuardTestCase
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase
+#pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional
+pulp rpm remote create --name c8-app --url https://mirror.linux.duke.edu/pub/centos/8/AppStream/x86_64/os/ --policy on_demand
+pulp rpm repository create --name c8-app --remote c8-app
+pulp rpm repository sync --name c8-app
+pulp
+psql -U pulp -d pulp --host 127.0.0.1
+pulp rpm remote create --name fmod --url http://mirror.dst.ca/fedora/updates/33/Modular/x86_64/
+pulp rpm repository create --name fmod --remote fmod
+pulp rpm remote update --name fmod --policy on_demand
+pulp rpm repository sync --name fmod
+psql -U pulp -d pulp --host 127.0.0.1
+pclean
+prestart
+history 50
+history 50 | grep "pulp rpm"
+pulp rpm remote create --name c8-app --url https://mirror.linux.duke.edu/pub/centos/8/AppStream/x86_64/os/ --policy on_demand
+pulp rpm repository create --name c8-app --remote c8-app
+pulp rpm repository sync --name c8-app
+psql -U pulp -d pulp --host 127.0.0.1
+cd
+cd devel/pulp_rpm/
+flake8 --config  flake8.cfg
+black --diff .
+flake8 --config  flake8.cfg
+history 25
+psql -U pulp -d pulp --host 127.0.0.1
+flake8 --config  flake8.cfg
+journ
+set -o vi
+journalctl --since today
+journalctl -u pulpcore\* -f
+/home/vagrant/devel/pulp_startup/reload
+workon pulp
+set -o vi
+/home/vagrant/devel/pulp_startup/reload
+pclean
+prestart
+pulp remote create --name foo --url http://ftp.cs.stanford.edu/centos/7/opstools/x86_64/ --policy immediate
+pulp rpm remote create --name foo --url http://ftp.cs.stanford.edu/centos/7/opstools/x86_64/ --policy immediate
+pulp rpm repository create --name foo --remote foo
+pulp rpm repository sync --name foo
+pulp rpm remote update --help
+pulp rpm repository update --help
+http POST :/pulp/api/v3/repositories/rpm/rpm/e98de0c1-a777-4692-b274-bced8360784b/sync/ mirror=True
+http :/pulp/api/v3/tasks/00a92c18-7a96-4996-a1ac-38a97cb553ad/
+pclean
+prestart
+history 25 | grep "pulp rpm"
+pulp rpm remote create --name foo --url http://ftp.cs.stanford.edu/centos/7/opstools/x86_64/ --policy immediate
+pulp rpm repository create --name foo --remote foo
+http POST :/pulp/api/v3/repositories/rpm/rpm/5a9feaa1-7d39-4455-a60d-e7646ddf9876/ mirror=True
+http POST :/pulp/api/v3/repositories/rpm/rpm/5a9feaa1-7d39-4455-a60d-e7646ddf9876/sync/ mirror=True
+http :/pulp/api/v3/tasks/082c6af1-6816-4435-9768-e337565bf689/
+cd devel/pulp_container/
+cd ../pulp-certguard/
+cd ..
+ls
+./pulp_startup/reload
+pclean
+prestart
+cd pulp-certguard/
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api
+pip install rhsm
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.apitest_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.apitest_rhsm_certguard.RHSMV3ChainCACertGuardTestCase::test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase::test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+pip install pydevd-pycharm~=203.7148.72
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+vi requirements.txt
+pip list | grep -i openssl
+rpm -qa | grep -i openssl
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+psql -U pulp -d pulp --host 127.0.0.1
+prestart
+./devel/pulp_startup/reload
+workon pulp
+prestart
+pstatus
+set -o vi
+./devel/pulp_startup/reload
+prestart
+pstatus
+vi xxx
+http --form -p b :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates' pulp_labels= {environment:dev}url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+http POST --form -p b :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates' pulp_labels= {environment:dev}url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+http --form -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates' pulp_labels= {environment:dev}url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+history
+http --form -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates' pulp_labels={environment:dev} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+pulp rpm remote create --help
+psql -U pulp -d pulp --host 127.0.0.1
+http --form -p b PATCH :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates' pulp_labels='{environment:dev}' url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+http --form -p b PATCH :/pulp/api/v3/remotes/rpm/rpm/96fb7e30-c80d-4d6f-adf5-d3629099a845/ pulp_labels={environment:dev}
+http :/pulp/api/v3/tasks/5f5bc2dd-91e7-45aa-a4a4-0db0c372f245/
+http :/pulp/api/v3/remotes/rpm/rpm/96fb7e30-c80d-4d6f-adf5-d3629099a845/
+http --form -p b PATCH :/pulp/api/v3/remotes/rpm/rpm/96fb7e30-c80d-4d6f-adf5-d3629099a845/ pulp_labels={environment:dev}
+psql -U pulp -d pulp --host 127.0.0.1
+http --form -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates-2' pulp_labels={"environment":"dev"} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+prestart
+http --form -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates-3' pulp_labels={"environment":"dev"} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+pulp rpm remote create --help
+http :/pulp/api/v3/status/
+http -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates-4' pulp_labels={"environment":"dev"} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+http -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates-4' pulp_labels:=\{"environment":"dev"\} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+http -p b POST :/pulp/api/v3/remotes/rpm/rpm/ name='centos-7-updates-4' pulp_labels:=\{\"environment\":\"dev\"\} url='http://mirror.centos.org/centos/7/updates/x86_64/' policy='immediate'
+"
+"
+"
+'
+'
+vi xxx
+pulp rpm remote create --name c7 --url http://mirror.centos.org/centos/7/updates/x86_64/ --policy immediate
+pulp rpm remote label --help
+pulp rpm remote label set --help
+pulp rpm remote label set --name c7 --key environment --value dev
+man journalctl
+cd devel/pulp_startup/
+ls
+cd import_export/
+ls
+./rpm_exporter_setup.sh
+vi rpm_exporter_setup.sh
+pclean
+ls
+ls *export*
+vi exporter_setup.sh
+./exporter_setup.sh
+prestart
+./exporter_setup.sh
+vi exporter_setup.sh
+pclean
+prestart
+./exporter_setup.sh
+vi exporter_setup.sh
+ls -ltr
+vi test_setup.sh
+pclean
+prestart
+./test_setup.sh
+vi test_setup.sh
+./test_setup.sh
+ls *setup
+pulp rpm repository --help
+pulp rpm --help
+pulp rpm distribution --help
+pulp rpm distribution create --help
+pulp rpm publication create --help
+vi *setup*
+history | grep pulp_labelds
+history | grep pulp_labels
+pulp rpm repository list
+pulp rpm publication list
+pulp rpm distribution list
+pulp rpm publication create --help
+pulp rpm publication create --name zoo --version 1
+http --form -p b --auth admin:'install12#' --auth-type basic POST http://localhost:24817/pulp/api/v3/publications/rpm/rpm/ repository="centos-7-updates" metadata_checksum_type=sha256
+http --form -p b POST http://localhost:24817/pulp/api/v3/publications/rpm/rpm/ repository="zoo" metadata_checksum_type=sha256
+http --form -p b POST http://localhost:24817/pulp/api/v3/publications/rpm/rpm/ repository=/pulp/api/v3/repositories/rpm/rpm/fc47fc1d-b706-4133-a61e-a9f660dbdcc0/ metadata_checksum_type=sha256
+http :/pulp/api/v3/tasks/858c321b-7126-4111-bc40-5279d7e8ac5c/
+cd
+./devel/pulp_startup/reload
+pclean
+prestart
+man journalctl
+cd devel/pulp-cli/
+ls -ltr
+pip install -e .
+make test
+vi README.md
+vi docs/index.md
+vi docs/quickstart.md
+vi docs/releasing.md
+grep test *
+vi Makefile
+grep pytest *
+cd ..
+grep pytest *
+cd pulp-cli/
+ls
+grep pytest *
+cd docs/
+grep pytest *
+cd ..
+pytest -m pulpcore -k test_signing_service
+vi tests/scripts/pulpcore/test_signing_service.sh::signing_service
+ls tests/scripts/pulpcore/test_signing_service.sh
+vi tests/scripts/pulpcore/test_signing_service.sh
+pulp signing-service list
+echo $OUTPUT
+pulp signing-service list
+vi tests/scripts/pulpcore/test_signing_service.sh
+grep -R pulp-smash
+grep 8.0.1 *
+pulp rpm remote create --name rocky --policy on_demand
+pulp rpm remote create --name rocky --policy on_demand --url https://download.rockylinux.org/pub/rocky/8/BaseOS/x86_64/os/
+pulp rpm repository create --name rocky --remote rocky
+pulp rpm repository sync --name rocky
+pulp repm repository list --name rocky --details
+pulp rpm repository list --name rocky --details
+pulp rpm repository list --help #--name rocky --details
+pulp rpm repository show --help #--name rocky --details
+pulp rpm repository show --name rocky
+pulp rpm repository show --help #--name rocky
+pulp rpm repository --help #show --help #--name rocky
+pulp rpm version --help #show --help #--name rocky
+pulp rpm repository version  --help #show --help #--name rocky
+pulp rpm repository version show --help #--name rocky
+pulp rpm repository version show --name rocky
+pulp rpm repository version show --repository rocky
+pulp rpm remote create --name alma --policy on_demand --url http://mirrors.eze.sysarmy.com/almalinux/8/BaseOS/x86_64/os/
+pulp rpm repository create --name alma --remote alma
+pulp rpm repository sync --name alma
+http :/pulp/api/v3/tasks/c9442e70-84b6-40d1-be56-59467047d181/
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo create --help
+pulp-admin rpm repo create --repo-id alma --feed http://mirrors.eze.sysarmy.com/almalinux/8/BaseOS/x86_64/os/ --download-policy on_demand
+pulp-admin rpm repo sync run --repo-id alma
+pulp rpm repository list
+wget http://localhost/pulp/repos
+vi /etc/pulp/settings.py
+cd
+wget http://pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com
+pulp rpm distribution list
+pulp rpm distribution create --help
+pulp rpm distribution create --repository zoo --name zoo
+pulp rpm distribution create --repository rocky --name rocky
+pulp rpm distribution create --repository rocky --name rocky --base-path rocky
+pulp rpm publication --help
+pulp rpm publication create --help
+pulp rpm publication create --repository rocky
+pulp rpm distribution create --repository rocky --name rocky --base-path rocky
+pulp rpm distribution --help #create --repository rocky --name rocky --base-path rocky
+pulp rpm distribution update --help #create --repository rocky --name rocky --base-path rocky
+pulp rpm distribution list
+wget http://pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com
+wget http://pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com/pulp/content/
+wget http://localhost/pulp/content/
+vi index.html.1
+rm index.html*
+wget http://localhost/pulp/content/
+cat index.html
+wget http://localhost/pulp/content/rocky
+wget http://localhost/pulp/content/rocky/
+vi index.html.1
+wget http://localhost/pulp/content/rocky/Packages/
+vi index.html.2
+wget http://localhost/pulp/content/rocky/Packages/a/
+vi index.html.3
+wget http://localhost/pulp/content/rocky/Packages/a/accel-config-2.8-1.el8.i686.rpm
+file accel-config-2.8-1.el8.i686.rpm
+pulp rpm remote create --help
+pulp rpm remote create --name epe8-mod --url https://epel.mirror.shastacoe.net/epel/8/Modular/x86_64/
+pulp rpm repository create --help
+pulp rpm repository create --name epel8-mod --remote epel8-mod --autopublish
+pulp rpm repository create --name epe8-mod --remote epel8-mod --autopublish
+pulp rpm repository create --name epe8-mod --remote epe8-mod --autopublish
+pulp rpm repository sync --help
+pulp rpm repository sync --name epe8-mod --mirror
+http :/pulp/api/v3/tasks/27899cdf-f6ab-4b6a-b9a8-15a7b61b583b/
+http :/pulp/api/v3/repositories/rpm/rpm/1669c588-e9e1-4924-8b18-c32fae7ef941/
+http :/pulp/api/v3/remotes/rpm/rpm/1cc979f0-ff1d-4a1b-9434-fc4b13af31b7/
+http :/pulp/api/v3/tasks/27899cdf-f6ab-4b6a-b9a8-15a7b61b583b/
+history 50 | less
+pulp rpm --help
+pulp rpm repository --help
+pulp rpm repository version --help
+pulp rpm repository version show --help
+pulp rpm repository version show --repository epe8-mod
+pclean
+prestart
+pulp rpm remote create --name epel-mirror --url "https://mirrors.fedoraproject.org/mirrorlist?repo=epel-8&arch=x86_64&infra=stock&content=centos"
+pulp rpm repository create --name epel-mirror --remote epel-mirror --autopublish
+pulp rpm repository sync --name epel-mirror --mirror
+history 10
+pulp rpm repository sync --name epel-mirror
+pulp rpm remote update --name epel-mirror --url "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-8&arch=x86_64&infra=stock&content=centos"
+pulp rpm repository sync --name epel-mirror
+prestart
+pulp rpm repository sync --name epel-mirror
+file '/var/lib/pulp/tmp/18088@pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com/071349e6-802e-4ec9-90b6-bc25aec7a34b/tmpkeccf76s'
+vi '/var/lib/pulp/tmp/18088@pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com/071349e6-802e-4ec9-90b6-bc25aec7a34b/tmpkeccf76s'
+pulp rpm repository sync --name epel-mirror
+prestart
+pulp rpm repository sync --name epel-mirror
+http :/pulp/api/v3/tasks/0a040280-d75a-4491-ba16-edfba371a005/
+prestart
+pulp rpm remote update --name epel-mirror --url "http://mirrors.fedoraproject.org/mirrorlist"
+pulp rpm repository sync --name epel-mirror
+prestart
+pulp task
+pulp task list
+pulp task list --state running
+pulp task list --state completed
+pulp task list --state failed
+pulp rpm repository sync --name epel-mirror
+http :/pulp/api/v3/tasks/0f4d5ce5-6539-44b6-bd87-54cec34cac23
+pulp task list --state waiting
+pulp task --help
+pulp task cancel /pulp/api/v3/tasks/0f4d5ce5-6539-44b6-bd87-54cec34cac23/
+pulp task cancel --href /pulp/api/v3/tasks/0f4d5ce5-6539-44b6-bd87-54cec34cac23/
+pulp task cancel --href /pulp/api/v3/tasks/ac68606d-ca4b-465b-8796-034d40c3d582/
+pulp rpm repository sync --name epel-mirror
+pulp task list --state waiting
+history 50 | grep "pulp rpm remote"
+pulp rpm remote update --name epel-mirror  --url "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-8&arch=x86_64&infra=stock&content=centos"
+pulp rpm repository sync --name epel-mirror
+prestart
+pulp rpm repository sync --name epel-mirror
+cd devel/pulp-2to3-migration/
+pclean
+[prestart
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+find . -name set_pulp2.sh
+cp ./pulp_2to3_migration/tests/functional/scripts/set_pulp2.sh /tmp
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+sudo systemctl stop pulp_\*
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+sudo systemctl start pulp_\*
+history | less
+reset_pulp2
+pclean
+prestart
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+vi /tmp/set_pulp2.sh
+http :/pulp/api/v3/migration-plans/
+pbindings help
+phelp
+pbindings pulp-2to3-migration python
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api.test_rhsm_certguard.RHSMV3ChainCACertGuardTestCase.test_allow_request_when_cert_matches_zero_var_path
+pulpcore-manager test -t /home/vagrant/devel/pulp-certguard/pulp_certguard/tests/ pulp_certguard.tests.functional.api
+history | less
+bash /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/scripts/set_pulp2.sh localhost rpm_base_4repos
+vi /tmp/set_pulp2.sh
+sudo systemctl stop pulp_workers pulp_resource_manager pulp_celerybeat pulp_streamer goferd
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+vi /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/rpm_base.py
+vi /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/functional/test_rpm_repo.py
+cd pulp_2to3_migration/tests/
+l
+ls
+cd functional/
+ls
+vi rpm_base.py
+vi constants.py
+pulpcore-manager test -t /home/vagrant/devel/pulp-2to3-migration/pulp_2to3_migration/tests/ pulp_2to3_migration.tests.functional.test_rpm_repo.TestRpmRepoMigrationComplexPlan
+cd
+cd devel/pulp-2to3-migration/
+ls
+vi requirements.txt
+vi test_requirements.txt
+vi functest_requirements.txt
+vi func_test_settings.py
+cd .ci
+tree .
+vi ansible.cfg
+vi ansible/ansible.cfg
+grep -R pulpcore
+cd ../
+ls -a
+cd .github/
+ls
+grep -R pulpcore
+vi workflows/scripts/install.sh
+vi workflows/scripts/script.sh
+cd ..
+vi template_config.yml
+python3
+cd ../
+cd pulp_rpm/
+../devel/pulp_startup/reload
+pwd
+../pulp_startup/reload
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_sync.BasicSyncTestCase.test_sync_from_valid_mirror_list_feed_with_params
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_sync.BasicSyncTestCase.test_sync_from_valid_mirror_list_feed_with_params
+pwd
+flake8 --config  flake8.cfg
+pclean
+[prestart
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_sync
+vi ../pulpcore/pulpcore/app/settings.py
+cd ../pulpcore
+grep -R DEFAULT_DOWNLOAD_CONCURRENCY
+vi pulpcore/app/models/repository.py
+grep -R download_concurrency
+cd ../plugin_template/
+vi README.md
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo create --repo-id foo
+pulp-admin rpm repo --help
+pulp-admin rpm repo delete --repo-id foo
+reset_pulp2
+pulp-admin rpm repo create --repo-id foo
+pulp-admin rpm repo destroy --repo-id foo
+pulp-admin rpm repo delete --repo-id foo
+pulp-admin task list
+pulp-admin tasks list
+pulp-admin tasks list --help
+pulp-admin tasks list --all
+pulp-admin tasks --help
+pulp-admin tasks details --help
+pulp-admin tasks details --task-id ae37ab19-e589-4b69-98ee-b5c2ab3a7398
+pulp-admin rpm repo list
+pulp-admin rpm repo delete --repo-id bar
+mongo
+pulp-admin rpm repo create --repo-id blech
+mongo
+history | grep "pulp rpm" | less
+pulp rpm remote create --name rhel7-1 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm repo create --name rhel7 --remote rhel7-1
+pulp rpm repository create --name rhel7 --remote rhel7-1
+pulp rpm repository sync --name rhel7-1
+pulp rpm repository sync --name rhel7
+cd .
+cd
+cd devel/pulp_startup/CDN_cert/
+ls
+./set_env.sh
+pulp rpm remote create --name rhel7-2 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm repository create --name rhel7-2 --remote rhel7-2
+pulp rpm repository sync --name rhel7-2
+env
+source ./set_env.sh
+pulp rpm remote create --name rhel7-3 --url https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm repository create --name rhel7-3 --remote rhel7-3
+pulp rpm repository sync --name rhel7-3
+http :/pulp/api/v3/content/rpm/packages/?repository_version=/pulp/api/v3/repositories/rpm/rpm/0036460a-0025-43bb-98fb-79e2f7c773a3/versions/1/
+http :/pulp/api/v3/content/rpm/packages/?repository_version=/pulp/api/v3/repositories/rpm/rpm/0036460a-0025-43bb-98fb-79e2f7c773a3/versions/1/ > tt
+vi tt
+pulp rpm remote create --name appstream --url https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/ --policy on_demand --ca-cert "$CDN_CA_CERT" --client-key "$CDN_CLIENT_KEY" --client-cert "$CDN_CLIENT_CERT"
+pulp rpm repository create --name appstream --remote appstream
+df -h
+pulp rpm repository sync --name appstream
+pulp-admin login -u admin -p admin
+pulp-admin rpm repo create --serve-http=true --repo-id=appstream --relative-url=appstream --feed=https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/ --download-policy on_demand --feed-key /home/vagrant/devel/pulp_startup/CDN_cert/cdn-key-and.pem --feed-cert /home/vagrant/devel/pulp_startup/CDN_cert/cdn-key-and.pem --feed-ca-cert /home/vagrant/devel/pulp_startup/CDN_cert/redhat-uep.pem
+pulp-admin rpm repo sync now --repo-id appstream
+pulp-admin rpm repo sync run --repo-id appstream
+wget http://localhost/pulp/content/
+cat index.html
+history
+psql --help
+psql -U pulp -d pulp --host 127.0.0.1 -c "select count(*) form core_content;"
+echo $?
+pulpcore-manager dbshell --help
+pulpcore-manager dbshell --database pulp "select count(*) form core_content;"
+pulpcore-manager dbshell --database pulp -c "select count(*) form core_content;"
+echo $?
+cd ../
+./reload
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+./reload
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+find . -name test_distribution_tree.py
+cd ../pulp_rpm/
+find . -name test_distribution_tree.py
+vi ./pulp_rpm/tests/functional/api/test_distribution_tree.py
+git status
+git show
+vi pulp_rpm/app/tasks/synchronizing.py
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+git diff
+pclean
+prestart
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_distribution_tree
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api.test_sync
+#pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api
+prestart
+##ppcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api
+pulpcore-manager test -t /home/vagrant/devel/pulp_rpm/pulp_rpm/tests pulp_rpm.tests.functional.api
+git status
+git diff
+git show
+flake8 --config  flake8.cfg
+pclean
+prestart
+set -o vi
+workon pulp
+journalctl -u pulpcore\* -f
+journalctl -u pulpcore\* --no-hostname -f
+journalctl -u pulpcore\* -o cat -f
+journalctl -o cat -f
+man syslog
+man rsyslog
+dnf search rsyslog
+yum search rsyslog
+cd devel/pulp-cl
+set -o vi
+workon pulp
+cd devel/
+cd pulp-cl
+cd pulp-cli
+ls
+cd ..
+ls devel/
+pstatus
+ls devel/
+df
+mount -a
+sudo mount -a
+df
+ls devel/
+ls
+ls -l
+ls dist/
+sudo journalctl -since today | less
+set -o vi
+sudo journalctl --since today | less
+df
+ls devel/
+vi /etc/mtab
+ls devel/
+ls
+history | wc
+vi .bash_history
+vagrant port
+vagrant ssh pulp2-nightly-pulp3-source-centos7 -- -L 8000:pulp2-nightly-pulp3-source-centos7.padre-fedora.example.com:80

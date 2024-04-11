@@ -1,11 +1,12 @@
-ROOT=/home/ggainey/github/Pulp3
-cd $ROOT/pulpcore; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp_file; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp_rpm; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp_container; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-#cd $ROOT/pulp_installer; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp-certguard; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp_deb; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-#cd $ROOT/pulp-2to3-migration; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-cd $ROOT/pulp-cli; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
-
+if [ -z "${ROOT}" ]; then
+  ROOT=/home/ggainey/github/Pulp3
+fi
+REPOS="$@"
+if [ -z "${REPOS}" ]; then
+  REPOS="pulpcore pulp_file pulp_rpm pulp_container pulp-certguard pulp_deb pulp-cli"
+fi
+echo ${REPOS}
+for r in ${REPOS}; do
+  echo "${ROOT}/${r}"
+  cd "${ROOT}/${r}"; git checkout main; git fetch upstream; git rebase upstream/main; git push origin main
+done
