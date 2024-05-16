@@ -1,0 +1,3 @@
+for r in `pulp rpm repository list | jq -r '.[].name'`; do pulp rpm repository destroy --name "${r}"; done
+for r in `pulp rpm remote list | jq -r '.[].name'`; do pulp rpm remote destroy --name "${r}"; done
+pulp orphan cleanup --protection-time 0

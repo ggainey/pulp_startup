@@ -1,0 +1,8 @@
+pulp rpm remote create --name zoo --url "https://fixtures.pulpproject.org/rpm-signed/" --policy on_demand
+pulp rpm remote create --name swid --policy on_demand --url https://partha.fedorapeople.org/test-repos/swid-zoo/
+pulp rpm remote create --name epel9 --policy on_demand --url  https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/
+pulp rpm repository create --name zoo --remote zoo --no-autopublish
+pulp rpm repository create --name swid --remote swid --no-autopublish
+pulp rpm repository create --name epel9 --remote epel9 --no-autopublish
+for r in `pulp rpm repository list | jq -r '.[].name'`; do pulp rpm repository sync --name "${r}"; done
+/home/ggainey/github/Pulp3/pulp_startup/rhel/sync

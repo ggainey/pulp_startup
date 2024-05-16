@@ -15,10 +15,8 @@ R8_REMOTES=(\
     https://cdn.redhat.com/content/dist/rhel8/8.0/x86_64/baseos/kickstart \
 )
 R9_REMOTES=(\
-https://cdn.redhat.com/content/beta/rhel9/9/x86_64/baseos/os/ \
-https://cdn.redhat.com/content/beta/rhel9/9/x86_64/appstream/os/ \
-https://cdn.redhat.com/content/beta/rhel9/9/x86_64/baseos/kickstart/ \
-https://cdn.redhat.com/content/beta/rhel9/9/x86_64/appstream/kickstart/ \
+    https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os/ \
+    https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os/ \
 )
 
 R7_NAMES=(\
@@ -38,15 +36,13 @@ R8_NAMES=(\
 #)
 
 R9_NAMES=(\
-rhel_9_beta_x86_64_baseos \
-rhel_9_beta_x86_64_appstream \
-rhel_9_beta_x86_64_baseos_kickstart \
-rhel_9_beta_x86_64_appstream_kickstart \
+    rhel_9_x86_64_appstream \
+    rhel_9_x86_64_baseos \
 )
 
-R9=
+R9=1
 R8=
-R7=1
+R7=
 
 BASE=/home/ggainey/github/Pulp3/
 
@@ -54,10 +50,11 @@ if [ "${R9}" ]; then
     for r in ${!R9_REMOTES[@]}; do
       echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];
       pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
-          --client-cert=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
-          --client-key=@${BASE}pulp_startup/CDN_cert/cdn_11012023.pem \
+          --client-cert=@${BASE}pulp_startup/CDN_cert/19042024.pem \
+          --client-key=@${BASE}pulp_startup/CDN_cert/19042024.pem \
           --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
-      pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}"
+      pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}" --autopublish
+      pulp rpm distribution create --name "${R9_NAMES[$r]}" --repository "${R9_NAMES[$r]}" --base-path "${R9_NAMES[$r]}"
       pulp rpm repository sync --name "${R9_NAMES[$r]}"
     done
 fi
