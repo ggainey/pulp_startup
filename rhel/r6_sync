@@ -1,0 +1,21 @@
+#!/bin/bash
+
+R6_REMOTES=(\
+https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/os/ \
+)
+R6_NAMES=(\
+rhel_6_x86_64_server \
+)
+
+BASE=/home/ggainey/github/Pulp3/
+
+for r in ${!R6_REMOTES[@]}; do
+  echo ">>>>> "[${R6_REMOTES[$r]}] INTO [${R6_NAMES[$r]}];
+  pulp rpm remote create --name "${R6_NAMES[$r]}" --url "${R6_REMOTES[$r]}" --policy on_demand \
+      --client-cert=@${BASE}pulp_startup/CDN_cert/active.pem \
+      --client-key=@${BASE}pulp_startup/CDN_cert/active19042024.pem \
+      --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
+  pulp rpm repository create --name "${R6_NAMES[$r]}" --remote "${R6_NAMES[$r]}" --autopublish
+  pulp rpm distribution create --name "${R6_NAMES[$r]}" --repository "${R6_NAMES[$r]}" --base-path "${R6_NAMES[$r]}"
+  pulp rpm repository sync --name "${R6_NAMES[$r]}"
+done

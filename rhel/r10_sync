@@ -1,0 +1,24 @@
+#!/bin/bash
+R10_REMOTES=(\
+    https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/ \
+    https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/ \
+)
+
+R10_NAMES=(\
+r10_base_x86_64 \
+r10_appstream_x86_64 \
+)
+
+BASE=/home/ggainey/github/Pulp3/
+
+for r in ${!R10_REMOTES[@]}; do
+  echo ">>>>> "[${R10_REMOTES[$r]}] INTO [${R10_NAMES[$r]}];
+  pulp rpm remote create --name "${R10_NAMES[$r]}" --url "${R10_REMOTES[$r]}" --policy on_demand \
+      --client-cert=@${BASE}pulp_startup/CDN_cert/active.pem \
+      --client-key=@${BASE}pulp_startup/CDN_cert/active.pem \
+      --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
+  pulp rpm repository create --name "${R10_NAMES[$r]}" --remote "${R10_NAMES[$r]}"
+  pulp rpm repository sync --name "${R10_NAMES[$r]}"
+  pulp rpm publication create --repository "${R10_NAMES[$r]}"
+  pulp rpm distribution create --name "${R10_NAMES[$r]}" --repository "${R10_NAMES[$r]}" --base-path "${R10_NAMES[$r]}"
+done

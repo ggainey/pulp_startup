@@ -50,8 +50,8 @@ if [ "${R9}" ]; then
     for r in ${!R9_REMOTES[@]}; do
       echo ">>>>> "[${R9_REMOTES[$r]}] INTO [${R9_NAMES[$r]}];
       pulp rpm remote create --name "${R9_NAMES[$r]}" --url "${R9_REMOTES[$r]}" --policy on_demand \
-          --client-cert=@${BASE}pulp_startup/CDN_cert/19042024.pem \
-          --client-key=@${BASE}pulp_startup/CDN_cert/19042024.pem \
+          --client-cert=@${BASE}pulp_startup/CDN_cert/active.pem \
+          --client-key=@${BASE}pulp_startup/CDN_cert/active.pem \
           --ca-cert=@${BASE}pulp_startup/CDN_cert/redhat-uep.pem
       pulp rpm repository create --name "${R9_NAMES[$r]}" --remote "${R9_NAMES[$r]}" --autopublish
       pulp rpm distribution create --name "${R9_NAMES[$r]}" --repository "${R9_NAMES[$r]}" --base-path "${R9_NAMES[$r]}"
