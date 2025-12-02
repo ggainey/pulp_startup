@@ -1,0 +1,39 @@
+NAME=demo-4
+echo " set up repo and content"
+pulp file remote create --name ${NAME} --url https://fixtures.pulpproject.org/file/PULP_MANIFEST
+pulp file repository create --name ${NAME} --remote ${NAME}
+pulp file repository sync --name ${NAME}
+
+echo " label the repo and use the label"
+pulp file repository label set --repository ${NAME} --key foo --value bar
+pulp file repository list --label-select foo --field prn --field name --field pulp_labels
+pulp file repository list --label-select foo=bar --field prn --field name --field pulp_labels
+echo " Should find nothing"
+pulp file repository list --label-select baz=bar --field prn --field name --field pulp_labels
+
+echo " Upload and label content"
+echo " Currently missing feature in pulp-cli"
+REPO_PRN=`pulp file repository show --name ${NAME} | jq -r .prn`
+echo "foo content for ${NAME}\n" >> /tmp/foo.txt
+http -f :5001/pulp/api/v3/content/file/files/ file@/tmp/foo.txt relative_path=foo.txt  pulp_labels='{"buildId": "1234"}' repository=${REPO_PRN}
+
+echo " Search content by label k=v"
+pulp file content list --label-select 'buildId=1234'  --field prn --field name --field pulp_labels
+http  GET :5001/pulp/api/v3/content/file/files/ pulp_label_select=="buildId~1234"
+echo " Search content by label k"
+pulp file content list --label-select 'buildId'  --field prn --field name --field pulp_labels
+echo " Search content by not-label k"
+pulp file content list --label-select '!buildId'  --field prn --field name --field pulp_labels
+
+CONTENT_PRN=`pulp file content list --label-select "buildId=1234" --field prn | jq -r .[0].prn`
+echo " Add a label to content"
+pulp file content label set --key "frodo" --value "lives" --href ${CONTENT_PRN}
+pulp file content show --href ${CONTENT_PRN}
+
+echo " Change an existing label's value"
+pulp file content label set --key "buildId" --value "669" --href ${CONTENT_PRN}
+pulp file content show --href ${CONTENT_PRN}
+
+echo " Remove a label"
+pulp file content label unset --key "frodo" --href ${CONTENT_PRN}
+pulp file content show --href ${CONTENT_PRN}
