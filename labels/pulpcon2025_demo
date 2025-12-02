@@ -1,4 +1,6 @@
-NAME=demo-4
+#! /usr/bin/bash
+
+NAME=pulpcon-2025-demo
 echo " set up repo and content"
 pulp file remote create --name ${NAME} --url https://fixtures.pulpproject.org/file/PULP_MANIFEST
 pulp file repository create --name ${NAME} --remote ${NAME}
