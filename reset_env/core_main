@@ -1,4 +1,4 @@
-ROOT=/home/ggainey/github/Pulp3
+ROOT=/home/ggainey/Pulp
 update-all
 echo core; cd $ROOT/pulpcore; git checkout main; echo
 echo file; cd $ROOT/pulp_file; git checkout main; echo

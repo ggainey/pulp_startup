@@ -7,7 +7,7 @@ R6_NAMES=(\
 rhel_6_x86_64_server \
 )
 
-BASE=/home/ggainey/github/Pulp3/
+BASE=${PULP_ROOT}
 
 for r in ${!R6_REMOTES[@]}; do
   echo ">>>>> "[${R6_REMOTES[$r]}] INTO [${R6_NAMES[$r]}];

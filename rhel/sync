@@ -44,7 +44,7 @@ R9=1
 R8=
 R7=
 
-BASE=/home/ggainey/github/Pulp3/
+BASE=${PULP_ROOT}
 
 if [ "${R9}" ]; then
     for r in ${!R9_REMOTES[@]}; do

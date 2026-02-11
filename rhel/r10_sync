@@ -9,7 +9,7 @@ r10_base_x86_64 \
 r10_appstream_x86_64 \
 )
 
-BASE=/home/ggainey/github/Pulp3/
+BASE=${PULP_ROOT}
 
 for r in ${!R10_REMOTES[@]}; do
   echo ">>>>> "[${R10_REMOTES[$r]}] INTO [${R10_NAMES[$r]}];
