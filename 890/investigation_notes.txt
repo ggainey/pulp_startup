@@ -1,0 +1,23 @@
+# grant read-from-file for COPY
+# su postgres -c "psql -c \"grant pg_read_server_files to \"pulp\";\""
+
+# sql to set up test table and fill it
+create table big (id serial, val BIGINT);
+copy big (val) from '/src/pulp_startup/890/3g.txt';
+
+# sql to time the ALTER
+\timing 1
+ALTER SEQUENCE big_id_seq as bigint;
+;; 10.4ms for 100m.txt - extrapolates to about ~200msec for 2G rows
+;;
+pulp=> select count(id) from big;
+   count
+------------
+ 1181371442
+(1 row)
+
+Time: 1659217.840 ms (27:39.218)
+pulp=> ALTER SEQUENCE big_id_seq as bigint;
+ALTER SEQUENCE
+Time: 202.055 ms
+
