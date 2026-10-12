@@ -3,7 +3,7 @@ if [ -z "${ROOT}" ]; then
 fi
 REPOS="$@"
 if [ -z "${REPOS}" ]; then
-  REPOS="pulpcore pulp_file pulp_rpm pulp_container pulp-certguard pulp_deb pulp-cli"
+  REPOS="pulpcore pulp_rpm pulp_container pulp_deb pulp-cli plugin_template pulp_ansible pulp_container pulp_python"
 fi
 echo ${REPOS}
 for r in ${REPOS}; do
